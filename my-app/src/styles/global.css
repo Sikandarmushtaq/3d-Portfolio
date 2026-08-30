@@ -1,0 +1,1469 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+
+*::-webkit-scrollbar {
+  display: block !important;
+  width: 10px !important;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+}
+
+
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #7209b7 #000;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+*::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+*::-webkit-scrollbar-track {
+  background: #000 !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    #f7d046,
+    #f72585,
+    #7209b7
+  ) !important;
+  border-radius: 5px !important;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    #f72585,
+    #7209b7
+  ) !important;
+}
+
+*::-webkit-scrollbar-corner {
+  background: #000 !important;
+}
+
+
+
+
+body {
+  cursor: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+@media (max-width: 520px) {
+  body {
+    cursor: auto;
+  }
+}
+
+
+
+
+html.lenis,
+html.lenis body {
+  height: auto !important;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+/* =========================================================
+   PREMIUM MINIMAL NAVBAR
+   Editorial / Awwwards inspired
+========================================================= */
+
+.navbar-sikandar {
+  width: 100% !important;
+
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+
+  z-index: 999999 !important;
+
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center !important;
+
+  padding:
+    30px 38px !important;
+
+  pointer-events: auto !important;
+
+  background: transparent !important;
+
+  transform: none !important;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand-name {
+  justify-self: start;
+
+  position: relative;
+
+  color: #fff !important;
+
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  letter-spacing: 0.22em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  opacity: 0.92;
+
+  transition:
+    opacity 0.3s ease;
+}
+
+
+.brand-name:hover {
+  opacity: 1;
+}
+
+
+.brand-name::after {
+  content: "";
+
+  width: 18px;
+  height: 1px;
+
+  position: absolute;
+
+  left: 0;
+  bottom: -9px;
+
+  background: #8b5cf6;
+
+  transform-origin: left;
+
+  transform: scaleX(0);
+
+  transition:
+    transform 0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+.brand-name:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* =========================================================
+   DESKTOP NAV
+========================================================= */
+
+.nav {
+  justify-self: center;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 46px;
+}
+
+
+/* =========================================================
+   NAV ITEM
+========================================================= */
+
+.nav-link {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 9px 0;
+
+  border: none;
+
+  background: transparent;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.58
+    );
+
+  font-family: inherit;
+
+  font-size: 0.66rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.16em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  cursor: none;
+
+  transition:
+    color 0.28s ease;
+}
+
+
+/* elegant underline */
+
+.nav-link::after {
+  content: "";
+
+  height: 1px;
+
+  position: absolute;
+
+  left: 0;
+  right: 100%;
+
+  bottom: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8b5cf6,
+      #b69cff
+    );
+
+  transition:
+    right 0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+.nav-link:hover,
+.nav-dropdown:hover > .nav-link {
+  color: #fff;
+}
+
+
+.nav-link:hover::after,
+.nav-dropdown:hover > .nav-link::after {
+  right: 0;
+}
+
+
+.nav-link-button {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+
+/* =========================================================
+   CHEVRON
+========================================================= */
+
+.nav-chevron {
+  width: 11px;
+  height: 11px;
+
+  flex-shrink: 0;
+
+  color:
+    rgba(
+      167,
+      139,
+      250,
+      0.58
+    );
+
+  transform:
+    translateY(-1px);
+
+  transition:
+    transform 0.4s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+    color 0.3s ease;
+}
+
+
+.nav-dropdown:hover .nav-chevron {
+  color: #b69cff;
+
+  transform:
+    translateY(0)
+    rotate(180deg);
+}
+
+
+/* =========================================================
+   DROPDOWN WRAPPER
+========================================================= */
+
+.nav-dropdown {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+/*
+   Invisible bridge.
+   Mouse navbar se menu tak move
+   karte waqt dropdown close nahi hoga.
+*/
+
+.nav-dropdown::after {
+  content: "";
+
+  width:
+    calc(100% + 40px);
+
+  height: 34px;
+
+  position: absolute;
+
+  top: 100%;
+  left: -20px;
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   DROPDOWN
+   Less "card", more floating editorial surface
+========================================================= */
+
+.dropdown-menu {
+  position: absolute;
+
+  top:
+    calc(100% + 24px);
+
+  left: 50%;
+
+  z-index: 9999999;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transform:
+    translateX(-50%)
+    translateY(15px);
+
+  /*
+     Background intentionally subtle.
+     Home particles remain visible.
+  */
+
+  background:
+    rgba(
+      4,
+      3,
+      7,
+      0.38
+    );
+
+  backdrop-filter:
+    blur(13px)
+    saturate(115%);
+
+  -webkit-backdrop-filter:
+    blur(13px)
+    saturate(115%);
+
+  border-top:
+    1px solid
+    rgba(
+      167,
+      139,
+      250,
+      0.23
+    );
+
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+
+  /*
+    Deliberately almost square.
+    Less generic glass-card look.
+  */
+
+  border-radius: 2px;
+
+  box-shadow:
+    0 35px 90px
+    rgba(
+      0,
+      0,
+      0,
+      0.26
+    );
+
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease,
+    transform 0.4s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+/* ambient glow behind menu */
+
+.dropdown-menu::before {
+  content: "";
+
+  width: 65%;
+  height: 1px;
+
+  position: absolute;
+
+  top: -1px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        167,
+        139,
+        250,
+        0.75
+      ),
+      transparent
+    );
+
+  box-shadow:
+    0 0 25px
+    rgba(
+      139,
+      92,
+      246,
+      0.18
+    );
+}
+
+
+/* =========================================================
+   SHOW MENU
+========================================================= */
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+
+/* =========================================================
+   SCENE / NAV REACTION
+   Menu open -> navbar gently separates from scene
+========================================================= */
+
+.navbar-sikandar:has(.nav-dropdown:hover) {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(
+        0,
+        0,
+        0,
+        0.25
+      ),
+      transparent
+    ) !important;
+
+  backdrop-filter:
+    blur(1.5px);
+
+  -webkit-backdrop-filter:
+    blur(1.5px);
+}
+
+
+/* non-hovered nav links fade slightly */
+
+.nav:has(.nav-dropdown:hover)
+> *:not(:hover) {
+  opacity: 0.48;
+
+  transition:
+    opacity 0.25s ease;
+}
+
+
+/* =========================================================
+   SERVICES MEGA MENU
+========================================================= */
+
+.mega-menu {
+  width:
+    min(
+      760px,
+      76vw
+    );
+
+  min-width: 680px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 0;
+
+  padding:
+    29px 22px 26px;
+}
+
+
+/* =========================================================
+   MEGA COLUMN
+========================================================= */
+
+.mega-col {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding:
+    3px 24px 4px;
+
+  border-right:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.055
+    );
+}
+
+
+.mega-col:first-child {
+  padding-left: 10px;
+}
+
+
+.mega-col:last-child {
+  padding-right: 10px;
+
+  border-right: none;
+}
+
+
+/* =========================================================
+   COLUMN NUMBER
+========================================================= */
+
+.mega-number {
+  margin-bottom: 13px;
+
+  color:
+    rgba(
+      167,
+      139,
+      250,
+      0.56
+    );
+
+  font-size: 0.46rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.18em;
+}
+
+
+/* =========================================================
+   COLUMN HEADING
+========================================================= */
+
+.mega-col h4 {
+  margin:
+    0 0 14px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.35
+    );
+
+  font-size: 0.56rem;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   DROPDOWN ITEMS
+========================================================= */
+
+.dropdown-item {
+  min-height: 39px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  padding:
+    0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.65
+    );
+
+  font-size: 0.75rem;
+
+  font-weight: 400;
+
+  line-height: 1.35;
+
+  text-decoration: none;
+
+  cursor: none;
+
+  transition:
+    color 0.25s ease,
+    transform 0.3s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+/*
+   No circles / pills / item boxes.
+   Just elegant text movement.
+*/
+
+.dropdown-item::before {
+  content: "↗";
+
+  width: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  color: #a78bfa;
+
+  font-size: 0.65rem;
+
+  transform:
+    translateX(-5px);
+
+  transition:
+    width 0.28s ease,
+    opacity 0.28s ease,
+    transform 0.28s ease,
+    margin-right 0.28s ease;
+}
+
+
+.dropdown-item:hover {
+  color: #fff;
+
+  background:
+    rgba(0, 0, 0, 0.35);
+
+  transform:
+    translateX(2px);
+}
+
+.dropdown-item:hover::before {
+  width: 10px;
+
+  opacity: 1;
+
+  margin-right: 9px;
+
+  transform:
+    translateX(0);
+}
+
+
+/* =========================================================
+   ABOUT MENU
+========================================================= */
+
+.small-menu {
+  width: 210px;
+
+  min-width: 210px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+
+  padding:
+    18px 20px;
+}
+
+
+/* =========================================================
+   DESKTOP SPACER
+========================================================= */
+
+.navbar-spacer {
+  width: 120px;
+
+  justify-self: end;
+}
+
+
+/* =========================================================
+   HAMBURGER
+   PURE LINES
+========================================================= */
+
+.hamburger-btn {
+  width: 39px;
+  height: 39px;
+
+  display: none;
+
+  justify-self: end;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 0;
+
+  border: 0 !important;
+
+  border-radius: 0 !important;
+
+  outline: none !important;
+
+  background:
+    transparent !important;
+
+  box-shadow:
+    none !important;
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+
+.hamburger-btn span {
+  height: 1px;
+
+  display: block;
+
+  border-radius: 0;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.9
+    );
+
+  transition:
+    width 0.3s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+    background 0.25s ease;
+}
+
+
+.hamburger-btn span:nth-child(1) {
+  width: 23px;
+}
+
+
+.hamburger-btn span:nth-child(2) {
+  width: 16px;
+}
+
+
+.hamburger-btn span:nth-child(3) {
+  width: 20px;
+}
+
+
+.hamburger-btn:hover span {
+  background: #b69cff;
+}
+
+
+.hamburger-btn:hover
+span:nth-child(2) {
+  width: 23px;
+}
+
+
+/* =========================================================
+   MOBILE BACKDROP
+========================================================= */
+
+.mobile-menu-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999997;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.25
+    );
+
+  backdrop-filter:
+    blur(4px);
+
+  -webkit-backdrop-filter:
+    blur(4px);
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+
+.mobile-menu-backdrop.is-open {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu-overlay {
+  width:
+    min(
+      365px,
+      88vw
+    );
+
+  height: 100svh;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  z-index: 9999999;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow-y: auto;
+
+  background:
+    rgba(
+      3,
+      3,
+      5,
+      0.82
+    );
+
+  backdrop-filter:
+    blur(24px)
+    saturate(120%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(120%);
+
+  border-right:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.075
+    );
+
+  transform:
+    translateX(-102%);
+
+  transition:
+    transform 0.48s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+.mobile-menu-overlay.is-open {
+  transform:
+    translateX(0);
+}
+
+
+/* =========================================================
+   MOBILE HEADER
+========================================================= */
+
+.mobile-menu-header {
+  min-height: 84px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  padding:
+    21px 23px;
+
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.065
+    );
+}
+
+
+.mobile-menu-header
+.brand-name {
+  font-size: 0.68rem;
+}
+
+
+/* =========================================================
+   CLOSE ICON
+========================================================= */
+
+.mobile-menu-close {
+  width: 36px;
+  height: 36px;
+
+  position: relative;
+
+  padding: 0;
+
+  border: none;
+
+  background:
+    transparent;
+
+  cursor: pointer;
+}
+
+
+.mobile-menu-close span {
+  width: 20px;
+  height: 1px;
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.8
+    );
+}
+
+
+.mobile-menu-close
+span:first-child {
+  transform:
+    translate(-50%, -50%)
+    rotate(45deg);
+}
+
+
+.mobile-menu-close
+span:last-child {
+  transform:
+    translate(-50%, -50%)
+    rotate(-45deg);
+}
+
+
+/* =========================================================
+   MOBILE MENU CONTENT
+========================================================= */
+
+.mobile-menu-body {
+  display: flex;
+
+  flex-direction: column;
+
+  padding:
+    24px 24px 45px;
+}
+
+
+.mobile-accordion {
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.065
+    );
+}
+
+
+.mobile-accordion-trigger {
+  width: 100%;
+
+  min-height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  padding: 0;
+
+  border: none;
+
+  background:
+    transparent;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.86
+    );
+
+  font-family: inherit;
+
+  font-size: 0.85rem;
+
+  font-weight: 500;
+
+  letter-spacing:
+    0.05em;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE CHEVRON
+========================================================= */
+
+.mobile-chevron {
+  display: inline-flex;
+
+  color:
+    rgba(
+      167,
+      139,
+      250,
+      0.62
+    );
+
+  transition:
+    transform 0.35s ease;
+}
+
+
+.mobile-chevron
+.nav-chevron {
+  width: 15px;
+  height: 15px;
+}
+
+
+.mobile-chevron.is-open {
+  transform:
+    rotate(180deg);
+}
+
+
+/* =========================================================
+   ACCORDION PANEL
+========================================================= */
+
+.mobile-accordion-panel {
+  max-height: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  transform:
+    translateY(-5px);
+
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    padding-bottom 0.3s ease;
+}
+
+
+.mobile-accordion-panel.is-open {
+  max-height: 620px;
+
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+  padding-bottom:
+    15px;
+}
+
+
+/* =========================================================
+   MOBILE LINKS
+========================================================= */
+
+.mobile-accordion-item {
+  position: relative;
+
+  padding:
+    9px 0 9px 14px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.5
+    );
+
+  border-left:
+    1px solid
+    rgba(
+      139,
+      92,
+      246,
+      0.24
+    );
+
+  font-size: 0.77rem;
+
+  line-height: 1.45;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    padding-left 0.25s ease;
+}
+
+
+.mobile-accordion-item:hover {
+  color: #fff;
+
+  padding-left: 19px;
+}
+
+
+.mobile-menu-link {
+  min-height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.86
+    );
+
+  font-size: 0.85rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.05em;
+
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 1050px) {
+
+  .navbar-sikandar {
+    padding:
+      28px 28px !important;
+  }
+
+
+  .nav {
+    gap: 31px;
+  }
+
+
+  .mega-menu {
+    width: 70vw;
+
+    min-width: 620px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media
+(max-width: 700px) {
+
+  .navbar-sikandar {
+    grid-template-columns:
+      1fr auto !important;
+
+    padding:
+      22px 20px !important;
+  }
+
+
+  .nav {
+    display: none;
+  }
+
+
+  .navbar-spacer {
+    display: none;
+  }
+
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+
+  /*
+    Extra protection against any
+    global button styling.
+  */
+
+  .hamburger-btn,
+  .hamburger-btn:hover,
+  .hamburger-btn:focus,
+  .hamburger-btn:active {
+    border: 0 !important;
+
+    outline: 0 !important;
+
+    border-radius: 0 !important;
+
+    background:
+      transparent !important;
+
+    box-shadow:
+      none !important;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media
+(max-width: 420px) {
+
+  .navbar-sikandar {
+    padding:
+      20px 16px !important;
+  }
+
+
+  .brand-name {
+    font-size:
+      0.66rem;
+
+    letter-spacing:
+      0.17em;
+  }
+
+
+  .hamburger-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+
+  .mobile-menu-overlay {
+    width:
+      min(
+        345px,
+        91vw
+      );
+  }
+
+}

@@ -1,0 +1,41 @@
+
+.hero-wrapper { position: relative; width: 100%; height: 100svh; min-height: 600px; overflow: hidden; background: #000; }
+.canvas-layer { position: fixed; inset: 0; z-index: 0; pointer-events: auto; will-change: transform; }
+.ui-content { position: relative; z-index: 5; width: 100%; height: 100%; pointer-events: none; }
+
+
+.hero-info { position: absolute; left: 50%; bottom: 13%; transform: translateX(-50%); width: min(700px, 90vw); text-align: center; pointer-events: none; z-index: 5; }
+.hero-title { font-size: clamp(1.25rem, 2vw, 1.8rem); font-weight: 500; letter-spacing: 0.42em; text-transform: uppercase; color: rgba(255, 255, 255, 0.88); margin-left: 0.42em; }
+.hero-divider { display: block; width: 36px; height: 2px; margin: 18px auto 25px; background: rgba(255, 255, 255, 0.85); }
+.hero-description { font-size: clamp(0.56rem, 0.75vw, 0.7rem); font-weight: 400; line-height: 2.4; letter-spacing: 0.38em; color: rgba(255, 255, 255, 0.62); margin-left: 0.38em; }
+.hero-services { margin-top: 30px; font-size: clamp(0.55rem, 0.7vw, 0.68rem); font-weight: 500; letter-spacing: 0.48em; color: rgba(255, 255, 255, 0.86); margin-left: 0.48em; }
+
+
+.canvas-visible { opacity: 1; }
+.canvas-hidden { opacity: 0; }
+
+@media (max-width: 900px) {
+
+  .hero-info { bottom: 13%; }
+  .hero-title { font-size: 1.15rem; letter-spacing: 0.3em; }
+  .hero-description { font-size: 0.55rem; line-height: 2.1; letter-spacing: 0.25em; }
+  .hero-services { margin-top: 24px; font-size: 0.55rem; letter-spacing: 0.3em; }
+  .mega-menu { min-width: 90vw; left: 50%; }
+}
+
+
+@media (max-width: 520px) {
+  .nav { display: none; }
+
+  .hero-wrapper {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+
+  .hero-info { bottom: 17%; width: 92vw; }
+  .hero-title { font-size: 0.95rem; letter-spacing: 0.25em; }
+  .hero-divider { width: 28px; margin-top: 14px; margin-bottom: 20px; }
+  .hero-description { font-size: 0.48rem; line-height: 2; letter-spacing: 0.18em; }
+  .hero-services { margin-top: 20px; font-size: 0.48rem; letter-spacing: 0.22em; }
+}

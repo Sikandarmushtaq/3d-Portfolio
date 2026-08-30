@@ -1,0 +1,8 @@
+
+.service-page {
+  min-height: 100vh;
+  background: #050110;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
