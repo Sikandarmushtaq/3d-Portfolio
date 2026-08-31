@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import PlexusCanvas from './PlexusCanvas';
 import './Scene3.css';
 
-/* ---------- GLSL SIMPLEX NOISE (blob ke liye) — UNCHANGED ---------- */
+
 const NOISE = `
 vec3 mod289(vec3 x){return x - floor(x*(1.0/289.0))*289.0;}
 vec4 mod289(vec4 x){return x - floor(x*(1.0/289.0))*289.0;}
@@ -52,10 +52,7 @@ float snoise(vec3 v){
   return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
 }`;
 
-/* ==========================================================
-   ⬅️ FIX: flipY = false — texture warning khatam
-   (radial gradient symmetric hai, visual farq zero)
-========================================================== */
+
 function softTex(r, g, b) {
   const c = document.createElement('canvas'); c.width = c.height = 256;
   const x = c.getContext('2d');
@@ -80,7 +77,6 @@ export default function Scene3({ title = '' }) {
       renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     } catch (e) { return; }
 
-    /* mobile pe pixelRatio cap → performance */
     const isMobile = window.innerWidth < 768;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2));
     renderer.setClearColor(0x000000, 0);
@@ -93,9 +89,7 @@ export default function Scene3({ title = '' }) {
     const disposables = [];
     const track = (res) => { disposables.push(res); return res; };
 
-    /* ==================================================
-       LIQUID BLOB — UNCHANGED
-    ================================================== */
+
     const shapeGroup = new THREE.Group();
     scene.add(shapeGroup);
 
@@ -142,7 +136,7 @@ export default function Scene3({ title = '' }) {
     const blob = new THREE.Mesh(blobGeo, blobMat);
     shapeGroup.add(blob);
 
-    /* ============ NEBULA CLOUDS + HALO — UNCHANGED ============ */
+
     const nebGroup = new THREE.Group(); scene.add(nebGroup);
     const nebTexes = [
       track(softTex(124, 58, 237)),
@@ -170,11 +164,8 @@ export default function Scene3({ title = '' }) {
     halo.scale.set(12, 12, 1);
     shapeGroup.add(halo);
 
-    /* ==================================================
-       🔥 RESPONSIVE LAYOUT — blob title ke EXACT peechay
-    ================================================== */
-    let blobFloat = 0.35;   /* float amplitude */
-
+ 
+    let blobFloat = 0.35;   
     const layout = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -189,28 +180,24 @@ export default function Scene3({ title = '' }) {
       camera.lookAt(0, 0, 0);
 
       if (camera.aspect < 1) {
-        /* ---------- MOBILE / PORTRAIT ----------
-           blob CENTER = title ki line (title flex-center) */
-        const s = Math.max(0.7, camera.aspect * 1.9);   /* 1.9 ↑ = bara blob */
+     
+        const s = Math.max(0.7, camera.aspect * 1.9);  
         shapeGroup.scale.setScalar(s);
 
-        BASE_Y = 0;            /* EXACT CENTER — title ke peechay */
-        blobFloat = 0.12;      /* halka float — title se bhatke nahi */
+        BASE_Y = 0;            
+        blobFloat = 0.12;      
       } else {
-        /* ---------- DESKTOP — unchanged ---------- */
+   
         shapeGroup.scale.setScalar(1);
         BASE_Y = -0.6;
         blobFloat = 0.35;
       }
     };
 
-    /* ==================================================
-       🎬 ANIMATION LOOP — dt-based time accumulation
-       (pause/resume pe time continuous rehta hai)
-    ================================================== */
+  
     let rafId = null;
     let running = false;
-    let elapsed = 0;      /* total animation time (pause pe freeze) */
+    let elapsed = 0;     
     let lastNow = 0;
 
     function loop(now) {
@@ -224,7 +211,7 @@ export default function Scene3({ title = '' }) {
 
       const t = elapsed;
 
-      /* ---- blob ---- */
+   
       blobUniforms.uTime.value = t;
       blob.rotation.y = t * .12;
       blob.rotation.x = Math.sin(t * .2) * .15;
@@ -239,12 +226,7 @@ export default function Scene3({ title = '' }) {
       renderer.render(scene, camera);
     }
 
-    /* ==================================================
-       ⬅️ FIX: OFF-SCREEN + TAB-HIDDEN PAUSE
-       - Screen se bahar scroll → STOP (zero GPU/CPU)
-       - Tab hidden → STOP
-       - Wapis aaye → jahan se ruka wahi se resume
-    ================================================== */
+  
     let inView = true;
     let tabVisible = true;
 
@@ -284,11 +266,11 @@ export default function Scene3({ title = '' }) {
     window.addEventListener('orientationchange', onResize);
     document.addEventListener('visibilitychange', onVisibility);
 
-    layout();          /* pehla layout */
+    layout();         
     io.observe(canvas);
-    updateRunning();   /* pehla start */
+    updateRunning();  
 
-    /* ============ CLEANUP ============ */
+
     return () => {
       stopLoop();
       io.disconnect();
@@ -303,7 +285,7 @@ export default function Scene3({ title = '' }) {
   return (
     <section className="scene3-hero">
 
-      {/* wireframes — FAST speed + mouse REPEL */}
+    
       <PlexusCanvas
         className="scene3-plexus"
         speed={3.5}
