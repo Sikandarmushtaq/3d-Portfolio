@@ -1,145 +1,104 @@
-import { useRef, useState } from "react";
-import "./TeamDeck.css";
+import { useState, useRef } from 'react';
+import './TeamDeck.css';
+
 
 export default function TeamDeck({ members = [] }) {
+
+  /* ---------- state ---------- */
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-
   const dragStartX = useRef(null);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? members.length - 1 : prev - 1
-    );
-  };
+ 
+  const handlePrev = () =>
+    setCurrentIndex((p) => (p === 0 ? members.length - 1 : p - 1));
 
-  const handleNext = () => {
-    setCurrentIndex((prev) =>
-      prev === members.length - 1 ? 0 : prev + 1
-    );
-  };
+  const handleNext = () =>
+    setCurrentIndex((p) => (p === members.length - 1 ? 0 : p + 1));
+
 
   const onDragStart = (e) => {
-    if (members.length < 2) return;
-
     dragStartX.current = e.clientX;
-    setDragX(0);
     setIsDragging(true);
-
-    e.currentTarget.setPointerCapture?.(e.pointerId);
   };
 
   const onDragMove = (e) => {
     if (dragStartX.current === null) return;
-
     setDragX(e.clientX - dragStartX.current);
   };
 
-  const onDragEnd = (e) => {
+  const onDragEnd = () => {
     if (dragStartX.current === null) return;
 
-    if (dragX < -60) {
-      handleNext();
-    } else if (dragX > 60) {
-      handlePrev();
-    }
+    /* 60px se zyada drag → next/prev */
+    if (dragX < -60) handleNext();
+    else if (dragX > 60) handlePrev();
 
     dragStartX.current = null;
     setDragX(0);
     setIsDragging(false);
-
-    if (
-      e?.currentTarget?.hasPointerCapture?.(e.pointerId)
-    ) {
-      e.currentTarget.releasePointerCapture(e.pointerId);
-    }
   };
 
-  if (!members.length) {
-    return null;
-  }
+
+  if (!members.length) return null;
 
   return (
     <div className="team-deck-wrap">
+
+  
       <div
-        className={`mdeck-stage ${
-          isDragging ? "dragging" : ""
-        }`}
+        className={`mdeck-stage ${isDragging ? 'dragging' : ''}`}
         role="region"
         aria-label="Team members"
         onPointerDown={onDragStart}
         onPointerMove={onDragMove}
         onPointerUp={onDragEnd}
-        onPointerCancel={onDragEnd}
+        onPointerLeave={onDragEnd}
       >
         {members.map((member, i) => {
-          const offset =
-            ((i - currentIndex) + members.length) %
-            members.length;
 
+     
+          const offset =
+            ((i - currentIndex) + members.length) % members.length;
           const pos =
             offset > members.length / 2
               ? offset - members.length
               : offset;
-
           const abs = Math.abs(pos);
           const isActive = pos === 0;
-
-          const dragOffset = dragX * 0.32;
 
           return (
             <div
               key={member.name}
-              className={`mdeck-card ${
-                isActive ? "active" : ""
-              }`}
+              className={`mdeck-card ${isActive ? 'active' : ''}`}
               style={{
-                transform: `
-                  translateX(
-                    calc(${pos * 54}% + ${dragOffset}px)
-                  )
-                  translateZ(${-abs * 125}px)
-                  scale(${1 - abs * 0.055})
-                  rotateY(${pos * -2.2}deg)
-                `,
-                zIndex: 30 - abs,
+                transform: `translateX(calc(${pos * 46}% + ${dragX * 0.3}px))
+                            translateZ(${-abs * 150}px)
+                            scale(${1 - abs * 0.06})`,
+                zIndex: 20 - abs,
                 opacity: abs > 2 ? 0 : 1,
                 filter: isActive
-                  ? "grayscale(0) brightness(1)"
-                  : `grayscale(0.35) brightness(${
-                      0.72 - abs * 0.07
-                    })`,
+                  ? 'grayscale(0) brightness(1)'
+                  : 'grayscale(1) brightness(0.75)',
               }}
-              onClick={() => {
-                if (
-                  !isDragging &&
-                  Math.abs(dragX) < 10 &&
-                  !isActive
-                ) {
-                  setCurrentIndex(i);
-                }
-              }}
+              onClick={() => !isActive && setCurrentIndex(i)}
             >
+           
               <div
                 className="mdeck-photo"
                 style={{
-                  backgroundImage: member.img
-                    ? `url(${member.img})`
-                    : "none",
+                  backgroundImage: member.img ? `url(${member.img})` : 'none',
                 }}
               >
                 {!member.img && (
                   <span className="mdeck-initials">
-                    {member.name
-                      .split(" ")
-                      .map((word) => word[0])
-                      .slice(0, 2)
-                      .join("")}
+                    {member.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}
                   </span>
                 )}
               </div>
 
+           
               <div className="mdeck-plate">
                 <b>{member.name}</b>
                 <i>{member.role}</i>
@@ -149,9 +108,10 @@ export default function TeamDeck({ members = [] }) {
         })}
       </div>
 
+    
       <div className="mdeck-controls">
+
         <button
-          type="button"
           className="mdeck-arrow"
           onClick={handlePrev}
           aria-label="Previous member"
@@ -161,15 +121,11 @@ export default function TeamDeck({ members = [] }) {
         </button>
 
         <span className="mdeck-counter">
-          {String(currentIndex + 1).padStart(2, "0")}
-          <em>
-            {" "}
-            / {String(members.length).padStart(2, "0")}
-          </em>
+          {String(currentIndex + 1).padStart(2, '0')}
+          <em> / {String(members.length).padStart(2, '0')}</em>
         </span>
 
         <button
-          type="button"
           className="mdeck-arrow"
           onClick={handleNext}
           aria-label="Next member"
@@ -179,17 +135,15 @@ export default function TeamDeck({ members = [] }) {
         </button>
       </div>
 
+    
       {members.length > 1 && (
         <div className="mdeck-dashes">
-          {members.map((member, i) => (
+          {members.map((_, i) => (
             <button
-              type="button"
-              key={`${member.name}-${i}`}
-              className={`mdeck-dash ${
-                i === currentIndex ? "active" : ""
-              }`}
+              key={i}
+              className={`mdeck-dash ${i === currentIndex ? 'active' : ''}`}
               onClick={() => setCurrentIndex(i)}
-              aria-label={`Go to ${member.name}`}
+              aria-label={`Go to ${members[i].name}`}
             />
           ))}
         </div>

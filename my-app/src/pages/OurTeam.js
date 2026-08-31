@@ -4,7 +4,7 @@ import './OurTeam.css';
 import Footer from "../Components/Footer";
 import PlexusCanvas from '../Components/PlexusCanvas';
 import TeamDeck from '../Components/TeamDeck';
-import { teamMembers } from '../data/TeamData';  
+import { teamMembers } from '../data/TeamData';   
 
 export default function OurTeam() {
 
@@ -14,7 +14,6 @@ export default function OurTeam() {
       <Cursor />
       <Navbar />
 
-      {/* 1. HERO — unchanged */}
       <section className="ot-hero-section">
         <PlexusCanvas
           className="ot-network-canvas"
@@ -33,7 +32,7 @@ export default function OurTeam() {
         <section className="ot-section team-section-white">
           <div className="ot-container team-center-layout">
             <h1 className="section-title dark-title">Meet Our Team</h1>
-            <TeamDeck members={teamMembers} />   {/* ⬅️ imported data */}
+            <TeamDeck members={teamMembers} />  
           </div>
         </section>
       </div>
