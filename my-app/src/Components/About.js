@@ -63,11 +63,12 @@ export default function About() {
         </div>
 
       
-        <div className="about-text">
-          <p>WE transform ideas into digital products.</p>
-          <p>Specialized in MERN stack, 3D Web (Three.js),</p>
-          <p>and engineering award-winning interactive experiences.</p>
-        </div>
+      <div className="about-text">
+  <p>We transform ideas into meaningful digital experiences.</p>
+  <p>From concept to execution, We build thoughtful, scalable solutions</p>
+  <p>designed to create impact, elevate brands, and move businesses forward.</p>
+</div>
+
 
       </div>
     </section>

@@ -12,10 +12,10 @@ export default function Scene2() {
     <section className="scene2-hero">
 
       <PlexusCanvas
-        speed={3}          // YAHAN SPEED BARHATI / GHATATI HAIN */
-        mouseRepel           /* ⬅ mouse repel ON */
-        repelRadius={170}    /* ⬅ repel circle ka size */
-        repelStrength={0.8}  /* ⬅repel ki strength */
+        speed={3}          // YAHAN SPEED BARHATI 
+        mouseRepel           /*  mouse repel ON 
+        repelRadius={170}    /*  repel circle ka size */
+        repelStrength={0.8}  /* repel ki strength */
       />
 
  

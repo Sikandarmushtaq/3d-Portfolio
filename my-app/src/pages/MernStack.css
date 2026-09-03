@@ -1,17 +1,16 @@
-
 .mern-page {
-  background: black;
+  background: #000;
   color: #fff;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }
 
 .mern-section {
-  padding: 55px 0; 
+  padding: 55px 0;
 }
 
 .mern-intro {
-  padding-top: 36px; 
+  padding-top: 36px;
 }
 
 .mern-container {
@@ -24,6 +23,8 @@
   font-weight: 500;
   margin-bottom: 22px;
   line-height: 1.25;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
 }
 
 .mern-text-block p {
@@ -31,6 +32,7 @@
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.75);
   margin-bottom: 28px;
+  will-change: transform, opacity, filter;
 }
 
 .mern-text-block strong {
@@ -39,9 +41,12 @@
 }
 
 .mern-btn {
-  background: transparent;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.015);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   padding: 14px 28px;
   border-radius: 30px;
   font-size: 0.95rem;
@@ -49,15 +54,42 @@
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+  will-change: transform, opacity;
+}
+
+.mern-btn::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -70%;
+  width: 45%;
+  height: 180%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+  transform: rotate(18deg);
+  transition: left 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
 }
 
 .mern-btn:hover {
-  background: rgba(155, 90, 255, 0.15);
-  border-color: #b586ff;
-  transform: translateY(-2px);
+  border-color: rgba(181, 134, 255, 0.75);
+  background: rgba(147, 94, 255, 0.1);
+  box-shadow:
+    0 10px 35px rgba(94, 40, 160, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
+.mern-btn:hover::before {
+  left: 125%;
+}
 
 .mern-intro-grid {
   display: grid;
@@ -69,8 +101,9 @@
 .mern-illustration {
   display: flex;
   justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter, clip-path;
 }
-
 
 .mern-illus-svg {
   width: 100%;
@@ -78,29 +111,61 @@
   height: auto;
   display: block;
   border-radius: 20px;
-  filter: drop-shadow(0 30px 60px rgba(90, 40, 160, 0.35));
+  filter: drop-shadow(
+    0 26px 55px rgba(90, 40, 160, 0.3)
+  );
+  will-change: transform;
 }
 
 @keyframes mern-flow {
-  to { stroke-dashoffset: -24; }
+  to {
+    stroke-dashoffset: -24;
+  }
 }
+
 @keyframes mern-pulse {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
+
 @keyframes mern-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
 }
+
 @keyframes mern-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
+
 @keyframes mern-spin-reverse {
-  to { transform: rotate(-360deg); }
+  to {
+    transform: rotate(-360deg);
+  }
 }
+
 @keyframes mern-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .mern-wire {
@@ -135,19 +200,6 @@
   animation: mern-bob 3.4s ease-in-out infinite 0.5s;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .mern-wire,
-  .mern-led,
-  .mern-cloudshape,
-  .mern-gear1,
-  .mern-gear2,
-  .mern-bubble1,
-  .mern-bubble2 {
-    animation: none;
-  }
-}
-
-
 .mern-why-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -168,6 +220,7 @@
   font-size: 0.98rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.75);
+  will-change: transform, opacity;
 }
 
 .mern-list li::before {
@@ -175,10 +228,13 @@
   position: absolute;
   left: 0;
   top: 8px;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #b586ff;
+  box-shadow:
+    0 0 8px rgba(181, 134, 255, 0.55),
+    0 0 22px rgba(181, 134, 255, 0.18);
 }
 
 .mern-list li strong {
@@ -186,66 +242,202 @@
   font-weight: 500;
 }
 
-
 .mern-cards-title {
   text-align: center;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-weight: 500;
-  margin-bottom: 34px;   
+  margin-bottom: 34px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
 }
 
 .mern-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  perspective: 1200px;
+}
+
+.mern-card-reveal {
+  height: 100%;
+  min-width: 0;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
 }
 
 .mern-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
   border-radius: 18px;
   padding: 32px 28px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: transform 0.15s ease, background 0.4s ease, border-color 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
   will-change: transform;
 }
 
+.mern-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      transparent 26%,
+      transparent 70%
+    );
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mern-card::after {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: -115px;
+  right: -100px;
+  border-radius: 50%;
+  background: rgba(181, 134, 255, 0.18);
+  filter: blur(48px);
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.mern-card:hover {
+  border-color: rgba(181, 134, 255, 0.48);
+  box-shadow:
+    0 25px 60px rgba(48, 18, 92, 0.2),
+    0 0 0 1px rgba(181, 134, 255, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.mern-card:hover::before {
+  opacity: 1;
+}
+
+.mern-card:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .mern-card h3 {
+  position: relative;
+  z-index: 2;
   font-size: 1.25rem;
   font-weight: 500;
   margin-bottom: 14px;
   line-height: 1.3;
+  transform: translateZ(16px);
 }
 
 .mern-card p {
+  position: relative;
+  z-index: 2;
   font-size: 0.92rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.78);
   margin: 0;
+  transform: translateZ(9px);
 }
 
-.card-1 { background: linear-gradient(145deg, #3b0a70, #1c0e3d); }
-.card-2 { background: linear-gradient(145deg, #1c0e3d, #0a0518); }
-.card-3 { background: linear-gradient(145deg, #2a1350, #0d0620); }
-.card-4 { background: linear-gradient(145deg, #4b1a8c, #1c0e3d); }
-.card-5 { background: linear-gradient(145deg, #33146b, #120a2b); }
-.card-6 { background: linear-gradient(145deg, #5a1fa6, #1c0e3d); }
-
-.mern-card:hover {
-  border-color: rgba(181, 134, 255, 0.6);
-  background: linear-gradient(145deg, #5a1fa6, #24123f);
+.card-1 {
+  background: linear-gradient(
+    145deg,
+    #3b0a70,
+    #1c0e3d
+  );
 }
 
+.card-2 {
+  background: linear-gradient(
+    145deg,
+    #1c0e3d,
+    #0a0518
+  );
+}
+
+.card-3 {
+  background: linear-gradient(
+    145deg,
+    #2a1350,
+    #0d0620
+  );
+}
+
+.card-4 {
+  background: linear-gradient(
+    145deg,
+    #4b1a8c,
+    #1c0e3d
+  );
+}
+
+.card-5 {
+  background: linear-gradient(
+    145deg,
+    #33146b,
+    #120a2b
+  );
+}
+
+.card-6 {
+  background: linear-gradient(
+    145deg,
+    #5a1fa6,
+    #1c0e3d
+  );
+}
 
 .mern-contact-cta {
   padding-top: 20px;
-  padding-bottom: 0;  
+  padding-bottom: 0;
   text-align: center;
 }
 
 .cta-gradient {
-  background: linear-gradient(90deg, #b586ff, #7dd3fc);
+  background: linear-gradient(
+    90deg,
+    #b586ff,
+    #7dd3fc,
+    #d8b4fe,
+    #b586ff
+  );
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: mern-gradient-flow 4s ease infinite;
+}
+
+@keyframes mern-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .mern-contact-sub {
@@ -253,16 +445,52 @@
   color: rgba(255, 255, 255, 0.6);
   font-size: 1rem;
   margin: -25px 0 0;
+  will-change: transform, opacity, filter;
 }
-
 
 .mern-page .contact-page {
   min-height: auto !important;
   overflow: visible;
+  will-change: transform, opacity, filter;
 }
 
+@media (max-width: 1024px) {
+  .mern-section {
+    padding: 42px 0;
+  }
+
+  .mern-intro {
+    padding-top: 28px;
+  }
+
+  .mern-intro-grid,
+  .mern-why-grid {
+    gap: 40px;
+  }
+}
 
 @media (max-width: 900px) {
+  .mern-intro-grid,
+  .mern-why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mern-why-grid .mern-illustration {
+    order: 2;
+  }
+
+  .mern-why-grid .mern-text-block {
+    order: 1;
+  }
+
+  .mern-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mern-illus-svg {
+    max-width: 420px;
+  }
+
   .mern-page .contact-container {
     padding-top: 16px !important;
     padding-bottom: 8px !important;
@@ -270,119 +498,129 @@
   }
 }
 
-@media (max-width: 380px) {
-  .mern-page .contact-container {
-    padding-top: 12px !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .mern-page .form-group {
-    margin-bottom: 16px !important;
-  }
-  .mern-page .form-group label {
-    margin-bottom: 7px !important;
-  }
-  .mern-page .form-group input,
-  .mern-page .form-group select {
-    padding: 12px 14px !important;
-  }
-  .mern-page .contact-privacy {
-    margin: 18px 0 !important;
-  }
-}
-
-
-
-/* Large tablets / small laptops */
-@media (max-width: 1024px) {
-  .mern-section {
-    padding: 42px 0;
-  }
-  .mern-intro {
-    padding-top: 28px;
-  }
-  .mern-intro-grid,
-  .mern-why-grid {
-    gap: 40px;
-  }
-}
-
-
-@media (max-width: 900px) {
-  .mern-intro-grid,
-  .mern-why-grid {
-    grid-template-columns: 1fr;
-  }
-  .mern-why-grid .mern-illustration {
-    order: 2;
-  }
-  .mern-why-grid .mern-text-block {
-    order: 1;
-  }
-  .mern-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .mern-illus-svg {
-    max-width: 420px;
-  }
-}
-
-
 @media (max-width: 600px) {
   .mern-section {
     padding: 32px 0;
   }
+
   .mern-intro {
     padding-top: 22px;
   }
+
   .mern-container {
     width: min(560px, 92%);
   }
+
   .mern-intro-grid,
   .mern-why-grid {
     gap: 32px;
   }
+
   .mern-text-block h2 {
     margin-bottom: 16px;
   }
+
   .mern-text-block p {
     font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 22px;
   }
+
   .mern-btn {
     width: 100%;
     padding: 13px 24px;
   }
+
   .mern-illus-svg {
     max-width: 340px;
   }
+
   .mern-cards-grid {
     grid-template-columns: 1fr;
     gap: 18px;
+    perspective: none;
   }
+
+  .mern-card-reveal {
+    perspective: none;
+  }
+
   .mern-card {
     padding: 26px 22px;
+    transform-style: flat;
   }
+
+  .mern-card h3,
+  .mern-card p {
+    transform: none;
+  }
+
+  .mern-card::before,
+  .mern-card::after {
+    display: none;
+  }
+
   .mern-cards-title {
     margin-bottom: 24px;
   }
+
   .mern-contact-sub {
     margin-top: -14px;
     font-size: 0.92rem;
   }
-}
 
+  .mern-page .form-group {
+    margin-bottom: 16px !important;
+  }
+
+  .mern-page .form-group label {
+    margin-bottom: 7px !important;
+  }
+
+  .mern-page .form-group input,
+  .mern-page .form-group select {
+    padding: 12px 14px !important;
+  }
+
+  .mern-page .contact-privacy {
+    margin: 18px 0 !important;
+  }
+}
 
 @media (max-width: 380px) {
   .mern-container {
     width: 94%;
   }
+
   .mern-illus-svg {
     max-width: 280px;
   }
+
   .mern-card {
     padding: 22px 18px;
+  }
+
+  .mern-page .contact-container {
+    padding-top: 12px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mern-wire,
+  .mern-led,
+  .mern-cloudshape,
+  .mern-gear1,
+  .mern-gear2,
+  .mern-bubble1,
+  .mern-bubble2,
+  .cta-gradient {
+    animation: none;
+  }
+
+  .mern-card,
+  .mern-btn,
+  .mern-card::before,
+  .mern-card::after {
+    transition: none;
   }
 }

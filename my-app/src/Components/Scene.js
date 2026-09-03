@@ -14,12 +14,7 @@ import {
   useThree,
 } from '@react-three/fiber';
 
-
-
 const TWO_PI = Math.PI * 2;
-
-
-
 
 function createRandom(seed = 1337) {
   let value = seed >>> 0;
@@ -49,25 +44,26 @@ function createRandom(seed = 1337) {
   };
 }
 
-
-
-
 function useVisible(ref) {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] =
+    useState(true);
 
   useEffect(() => {
     const element = ref.current;
 
     if (!element) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry.isIntersecting);
-      },
-      {
-        rootMargin: '150px',
-      }
-    );
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          setVisible(
+            entry.isIntersecting
+          );
+        },
+        {
+          rootMargin: '150px',
+        }
+      );
 
     observer.observe(element);
 
@@ -79,8 +75,6 @@ function useVisible(ref) {
   return visible;
 }
 
-
-
 const PARTICLE_VERTEX_SHADER = `
   attribute float aSize;
 
@@ -91,13 +85,8 @@ const PARTICLE_VERTEX_SHADER = `
 
   varying float vDepthAlpha;
 
-
   void main() {
-
     vec3 p = position;
-
-
-  
 
     float radius =
       max(
@@ -105,32 +94,24 @@ const PARTICLE_VERTEX_SHADER = `
         0.0001
       );
 
-
-
     float rotationSpeed =
       0.024 +
       sin(radius * 0.30) *
       0.008;
 
-
     float angle =
       uTime *
       rotationSpeed;
 
-
     float c = cos(angle);
     float s = sin(angle);
-
 
     p.xy =
       mat2(
         c, -s,
-        s,  c
+        s, c
       ) *
       p.xy;
-
-
-
 
     p.z +=
       sin(
@@ -139,18 +120,12 @@ const PARTICLE_VERTEX_SHADER = `
       ) *
       0.24;
 
-
-  
-
     p.y +=
       sin(
         uTime * 0.26 +
         p.x * 0.14
       ) *
       0.13;
-
-
-
 
     p.x +=
       cos(
@@ -159,18 +134,13 @@ const PARTICLE_VERTEX_SHADER = `
       ) *
       0.10;
 
-
-
-
     vec4 viewPosition =
       modelViewMatrix *
       vec4(p, 1.0);
 
-
     vec4 clipPosition =
       projectionMatrix *
       viewPosition;
-
 
     vec2 screenPosition =
       clipPosition.xy /
@@ -179,17 +149,12 @@ const PARTICLE_VERTEX_SHADER = `
         0.0001
       );
 
-
-  
-
     vec2 delta =
       screenPosition -
       uMouse;
 
-
     float mouseDistance =
       length(delta);
-
 
     float repel =
       smoothstep(
@@ -199,21 +164,16 @@ const PARTICLE_VERTEX_SHADER = `
       ) *
       uMouseStrength;
 
-
     vec2 direction =
       normalize(
         delta +
         vec2(0.0001)
       );
 
-
     p.xy +=
       direction *
       repel *
       0.22;
-
-
- 
 
     float depthFactor =
       clamp(
@@ -223,13 +183,11 @@ const PARTICLE_VERTEX_SHADER = `
         1.0
       );
 
-
     p.x +=
       uMouse.x *
       uMouseStrength *
       depthFactor *
       0.15;
-
 
     p.y +=
       uMouse.y *
@@ -237,17 +195,13 @@ const PARTICLE_VERTEX_SHADER = `
       depthFactor *
       0.10;
 
-
-
     viewPosition =
       modelViewMatrix *
       vec4(p, 1.0);
 
-
     clipPosition =
       projectionMatrix *
       viewPosition;
-
 
     float perspective =
       clamp(
@@ -260,17 +214,13 @@ const PARTICLE_VERTEX_SHADER = `
         2.2
       );
 
-
     gl_PointSize =
       aSize *
       uPixelRatio *
       perspective;
 
-
     gl_Position =
       clipPosition;
-
-
 
     vDepthAlpha =
       clamp(
@@ -283,9 +233,6 @@ const PARTICLE_VERTEX_SHADER = `
   }
 `;
 
-
-
-
 const PARTICLE_FRAGMENT_SHADER = `
   precision highp float;
 
@@ -293,26 +240,19 @@ const PARTICLE_FRAGMENT_SHADER = `
 
   varying float vDepthAlpha;
 
-
   void main() {
-
     vec2 uv =
       gl_PointCoord -
       vec2(0.5);
 
-
     float distanceFromCenter =
       length(uv);
-
 
     if (
       distanceFromCenter > 0.5
     ) {
       discard;
     }
-
-
-
 
     float softEdge =
       smoothstep(
@@ -321,15 +261,12 @@ const PARTICLE_FRAGMENT_SHADER = `
         distanceFromCenter
       );
 
-
-
     float core =
       smoothstep(
         0.20,
         0.0,
         distanceFromCenter
       );
-
 
     float alpha =
       (
@@ -338,7 +275,6 @@ const PARTICLE_FRAGMENT_SHADER = `
       ) *
       uOpacity *
       vDepthAlpha;
-
 
     gl_FragColor =
       vec4(
@@ -350,293 +286,246 @@ const PARTICLE_FRAGMENT_SHADER = `
   }
 `;
 
-
-
-
 export function BackgroundParticles({
   innerRef,
   materialRef,
   opacity = 0.82,
 }) {
+  const particleData =
+    useMemo(() => {
+      const isSmallScreen =
+        typeof window !==
+          'undefined' &&
+        window.innerWidth < 768;
 
-  const particleData = useMemo(() => {
+      const count =
+        isSmallScreen
+          ? 1900
+          : 4200;
 
-    const isSmallScreen =
-      typeof window !== 'undefined' &&
-      window.innerWidth < 768;
+      const positions =
+        new Float32Array(
+          count * 3
+        );
 
+      const sizes =
+        new Float32Array(
+          count
+        );
 
+      const random =
+        createRandom(
+          20260831
+        );
 
+      const arms = 5;
 
-    const count =
-      isSmallScreen
-        ? 1900
-        : 4200;
+      for (
+        let i = 0;
+        i < count;
+        i++
+      ) {
+        const i3 =
+          i * 3;
 
+        if (
+          random() < 0.78
+        ) {
+          const normalizedRadius =
+            Math.pow(
+              random(),
+              0.72
+            );
 
-    const positions =
-      new Float32Array(
-        count * 3
-      );
+          const radius =
+            1.7 +
+            normalizedRadius *
+            14.5;
 
+          const arm =
+            i % arms;
 
-    const sizes =
-      new Float32Array(
-        count
-      );
+          const armAngle =
+            (
+              arm /
+              arms
+            ) *
+            TWO_PI;
 
+          const angle =
+            armAngle +
+            radius * 0.48 +
+            (
+              random() -
+              0.5
+            ) *
+            0.95;
 
-    const random =
-      createRandom(
-        20260831
-      );
+          positions[i3] =
+            Math.cos(angle) *
+            radius;
 
+          positions[
+            i3 + 1
+          ] =
+            Math.sin(angle) *
+            radius *
+            0.52 +
+            (
+              random() -
+              0.5
+            ) *
+            1.25;
 
-    const arms = 5;
+          positions[
+            i3 + 2
+          ] =
+            (
+              random() -
+              0.5
+            ) *
+            (
+              4.8 +
+              radius *
+              0.38
+            );
+        } else {
+          positions[i3] =
+            (
+              random() -
+              0.5
+            ) *
+            31;
 
+          positions[
+            i3 + 1
+          ] =
+            (
+              random() -
+              0.5
+            ) *
+            15;
 
-    for (
-      let i = 0;
-      i < count;
-      i++
-    ) {
+          positions[
+            i3 + 2
+          ] =
+            (
+              random() -
+              0.5
+            ) *
+            18;
+        }
 
-      const i3 =
-        i * 3;
-
-
-
-      if (random() < 0.78) {
-
-        const normalizedRadius =
+        sizes[i] =
+          1.25 +
           Math.pow(
             random(),
-            0.72
-          );
-
-
-        const radius =
-          1.7 +
-          normalizedRadius *
-          14.5;
-
-
-        const arm =
-          i % arms;
-
-
-        const armAngle =
-          (
-            arm / arms
+            3.2
           ) *
-          TWO_PI;
-
-
-        const angle =
-          armAngle +
-          radius * 0.48 +
-          (
-            random() - 0.5
-          ) *
-          0.95;
-
-
-        positions[i3] =
-          Math.cos(angle) *
-          radius;
-
-
-        positions[i3 + 1] =
-          Math.sin(angle) *
-          radius *
-          0.52 +
-          (
-            random() - 0.5
-          ) *
-          1.25;
-
-
-        positions[i3 + 2] =
-          (
-            random() - 0.5
-          ) *
-          (
-            4.8 +
-            radius * 0.38
-          );
-
-      } else {
-
-     
-
-        positions[i3] =
-          (
-            random() - 0.5
-          ) *
-          31;
-
-
-        positions[i3 + 1] =
-          (
-            random() - 0.5
-          ) *
-          15;
-
-
-        positions[i3 + 2] =
-          (
-            random() - 0.5
-          ) *
-          18;
+          5.4;
       }
 
+      return {
+        positions,
+        sizes,
+      };
+    }, []);
 
-     
+  const uniforms =
+    useMemo(
+      () => ({
+        uTime: {
+          value: 0,
+        },
 
-      sizes[i] =
-        1.25 +
-        Math.pow(
-          random(),
-          3.2
-        ) *
-        5.4;
-    }
+        uMouse: {
+          value:
+            new THREE.Vector2(
+              0,
+              0
+            ),
+        },
 
+        uMouseStrength: {
+          value: 0,
+        },
 
-    return {
-      positions,
-      sizes,
-    };
+        uPixelRatio: {
+          value: 1,
+        },
 
-  }, []);
-
-
-  const uniforms = useMemo(
-    () => ({
-
-      uTime: {
-        value: 0,
-      },
-
-
-      uMouse: {
-        value:
-          new THREE.Vector2(
-            0,
-            0
-          ),
-      },
-
-
-      uMouseStrength: {
-        value: 0,
-      },
-
-
-      uPixelRatio: {
-        value: 1,
-      },
-
-
-      uOpacity: {
-        value: opacity,
-      },
-
-    }),
-    [opacity]
-  );
-
+        uOpacity: {
+          value: opacity,
+        },
+      }),
+      [opacity]
+    );
 
   return (
     <points
       ref={innerRef}
       frustumCulled={false}
     >
-
       <bufferGeometry>
-
         <bufferAttribute
           attach="attributes-position"
-
           count={
             particleData
               .positions
               .length / 3
           }
-
           array={
             particleData
               .positions
           }
-
           itemSize={3}
         />
 
-
         <bufferAttribute
           attach="attributes-aSize"
-
           count={
             particleData
               .sizes
               .length
           }
-
           array={
             particleData
               .sizes
           }
-
           itemSize={1}
         />
-
       </bufferGeometry>
-
 
       <shaderMaterial
         ref={materialRef}
-
         uniforms={uniforms}
-
         vertexShader={
           PARTICLE_VERTEX_SHADER
         }
-
         fragmentShader={
           PARTICLE_FRAGMENT_SHADER
         }
-
         transparent
-
         depthWrite={false}
-
         depthTest
-
         blending={
           THREE.AdditiveBlending
         }
-
         toneMapped={false}
       />
-
     </points>
   );
 }
-
-
 
 export function AnimatedBackgroundParticles({
   mouseEffect = false,
   opacity = 0.82,
 }) {
-
   const pointsRef =
     useRef();
 
-
   const materialRef =
     useRef();
-
 
   const mouseTargetRef =
     useRef(
@@ -646,7 +535,6 @@ export function AnimatedBackgroundParticles({
       )
     );
 
-
   const smoothMouseRef =
     useRef(
       new THREE.Vector2(
@@ -655,26 +543,18 @@ export function AnimatedBackgroundParticles({
       )
     );
 
-
   useFrame((state) => {
-
     const material =
       materialRef.current;
 
-
     if (!material) return;
-
 
     const time =
       state.clock.elapsedTime;
 
-
-  
-
     material.uniforms
       .uTime.value =
       time;
-
 
     material.uniforms
       .uPixelRatio.value =
@@ -683,116 +563,108 @@ export function AnimatedBackgroundParticles({
         1.5
       );
 
-
-
-
     if (mouseEffect) {
-
-      mouseTargetRef.current.set(
-        state.pointer.x,
-        state.pointer.y
-      );
-
+      mouseTargetRef
+        .current
+        .set(
+          state.pointer.x,
+          state.pointer.y
+        );
     } else {
-
-      mouseTargetRef.current.set(
-        0,
-        0
-      );
+      mouseTargetRef
+        .current
+        .set(
+          0,
+          0
+        );
     }
 
-
-    smoothMouseRef.current.lerp(
-      mouseTargetRef.current,
-      0.045
-    );
-
+    smoothMouseRef
+      .current
+      .lerp(
+        mouseTargetRef.current,
+        0.045
+      );
 
     material.uniforms
-      .uMouse.value.copy(
+      .uMouse.value
+      .copy(
         smoothMouseRef.current
       );
 
-
-   
-
     material.uniforms
-      .uMouseStrength.value =
+      .uMouseStrength
+      .value =
       THREE.MathUtils.lerp(
         material.uniforms
           .uMouseStrength
           .value,
-
         mouseEffect
           ? 1
           : 0,
-
         0.065
       );
 
-
-
-
-    if (pointsRef.current) {
-
-      pointsRef.current.rotation.z =
+    if (
+      pointsRef.current
+    ) {
+      pointsRef
+        .current
+        .rotation.z =
         time *
         0.007;
 
-
-      pointsRef.current.rotation.x =
+      pointsRef
+        .current
+        .rotation.x =
         Math.sin(
-          time * 0.12
+          time *
+          0.12
         ) *
         0.018;
 
-
-      pointsRef.current.position.x =
+      pointsRef
+        .current
+        .position.x =
         Math.sin(
-          time * 0.18
+          time *
+          0.18
         ) *
         0.16;
 
-
-      pointsRef.current.position.y =
+      pointsRef
+        .current
+        .position.y =
         Math.cos(
-          time * 0.15
+          time *
+          0.15
         ) *
         0.11;
     }
-
   });
-
 
   return (
     <BackgroundParticles
       innerRef={pointsRef}
-      materialRef={materialRef}
+      materialRef={
+        materialRef
+      }
       opacity={opacity}
     />
   );
 }
 
-
-
-
 function CubeParticles({
   innerRef,
 }) {
-
   const positions =
     useMemo(() => {
-
       const points = [];
 
-
-      const size =
-        1.05;
-
+      const size = 1.05;
 
       const half =
         size / 2;
-
 
       const density =
         typeof window !==
@@ -801,56 +673,49 @@ function CubeParticles({
           ? 11
           : 16;
 
-
       const random =
         createRandom(101);
-
 
       for (
         let face = 0;
         face < 6;
         face++
       ) {
-
         for (
           let x = 0;
           x < density;
           x++
         ) {
-
           for (
             let y = 0;
             y < density;
             y++
           ) {
-
             const px =
               -half +
               (
                 x /
                 (
-                  density - 1
+                  density -
+                  1
                 )
               ) *
               size;
-
 
             const py =
               -half +
               (
                 y /
                 (
-                  density - 1
+                  density -
+                  1
                 )
               ) *
               size;
 
-
             let point;
 
-
             switch (face) {
-
               case 0:
                 point = [
                   px,
@@ -858,7 +723,6 @@ function CubeParticles({
                   half,
                 ];
                 break;
-
 
               case 1:
                 point = [
@@ -868,7 +732,6 @@ function CubeParticles({
                 ];
                 break;
 
-
               case 2:
                 point = [
                   -half,
@@ -876,7 +739,6 @@ function CubeParticles({
                   py,
                 ];
                 break;
-
 
               case 3:
                 point = [
@@ -886,7 +748,6 @@ function CubeParticles({
                 ];
                 break;
 
-
               case 4:
                 point = [
                   px,
@@ -894,7 +755,6 @@ function CubeParticles({
                   py,
                 ];
                 break;
-
 
               default:
                 point = [
@@ -904,27 +764,26 @@ function CubeParticles({
                 ];
             }
 
-
             point[0] +=
               (
-                random() - 0.5
+                random() -
+                0.5
               ) *
               0.009;
-
 
             point[1] +=
               (
-                random() - 0.5
+                random() -
+                0.5
               ) *
               0.009;
-
 
             point[2] +=
               (
-                random() - 0.5
+                random() -
+                0.5
               ) *
               0.009;
-
 
             points.push(
               ...point
@@ -933,79 +792,60 @@ function CubeParticles({
         }
       }
 
-
       return new Float32Array(
         points
       );
-
     }, []);
-
 
   return (
     <group
       ref={innerRef}
-
       position={[
         -1.35,
         0,
         -1.5,
       ]}
     >
-
       <points>
-
         <bufferGeometry>
-
           <bufferAttribute
             attach="attributes-position"
-
             count={
-              positions.length /
+              positions
+                .length /
               3
             }
-
-            array={positions}
-
+            array={
+              positions
+            }
             itemSize={3}
           />
-
         </bufferGeometry>
-
 
         <pointsMaterial
           color="#ffffff"
-
           size={0.018}
-
           sizeAttenuation
-
           transparent
-
           opacity={0.75}
-
-          depthWrite={false}
-
+          depthWrite={
+            false
+          }
           blending={
-            THREE.AdditiveBlending
+            THREE
+              .AdditiveBlending
           }
         />
-
       </points>
-
     </group>
   );
 }
 
-
-
-
 function SphereParticles({
   innerRef,
 }) {
-
   const positions =
     useMemo(() => {
-
       const count =
         typeof window !==
           'undefined' &&
@@ -1013,16 +853,13 @@ function SphereParticles({
           ? 500
           : 900;
 
-
       const radius =
         0.68;
-
 
       const array =
         new Float32Array(
           count * 3
         );
-
 
       const goldenAngle =
         Math.PI *
@@ -1031,23 +868,21 @@ function SphereParticles({
           Math.sqrt(5)
         );
 
-
       for (
         let i = 0;
         i < count;
         i++
       ) {
-
         const y =
           1 -
           (
             i /
             (
-              count - 1
+              count -
+              1
             )
           ) *
           2;
-
 
         const radiusAtY =
           Math.sqrt(
@@ -1058,114 +893,92 @@ function SphereParticles({
             )
           );
 
-
         const theta =
           goldenAngle *
           i;
 
-
         const i3 =
           i * 3;
-
 
         array[i3] =
           Math.cos(theta) *
           radiusAtY *
           radius;
 
-
-        array[i3 + 1] =
+        array[
+          i3 + 1
+        ] =
           y *
           radius;
 
-
-        array[i3 + 2] =
+        array[
+          i3 + 2
+        ] =
           Math.sin(theta) *
           radiusAtY *
           radius;
       }
 
-
       return array;
-
     }, []);
-
 
   return (
     <group
       ref={innerRef}
-
       position={[
         1.35,
         0,
         -1.5,
       ]}
     >
-
       <points>
-
         <bufferGeometry>
-
           <bufferAttribute
             attach="attributes-position"
-
             count={
-              positions.length /
+              positions
+                .length /
               3
             }
-
-            array={positions}
-
+            array={
+              positions
+            }
             itemSize={3}
           />
-
         </bufferGeometry>
-
 
         <pointsMaterial
           color="#ffffff"
-
           size={0.018}
-
           sizeAttenuation
-
           transparent
-
           opacity={0.75}
-
-          depthWrite={false}
-
+          depthWrite={
+            false
+          }
           blending={
-            THREE.AdditiveBlending
+            THREE
+              .AdditiveBlending
           }
         />
-
       </points>
-
     </group>
   );
 }
 
-
-
-
 function CenterParticle({
   innerRef,
 }) {
-
   return (
     <group
       ref={innerRef}
-
       position={[
         0,
         0,
         -1.8,
       ]}
     >
-
       <mesh>
-
         <sphereGeometry
           args={[
             0.018,
@@ -1174,27 +987,19 @@ function CenterParticle({
           ]}
         />
 
-
         <meshBasicMaterial
           color="#ffffff"
         />
-
       </mesh>
-
     </group>
   );
 }
 
-
-
-
 function ResponsiveRig({
   children,
 }) {
-
   const groupRef =
     useRef();
-
 
   const size =
     useThree(
@@ -1202,15 +1007,11 @@ function ResponsiveRig({
         state.size
     );
 
-
   useLayoutEffect(() => {
-
     const group =
       groupRef.current;
 
-
     if (!group) return;
-
 
     const aspect =
       size.width /
@@ -1219,27 +1020,21 @@ function ResponsiveRig({
         1
       );
 
+    if (
+      aspect >= 0.95
+    ) {
+      group.scale
+        .setScalar(1);
 
-   
-
-    if (aspect >= 0.95) {
-
-      group.scale.setScalar(
-        1
-      );
-
-
-      group.position.set(
-        0,
-        0.4,
-        0
-      );
-
+      group.position
+        .set(
+          0,
+          0.4,
+          0
+        );
 
       return;
     }
-
-
 
     const scale =
       THREE.MathUtils.clamp(
@@ -1248,37 +1043,35 @@ function ResponsiveRig({
         1
       );
 
-
-    group.scale.setScalar(
-      scale
-    );
-
+    group.scale
+      .setScalar(
+        scale
+      );
 
     const responsiveY =
       0.15 +
       (
-        1 - scale
+        1 -
+        scale
       ) *
       0.42;
 
-
-    group.position.set(
-      0,
-      responsiveY,
-      0
-    );
-
+    group.position
+      .set(
+        0,
+        responsiveY,
+        0
+      );
   }, [size]);
 
-
   return (
-    <group ref={groupRef}>
+    <group
+      ref={groupRef}
+    >
       {children}
     </group>
   );
 }
-
-
 
 function GeometryAnimations({
   cubeRef,
@@ -1287,310 +1080,315 @@ function GeometryAnimations({
   moveRef,
   scrollProgressRef,
 }) {
-
   useFrame((state) => {
-
     const time =
       state.clock.elapsedTime;
 
-
-
-    if (cubeRef.current) {
-
-      cubeRef.current.rotation.y =
+    if (
+      cubeRef.current
+    ) {
+      cubeRef
+        .current
+        .rotation.y =
         time *
         0.10;
 
-
-      cubeRef.current.rotation.x =
+      cubeRef
+        .current
+        .rotation.x =
         Math.sin(
-          time * 0.22
+          time *
+          0.22
         ) *
         0.045;
 
-
-      cubeRef.current.rotation.z =
+      cubeRef
+        .current
+        .rotation.z =
         Math.sin(
-          time * 0.16
+          time *
+          0.16
         ) *
         0.018;
 
-
-      cubeRef.current.position.y =
+      cubeRef
+        .current
+        .position.y =
         Math.sin(
-          time * 0.55
+          time *
+          0.55
         ) *
         0.045;
     }
 
-
-  
-
-    if (sphereRef.current) {
-
-      sphereRef.current.rotation.y =
+    if (
+      sphereRef.current
+    ) {
+      sphereRef
+        .current
+        .rotation.y =
         -time *
         0.085;
 
-
-      sphereRef.current.rotation.x =
+      sphereRef
+        .current
+        .rotation.x =
         Math.sin(
-          time * 0.20
+          time *
+          0.20
         ) *
         0.04;
 
-
-      sphereRef.current.rotation.z =
+      sphereRef
+        .current
+        .rotation.z =
         Math.sin(
-          time * 0.13
+          time *
+          0.13
         ) *
         0.012;
 
-
-      sphereRef.current.position.y =
+      sphereRef
+        .current
+        .position.y =
         Math.sin(
-          time * 0.48 +
+          time *
+          0.48 +
           1
         ) *
         0.045;
     }
 
-
-
-
-    if (centerRef.current) {
-
-      centerRef.current.position.y =
+    if (
+      centerRef.current
+    ) {
+      centerRef
+        .current
+        .position.y =
         Math.sin(
-          time * 0.65
+          time *
+          0.65
         ) *
         0.035;
     }
 
-
-  
-
-    if (moveRef.current) {
-
-      /* Mouse */
-
+    if (
+      moveRef.current
+    ) {
       const targetRotationY =
         state.pointer.x *
         0.035;
-
 
       const targetRotationX =
         -state.pointer.y *
         0.025;
 
-
-      moveRef.current.rotation.y =
+      moveRef
+        .current
+        .rotation.y =
         THREE.MathUtils.lerp(
-          moveRef.current
+          moveRef
+            .current
             .rotation.y,
-
           targetRotationY,
-
           0.025
         );
 
-
-      moveRef.current.rotation.x =
+      moveRef
+        .current
+        .rotation.x =
         THREE.MathUtils.lerp(
-          moveRef.current
+          moveRef
+            .current
             .rotation.x,
-
           targetRotationX,
-
           0.025
         );
-
-
-   
 
       const progress =
         scrollProgressRef
           ?.current ?? 0;
 
+      const aspect =
+        state.size.width /
+        Math.max(
+          state.size.height,
+          1
+        );
+
+      const mobileScale =
+        state.size.width <
+        768
+          ? THREE.MathUtils
+              .clamp(
+                aspect /
+                  1.35,
+                0.42,
+                1
+              )
+          : 1;
 
       const targetY =
         progress *
-        3.25;
+        3.25 /
+        mobileScale;
 
-
-      moveRef.current.position.y =
+      moveRef
+        .current
+        .position.y =
         THREE.MathUtils.lerp(
-          moveRef.current
+          moveRef
+            .current
             .position.y,
-
           targetY,
-
           0.065
         );
     }
-
   });
-
 
   return null;
 }
 
-
-
-
 function SceneContent({
   scrollProgressRef,
 }) {
-
   const cubeRef =
     useRef();
-
 
   const sphereRef =
     useRef();
 
-
   const centerRef =
     useRef();
-
 
   const moveRef =
     useRef();
 
-
   return (
     <>
-
-     
-
       <AnimatedBackgroundParticles
         mouseEffect={true}
       />
 
-
       <GeometryAnimations
         cubeRef={cubeRef}
-
-        sphereRef={sphereRef}
-
-        centerRef={centerRef}
-
+        sphereRef={
+          sphereRef
+        }
+        centerRef={
+          centerRef
+        }
         moveRef={moveRef}
-
         scrollProgressRef={
           scrollProgressRef
         }
       />
 
-
       <ResponsiveRig>
-
-        <group ref={moveRef}>
-
+        <group
+          ref={moveRef}
+        >
           <CubeParticles
-            innerRef={cubeRef}
+            innerRef={
+              cubeRef
+            }
           />
-
 
           <SphereParticles
-            innerRef={sphereRef}
+            innerRef={
+              sphereRef
+            }
           />
-
 
           <CenterParticle
-            innerRef={centerRef}
+            innerRef={
+              centerRef
+            }
           />
-
         </group>
-
       </ResponsiveRig>
-
     </>
   );
 }
 
-
-
-
 export default function Scene() {
-
   const wrapRef =
     useRef(null);
-
 
   const scrollProgressRef =
     useRef(0);
 
-
   const scrollRafRef =
     useRef(null);
-
 
   const scenePageTopRef =
     useRef(0);
 
-
   const visible =
-    useVisible(wrapRef);
-
-
-
+    useVisible(
+      wrapRef
+    );
 
   useEffect(() => {
-
     const calculateSceneTop =
       () => {
-
         const element =
           wrapRef.current;
 
+        if (!element) {
+          return;
+        }
 
-        if (!element) return;
+        const isMobile =
+          window.innerWidth <
+          768;
 
+        const scrollAnchor =
+          isMobile
+            ? element.closest(
+                '.hero-wrapper'
+              ) ||
+              element
+            : element;
 
         const rect =
-          element.getBoundingClientRect();
-
+          scrollAnchor
+            .getBoundingClientRect();
 
         scenePageTopRef.current =
           window.scrollY +
           rect.top;
       };
 
-
     const updateScrollProgress =
       () => {
-
         scrollRafRef.current =
           null;
-
 
         const distance =
           Math.max(
             window.innerHeight *
-            0.9,
+              0.9,
             1
           );
 
-
         const traveled =
           window.scrollY -
-          scenePageTopRef.current;
+          scenePageTopRef
+            .current;
 
-
-        scrollProgressRef.current =
+        scrollProgressRef
+          .current =
           THREE.MathUtils.clamp(
             traveled /
-            distance,
+              distance,
             0,
             1
           );
       };
 
-
     const requestUpdate =
       () => {
-
         if (
           scrollRafRef.current !==
           null
@@ -1598,27 +1396,21 @@ export default function Scene() {
           return;
         }
 
-
         scrollRafRef.current =
-          window.requestAnimationFrame(
-            updateScrollProgress
-          );
+          window
+            .requestAnimationFrame(
+              updateScrollProgress
+            );
       };
-
 
     const handleResize =
       () => {
-
         calculateSceneTop();
-
         requestUpdate();
       };
 
-
     calculateSceneTop();
-
     updateScrollProgress();
-
 
     window.addEventListener(
       'scroll',
@@ -1628,113 +1420,90 @@ export default function Scene() {
       }
     );
 
-
     window.addEventListener(
       'resize',
       handleResize
     );
 
-
     return () => {
-
       window.removeEventListener(
         'scroll',
         requestUpdate
       );
-
 
       window.removeEventListener(
         'resize',
         handleResize
       );
 
-
       if (
         scrollRafRef.current !==
         null
       ) {
-
-        window.cancelAnimationFrame(
-          scrollRafRef.current
-        );
+        window
+          .cancelAnimationFrame(
+            scrollRafRef
+              .current
+          );
       }
     };
-
   }, []);
-
 
   return (
     <div
       ref={wrapRef}
-
       style={{
         width: '100%',
         height: '100%',
       }}
     >
-
       <Canvas
         dpr={[
           1,
           1.25,
         ]}
-
         camera={{
           position: [
             0,
             0.1,
             7.5,
           ],
-
           fov: 42,
-
           near: 0.1,
-
           far: 100,
         }}
-
         gl={{
           antialias: false,
-
           alpha: true,
-
           powerPreference:
             'high-performance',
         }}
-
         frameloop={
           visible
             ? 'always'
             : 'never'
         }
-
         performance={{
           min: 0.5,
         }}
-
         style={{
           touchAction:
             'pan-y',
         }}
       >
-
         <color
           attach="background"
-
           args={[
             '#000000',
           ]}
         />
-
 
         <SceneContent
           scrollProgressRef={
             scrollProgressRef
           }
         />
-
       </Canvas>
-
     </div>
   );
 }
