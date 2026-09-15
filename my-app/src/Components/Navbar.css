@@ -12,42 +12,23 @@
   background: transparent;
 }
 
-.brand-name {
+.brand-logo-link {
   justify-self: start;
-  position: relative;
-  color: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
-  opacity: 0.94;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  opacity: 0.96;
   transition: opacity 0.25s ease;
 }
 
-.brand-name:hover {
+.brand-logo-link:hover {
   opacity: 1;
 }
 
-.brand-name::after {
-  content: "";
-  width: 18px;
-  height: 1px;
-  position: absolute;
-  left: 0;
-  bottom: -9px;
-  background: #ffffff;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease;
-}
-
-.brand-name:hover::after {
-  transform: scaleX(1);
-  background: #a78bfa;
+.navbar-brand-logo {
+  width: 172px;
+  height: auto;
+  display: block;
 }
 
 .nav {
@@ -448,15 +429,10 @@
   background: rgba(255, 255, 255, 0.92);
 }
 
-.mobile-menu-header .brand-name {
-  font-size: 0.77rem;
-  font-weight: 650;
-  letter-spacing: 0.17em;
-  opacity: 1;
-}
-
-.mobile-menu-header .brand-name::after {
-  display: none;
+.mobile-brand-logo {
+  width: 145px;
+  height: auto;
+  display: block;
 }
 
 .mobile-menu-close {
@@ -710,6 +686,10 @@
     padding: 12px 14px;
     font-size: 0.61rem;
   }
+
+  .navbar-brand-logo {
+    width: 156px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -729,6 +709,10 @@
   .hamburger-btn {
     display: flex;
   }
+
+  .navbar-brand-logo {
+    width: 142px;
+  }
 }
 
 @media (max-width: 420px) {
@@ -736,14 +720,13 @@
     padding: 20px 16px;
   }
 
-  .brand-name {
-    font-size: 0.66rem;
-    letter-spacing: 0.17em;
-  }
-
   .hamburger-btn {
     width: 35px;
     height: 35px;
+  }
+
+  .navbar-brand-logo {
+    width: 132px;
   }
 
   .mobile-menu-header {
@@ -755,8 +738,8 @@
     left: 20px;
   }
 
-  .mobile-menu-header .brand-name {
-    font-size: 0.73rem;
+  .mobile-brand-logo {
+    width: 136px;
   }
 
   .mobile-menu-body {

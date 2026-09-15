@@ -1,86 +1,118 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import PlexusCanvas from './PlexusCanvas';
-import './LoadingScreen.css';
+import {
+  useEffect,
+  useRef
+} from "react";
 
-export default function LoadingScreen({ onComplete }) {
-  const containerRef = useRef(null);
-  const barRef = useRef(null);
-  const progressRef = useRef(null);
+import gsap from "gsap";
+import PlexusCanvas from "./PlexusCanvas";
+import "./LoadingScreen.css";
 
+export default function LoadingScreen({
+  onComplete
+}) {
+  const containerRef =
+    useRef(null);
+
+  const logoRef =
+    useRef(null);
+
+  const barRef =
+    useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current || !barRef.current) return;
+    if (
+      !containerRef.current ||
+      !logoRef.current ||
+      !barRef.current
+    ) {
+      return;
+    }
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => { onComplete?.(); },
+      gsap.set(logoRef.current, {
+        opacity: 0,
+        y: 16
       });
 
-      gsap.set(progressRef.current, { opacity: 0, y: 8 });
-      gsap.set(barRef.current, { width: '0%' });
-
-      tl.to(progressRef.current, {
-        opacity: 1, y: 0, duration: 0.4, ease: 'power3.out',
+      gsap.set(barRef.current, {
+        width: "0%"
       });
 
-      tl.to(barRef.current, {
-        width: '100%',
-        duration: 1.35,
-        ease: 'power3.inOut',
-        onUpdate: function () {
-          const progress = Math.round(this.progress() * 100);
-          if (progressRef.current) {
-            progressRef.current.textContent =
-              String(progress).padStart(3, '0');
+      const timeline =
+        gsap.timeline({
+          onComplete: () => {
+            onComplete?.();
           }
+        });
+
+      timeline.to(
+        logoRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          ease: "power3.out"
+        }
+      );
+
+      timeline.to(
+        barRef.current,
+        {
+          width: "100%",
+          duration: 1.35,
+          ease: "power3.inOut"
         },
-      }, '<');
+        "<"
+      );
 
-      tl.to({}, { duration: 0.15 });
+      timeline.to(
+        {},
+        {
+          duration: 0.15
+        }
+      );
 
-      tl.to(containerRef.current, {
-        yPercent: -100,
-        duration: 0.8,
-        ease: 'power4.inOut',
-      });
-    });
+      timeline.to(
+        containerRef.current,
+        {
+          yPercent: -100,
+          duration: 0.8,
+          ease: "power4.inOut"
+        }
+      );
+    }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, [onComplete]);
 
   return (
-    <div ref={containerRef} className="loading-screen">
-
-  
+    <div
+      ref={containerRef}
+      className="loading-screen"
+    >
       <PlexusCanvas
         className="loading-canvas"
         speed={1}
         mouseRepel={false}
       />
 
-      <div className="loading-content">
-        <div className="loading-top">
-          <span></span>
-          <span></span>
-        </div>
-
-        <div className="loading-main">
-          <div className="loading-name">SIKANDAR</div>
-          <div className="loading-status">
-            <span className="loading-dot" />
-            INITIALIZING
-          </div>
-        </div>
-
-        <div className="loading-bottom">
-          <span>FULL-STACK ENGINEER</span>
-          <span ref={progressRef} className="loading-progress">000</span>
-        </div>
+      <div className="loading-logo-wrapper">
+        <img
+          ref={logoRef}
+          src="/softsync-wordmark.svg"
+          alt="SoftSync"
+          className="loading-logo"
+          draggable="false"
+        />
       </div>
 
       <div className="loading-bar-container">
-        <div ref={barRef} className="loading-bar" />
+        <div
+          ref={barRef}
+          className="loading-bar"
+        />
       </div>
     </div>
   );

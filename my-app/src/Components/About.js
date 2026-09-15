@@ -64,9 +64,9 @@ export default function About() {
 
       
       <div className="about-text">
-  <p>We transform ideas into meaningful digital experiences.</p>
-  <p>From concept to execution, We build thoughtful, scalable solutions</p>
-  <p>designed to create impact, elevate brands, and move businesses forward.</p>
+  <p>SoftSync combines software engineering, AI, and digital strategy</p>
+<p>to solve real business challenges, build scalable systems,</p>
+<p>automate complex workflows, and drive measurable long-term growth.</p>
 </div>
 
 

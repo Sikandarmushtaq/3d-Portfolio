@@ -281,6 +281,17 @@ function ChevronIcon() {
   );
 }
 
+function BrandLogo({ className = "" }) {
+  return (
+    <img
+      src="/softsync-wordmark.svg"
+      alt="SoftSync"
+      className={className}
+      draggable="false"
+    />
+  );
+}
+
 function MegaMenuItem({ item }) {
   const Icon = item.icon;
 
@@ -523,7 +534,6 @@ export default function Navbar() {
 
       onComplete: () => {
         setMenuOpen(false);
-
         setOpenAccordion(null);
 
         gsap.set(menu, {
@@ -547,9 +557,10 @@ export default function Navbar() {
       <header className="navbar-sikandar">
         <Link
           to="/"
-          className="brand-name"
+          className="brand-logo-link"
+          aria-label="SoftSync home"
         >
-          SIKANDAR MUSHTAQ
+          <BrandLogo className="navbar-brand-logo" />
         </Link>
 
         <nav className="nav">
@@ -573,7 +584,7 @@ export default function Navbar() {
           to="/contact"
           className="book-demo-btn"
         >
-          Book A Demo
+          Let's Talk
         </Link>
 
         <button
@@ -599,10 +610,11 @@ export default function Navbar() {
         <div className="mobile-menu-header">
           <Link
             to="/"
-            className="brand-name"
+            className="brand-logo-link"
+            aria-label="SoftSync home"
             onClick={closeMenu}
           >
-            SIKANDAR MUSHTAQ
+            <BrandLogo className="mobile-brand-logo" />
           </Link>
 
           <button
@@ -621,45 +633,27 @@ export default function Navbar() {
             label="Services"
             accordionKey="services"
             groups={serviceGroups}
-            openAccordion={
-              openAccordion
-            }
-            onToggle={
-              toggleAccordion
-            }
-            onLinkClick={
-              closeMenu
-            }
+            openAccordion={openAccordion}
+            onToggle={toggleAccordion}
+            onLinkClick={closeMenu}
           />
 
           <MobileAccordion
             label="Marketing"
             accordionKey="marketing"
             groups={marketingGroups}
-            openAccordion={
-              openAccordion
-            }
-            onToggle={
-              toggleAccordion
-            }
-            onLinkClick={
-              closeMenu
-            }
+            openAccordion={openAccordion}
+            onToggle={toggleAccordion}
+            onLinkClick={closeMenu}
           />
 
           <MobileAccordion
             label="About"
             accordionKey="about"
             groups={aboutGroups}
-            openAccordion={
-              openAccordion
-            }
-            onToggle={
-              toggleAccordion
-            }
-            onLinkClick={
-              closeMenu
-            }
+            openAccordion={openAccordion}
+            onToggle={toggleAccordion}
+            onLinkClick={closeMenu}
           />
 
           <Link
@@ -667,7 +661,7 @@ export default function Navbar() {
             className="mobile-book-demo"
             onClick={closeMenu}
           >
-            Book A Demo
+             Let's Talk
           </Link>
         </div>
       </aside>

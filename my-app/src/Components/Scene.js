@@ -15,6 +15,7 @@ import {
 } from '@react-three/fiber';
 
 const TWO_PI = Math.PI * 2;
+const BACKGROUND_PARTICLE_COUNT = 4200;
 
 function createRandom(seed = 1337) {
   let value = seed >>> 0;
@@ -44,14 +45,66 @@ function createRandom(seed = 1337) {
   };
 }
 
+function getGeometryScale(
+  width,
+  height
+) {
+  const aspect =
+    width /
+    Math.max(
+      height,
+      1
+    );
+
+  if (width < 768) {
+    return THREE.MathUtils.clamp(
+      aspect / 1,
+      0.52,
+      0.72
+    );
+  }
+
+  if (aspect < 0.95) {
+    return THREE.MathUtils.clamp(
+      aspect / 1.1,
+      0.72,
+      1
+    );
+  }
+
+  return 1.06;
+}
+
+function getGeometryY(
+  width,
+  scale
+) {
+  if (width < 768) {
+    return (
+      0.24 +
+      (1 - scale) *
+        0.22
+    );
+  }
+
+  if (width < 1000) {
+    return 0.3;
+  }
+
+  return 0.38;
+}
+
 function useVisible(ref) {
   const [visible, setVisible] =
     useState(true);
 
   useEffect(() => {
-    const element = ref.current;
+    const element =
+      ref.current;
 
-    if (!element) return;
+    if (!element) {
+      return;
+    }
 
     const observer =
       new IntersectionObserver(
@@ -65,7 +118,9 @@ function useVisible(ref) {
         }
       );
 
-    observer.observe(element);
+    observer.observe(
+      element
+    );
 
     return () => {
       observer.disconnect();
@@ -103,13 +158,18 @@ const PARTICLE_VERTEX_SHADER = `
       uTime *
       rotationSpeed;
 
-    float c = cos(angle);
-    float s = sin(angle);
+    float c =
+      cos(angle);
+
+    float s =
+      sin(angle);
 
     p.xy =
       mat2(
-        c, -s,
-        s, c
+        c,
+        -s,
+        s,
+        c
       ) *
       p.xy;
 
@@ -136,7 +196,10 @@ const PARTICLE_VERTEX_SHADER = `
 
     vec4 viewPosition =
       modelViewMatrix *
-      vec4(p, 1.0);
+      vec4(
+        p,
+        1.0
+      );
 
     vec4 clipPosition =
       projectionMatrix *
@@ -167,7 +230,9 @@ const PARTICLE_VERTEX_SHADER = `
     vec2 direction =
       normalize(
         delta +
-        vec2(0.0001)
+        vec2(
+          0.0001
+        )
       );
 
     p.xy +=
@@ -197,7 +262,10 @@ const PARTICLE_VERTEX_SHADER = `
 
     viewPosition =
       modelViewMatrix *
-      vec4(p, 1.0);
+      vec4(
+        p,
+        1.0
+      );
 
     clipPosition =
       projectionMatrix *
@@ -249,7 +317,8 @@ const PARTICLE_FRAGMENT_SHADER = `
       length(uv);
 
     if (
-      distanceFromCenter > 0.5
+      distanceFromCenter >
+      0.5
     ) {
       discard;
     }
@@ -270,8 +339,10 @@ const PARTICLE_FRAGMENT_SHADER = `
 
     float alpha =
       (
-        softEdge * 0.62 +
-        core * 0.58
+        softEdge *
+        0.62 +
+        core *
+        0.58
       ) *
       uOpacity *
       vDepthAlpha;
@@ -293,24 +364,15 @@ export function BackgroundParticles({
 }) {
   const particleData =
     useMemo(() => {
-      const isSmallScreen =
-        typeof window !==
-          'undefined' &&
-        window.innerWidth < 768;
-
-      const count =
-        isSmallScreen
-          ? 1900
-          : 4200;
-
       const positions =
         new Float32Array(
-          count * 3
+          BACKGROUND_PARTICLE_COUNT *
+            3
         );
 
       const sizes =
         new Float32Array(
-          count
+          BACKGROUND_PARTICLE_COUNT
         );
 
       const random =
@@ -322,14 +384,16 @@ export function BackgroundParticles({
 
       for (
         let i = 0;
-        i < count;
+        i <
+        BACKGROUND_PARTICLE_COUNT;
         i++
       ) {
         const i3 =
           i * 3;
 
         if (
-          random() < 0.78
+          random() <
+          0.78
         ) {
           const normalizedRadius =
             Math.pow(
@@ -354,7 +418,8 @@ export function BackgroundParticles({
 
           const angle =
             armAngle +
-            radius * 0.48 +
+            radius *
+            0.48 +
             (
               random() -
               0.5
@@ -362,13 +427,17 @@ export function BackgroundParticles({
             0.95;
 
           positions[i3] =
-            Math.cos(angle) *
+            Math.cos(
+              angle
+            ) *
             radius;
 
           positions[
             i3 + 1
           ] =
-            Math.sin(angle) *
+            Math.sin(
+              angle
+            ) *
             radius *
             0.52 +
             (
@@ -547,7 +616,9 @@ export function AnimatedBackgroundParticles({
     const material =
       materialRef.current;
 
-    if (!material) return;
+    if (!material) {
+      return;
+    }
 
     const time =
       state.clock.elapsedTime;
@@ -556,35 +627,41 @@ export function AnimatedBackgroundParticles({
       .uTime.value =
       time;
 
-    material.uniforms
-      .uPixelRatio.value =
+    const pixelRatio =
       Math.min(
-        state.gl.getPixelRatio(),
-        1.5
+        state.gl
+          .getPixelRatio(),
+        1.25
       );
 
-    if (mouseEffect) {
-      mouseTargetRef
-        .current
-        .set(
-          state.pointer.x,
-          state.pointer.y
-        );
-    } else {
-      mouseTargetRef
-        .current
-        .set(
-          0,
-          0
-        );
+    if (
+      material.uniforms
+        .uPixelRatio
+        .value !==
+      pixelRatio
+    ) {
+      material.uniforms
+        .uPixelRatio
+        .value =
+        pixelRatio;
     }
 
-    smoothMouseRef
-      .current
-      .lerp(
-        mouseTargetRef.current,
-        0.045
+    if (mouseEffect) {
+      mouseTargetRef.current.set(
+        state.pointer.x,
+        state.pointer.y
       );
+    } else {
+      mouseTargetRef.current.set(
+        0,
+        0
+      );
+    }
+
+    smoothMouseRef.current.lerp(
+      mouseTargetRef.current,
+      0.045
+    );
 
     material.uniforms
       .uMouse.value
@@ -605,51 +682,46 @@ export function AnimatedBackgroundParticles({
         0.065
       );
 
-    if (
-      pointsRef.current
-    ) {
-      pointsRef
-        .current
-        .rotation.z =
-        time *
-        0.007;
+    const points =
+      pointsRef.current;
 
-      pointsRef
-        .current
-        .rotation.x =
-        Math.sin(
-          time *
-          0.12
-        ) *
-        0.018;
-
-      pointsRef
-        .current
-        .position.x =
-        Math.sin(
-          time *
-          0.18
-        ) *
-        0.16;
-
-      pointsRef
-        .current
-        .position.y =
-        Math.cos(
-          time *
-          0.15
-        ) *
-        0.11;
+    if (!points) {
+      return;
     }
+
+    points.rotation.z =
+      time * 0.007;
+
+    points.rotation.x =
+      Math.sin(
+        time * 0.12
+      ) *
+      0.018;
+
+    points.position.x =
+      Math.sin(
+        time * 0.18
+      ) *
+      0.16;
+
+    points.position.y =
+      Math.cos(
+        time * 0.15
+      ) *
+      0.11;
   });
 
   return (
     <BackgroundParticles
-      innerRef={pointsRef}
+      innerRef={
+        pointsRef
+      }
       materialRef={
         materialRef
       }
-      opacity={opacity}
+      opacity={
+        opacity
+      }
     />
   );
 }
@@ -661,7 +733,8 @@ function CubeParticles({
     useMemo(() => {
       const points = [];
 
-      const size = 1.05;
+      const size =
+        1.05;
 
       const half =
         size / 2;
@@ -669,12 +742,15 @@ function CubeParticles({
       const density =
         typeof window !==
           'undefined' &&
-        window.innerWidth < 768
+        window.innerWidth <
+          768
           ? 11
           : 16;
 
       const random =
-        createRandom(101);
+        createRandom(
+          101
+        );
 
       for (
         let face = 0;
@@ -715,7 +791,9 @@ function CubeParticles({
 
             let point;
 
-            switch (face) {
+            switch (
+              face
+            ) {
               case 0:
                 point = [
                   px,
@@ -849,7 +927,8 @@ function SphereParticles({
       const count =
         typeof window !==
           'undefined' &&
-        window.innerWidth < 768
+        window.innerWidth <
+          768
           ? 500
           : 900;
 
@@ -901,7 +980,9 @@ function SphereParticles({
           i * 3;
 
         array[i3] =
-          Math.cos(theta) *
+          Math.cos(
+            theta
+          ) *
           radiusAtY *
           radius;
 
@@ -914,7 +995,9 @@ function SphereParticles({
         array[
           i3 + 2
         ] =
-          Math.sin(theta) *
+          Math.sin(
+            theta
+          ) *
           radiusAtY *
           radius;
       }
@@ -1011,57 +1094,31 @@ function ResponsiveRig({
     const group =
       groupRef.current;
 
-    if (!group) return;
-
-    const aspect =
-      size.width /
-      Math.max(
-        size.height,
-        1
-      );
-
-    if (
-      aspect >= 0.95
-    ) {
-      group.scale
-        .setScalar(1);
-
-      group.position
-        .set(
-          0,
-          0.4,
-          0
-        );
-
+    if (!group) {
       return;
     }
 
     const scale =
-      THREE.MathUtils.clamp(
-        aspect / 1.35,
-        0.42,
-        1
+      getGeometryScale(
+        size.width,
+        size.height
       );
 
-    group.scale
-      .setScalar(
+    const y =
+      getGeometryY(
+        size.width,
         scale
       );
 
-    const responsiveY =
-      0.15 +
-      (
-        1 -
-        scale
-      ) *
-      0.42;
+    group.scale.setScalar(
+      scale
+    );
 
-    group.position
-      .set(
-        0,
-        responsiveY,
-        0
-      );
+    group.position.set(
+      0,
+      y,
+      0
+    );
   }, [size]);
 
   return (
@@ -1084,36 +1141,29 @@ function GeometryAnimations({
     const time =
       state.clock.elapsedTime;
 
-    if (
-      cubeRef.current
-    ) {
-      cubeRef
-        .current
-        .rotation.y =
+    const cube =
+      cubeRef.current;
+
+    if (cube) {
+      cube.rotation.y =
         time *
         0.10;
 
-      cubeRef
-        .current
-        .rotation.x =
+      cube.rotation.x =
         Math.sin(
           time *
           0.22
         ) *
         0.045;
 
-      cubeRef
-        .current
-        .rotation.z =
+      cube.rotation.z =
         Math.sin(
           time *
           0.16
         ) *
         0.018;
 
-      cubeRef
-        .current
-        .position.y =
+      cube.position.y =
         Math.sin(
           time *
           0.55
@@ -1121,36 +1171,29 @@ function GeometryAnimations({
         0.045;
     }
 
-    if (
-      sphereRef.current
-    ) {
-      sphereRef
-        .current
-        .rotation.y =
+    const sphere =
+      sphereRef.current;
+
+    if (sphere) {
+      sphere.rotation.y =
         -time *
         0.085;
 
-      sphereRef
-        .current
-        .rotation.x =
+      sphere.rotation.x =
         Math.sin(
           time *
           0.20
         ) *
         0.04;
 
-      sphereRef
-        .current
-        .rotation.z =
+      sphere.rotation.z =
         Math.sin(
           time *
           0.13
         ) *
         0.012;
 
-      sphereRef
-        .current
-        .position.y =
+      sphere.position.y =
         Math.sin(
           time *
           0.48 +
@@ -1159,12 +1202,11 @@ function GeometryAnimations({
         0.045;
     }
 
-    if (
-      centerRef.current
-    ) {
-      centerRef
-        .current
-        .position.y =
+    const center =
+      centerRef.current;
+
+    if (center) {
+      center.position.y =
         Math.sin(
           time *
           0.65
@@ -1172,78 +1214,59 @@ function GeometryAnimations({
         0.035;
     }
 
-    if (
-      moveRef.current
-    ) {
-      const targetRotationY =
-        state.pointer.x *
-        0.035;
+    const movingGroup =
+      moveRef.current;
 
-      const targetRotationX =
-        -state.pointer.y *
-        0.025;
-
-      moveRef
-        .current
-        .rotation.y =
-        THREE.MathUtils.lerp(
-          moveRef
-            .current
-            .rotation.y,
-          targetRotationY,
-          0.025
-        );
-
-      moveRef
-        .current
-        .rotation.x =
-        THREE.MathUtils.lerp(
-          moveRef
-            .current
-            .rotation.x,
-          targetRotationX,
-          0.025
-        );
-
-      const progress =
-        scrollProgressRef
-          ?.current ?? 0;
-
-      const aspect =
-        state.size.width /
-        Math.max(
-          state.size.height,
-          1
-        );
-
-      const mobileScale =
-        state.size.width <
-        768
-          ? THREE.MathUtils
-              .clamp(
-                aspect /
-                  1.35,
-                0.42,
-                1
-              )
-          : 1;
-
-      const targetY =
-        progress *
-        3.25 /
-        mobileScale;
-
-      moveRef
-        .current
-        .position.y =
-        THREE.MathUtils.lerp(
-          moveRef
-            .current
-            .position.y,
-          targetY,
-          0.065
-        );
+    if (!movingGroup) {
+      return;
     }
+
+    const targetRotationY =
+      state.pointer.x *
+      0.035;
+
+    const targetRotationX =
+      -state.pointer.y *
+      0.025;
+
+    movingGroup.rotation.y =
+      THREE.MathUtils.lerp(
+        movingGroup
+          .rotation.y,
+        targetRotationY,
+        0.025
+      );
+
+    movingGroup.rotation.x =
+      THREE.MathUtils.lerp(
+        movingGroup
+          .rotation.x,
+        targetRotationX,
+        0.025
+      );
+
+    const progress =
+      scrollProgressRef
+        ?.current ?? 0;
+
+    const scale =
+      getGeometryScale(
+        state.size.width,
+        state.size.height
+      );
+
+    const targetY =
+      progress *
+      3.25 /
+      scale;
+
+    movingGroup.position.y =
+      THREE.MathUtils.lerp(
+        movingGroup
+          .position.y,
+        targetY,
+        0.065
+      );
   });
 
   return null;
@@ -1271,14 +1294,18 @@ function SceneContent({
       />
 
       <GeometryAnimations
-        cubeRef={cubeRef}
+        cubeRef={
+          cubeRef
+        }
         sphereRef={
           sphereRef
         }
         centerRef={
           centerRef
         }
-        moveRef={moveRef}
+        moveRef={
+          moveRef
+        }
         scrollProgressRef={
           scrollProgressRef
         }
@@ -1377,8 +1404,7 @@ export default function Scene() {
           scenePageTopRef
             .current;
 
-        scrollProgressRef
-          .current =
+        scrollProgressRef.current =
           THREE.MathUtils.clamp(
             traveled /
               distance,
@@ -1442,8 +1468,7 @@ export default function Scene() {
       ) {
         window
           .cancelAnimationFrame(
-            scrollRafRef
-              .current
+            scrollRafRef.current
           );
       }
     };
