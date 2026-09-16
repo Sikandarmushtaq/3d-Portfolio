@@ -159,7 +159,8 @@
 .form-group input,
 .contact-section-content
 .form-group select {
-  background: #090909;
+  background:
+    #090909;
 
   border-color:
     rgba(
@@ -202,29 +203,64 @@
 .contact-section-content
 .contact-submit {
   background:
-    linear-gradient(
-      100deg,
-      #a000ff,
-      #7020ff,
-      #4b3cff
-    );
+    #1c1c1c;
 
   border:
     1px solid
     rgba(
-      175,
-      120,
       255,
-      0.5
+      255,
+      255,
+      0.06
     );
 
   box-shadow:
-    0 10px 32px
+    0 10px 28px
     rgba(
-      107,
-      45,
+      0,
+      0,
+      0,
+      0.32
+    ),
+    inset
+    0 1px 0
+    rgba(
       255,
-      0.24
+      255,
+      255,
+      0.035
+    );
+}
+
+
+.contact-section-content
+.contact-submit:hover:not(:disabled) {
+  background:
+    #1c1c1c;
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  box-shadow:
+    0 14px 32px
+    rgba(
+      0,
+      0,
+      0,
+      0.38
+    ),
+    inset
+    0 1px 0
+    rgba(
+      255,
+      255,
+      255,
+      0.045
     );
 }
 
@@ -321,9 +357,11 @@
 
     min-height: 50px;
 
-    align-items: center;
+    align-items:
+      center;
 
-    justify-content: center;
+    justify-content:
+      center;
 
     gap: 9px;
 
@@ -365,7 +403,8 @@
 
     font-weight: 600;
 
-    text-decoration: none;
+    text-decoration:
+      none;
   }
 }
 

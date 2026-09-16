@@ -62,30 +62,16 @@ function SyncWordmark() {
 }
 
 export default function Footer() {
-  const footerRef =
-    useRef(null);
-
-  const leftHandRef =
-    useRef(null);
-
-  const rightHandRef =
-    useRef(null);
-
-  const badgeRef =
-    useRef(null);
-
-  const timelineRef =
-    useRef(null);
+  const footerRef = useRef(null);
+  const leftHandRef = useRef(null);
+  const rightHandRef = useRef(null);
+  const badgeRef = useRef(null);
+  const timelineRef = useRef(null);
 
   useEffect(() => {
-    const footer =
-      footerRef.current;
-
-    const leftHand =
-      leftHandRef.current;
-
-    const rightHand =
-      rightHandRef.current;
+    const footer = footerRef.current;
+    const leftHand = leftHandRef.current;
+    const rightHand = rightHandRef.current;
 
     if (
       !footer ||
@@ -100,30 +86,45 @@ export default function Footer() {
         "(max-width: 700px)"
       ).matches;
 
-    const smallMobile =
-      window.matchMedia(
-        "(max-width: 430px)"
-      ).matches;
-
     const meetPosition =
-      smallMobile
-        ? 9.5
-        : mobile
-          ? 8
-          : 0;
+      mobile
+        ? 15.6
+        : 0;
 
     const impactPosition =
-      smallMobile
-        ? 11.5
-        : mobile
-          ? 9.5
-          : 2.5;
+      mobile
+        ? 16.2
+        : 2.5;
+
+    const enterDuration =
+      mobile
+        ? 0.68
+        : 0.42;
+
+    const exitDuration =
+      mobile
+        ? 0.68
+        : 0.42;
+
+    const impactDuration =
+      mobile
+        ? 0.13
+        : 0.09;
+
+    const settleDuration =
+      mobile
+        ? 0.16
+        : 0.12;
+
+    const holdDuration =
+      mobile
+        ? 0.75
+        : 0.65;
 
     const resetHands = () => {
       timelineRef.current?.kill();
 
-      timelineRef.current =
-        null;
+      timelineRef.current = null;
 
       gsap.killTweensOf([
         leftHand,
@@ -134,6 +135,7 @@ export default function Footer() {
         leftHand,
         {
           xPercent: -125,
+          x: 0,
           rotation: -2,
           scale: 1,
           autoAlpha: 0
@@ -144,6 +146,7 @@ export default function Footer() {
         rightHand,
         {
           xPercent: 125,
+          x: 0,
           rotation: 2,
           scale: 1,
           autoAlpha: 0
@@ -168,17 +171,24 @@ export default function Footer() {
         gsap.timeline();
 
       timeline
+
         .to(
           leftHand,
           {
             xPercent:
               meetPosition,
 
+            x: 0,
+
             rotation: 0,
 
-            duration: 0.42,
+            duration:
+              enterDuration,
 
-            ease: "power4.out"
+            ease:
+              mobile
+                ? "power3.out"
+                : "power4.out"
           }
         )
 
@@ -188,11 +198,17 @@ export default function Footer() {
             xPercent:
               -meetPosition,
 
+            x: 0,
+
             rotation: 0,
 
-            duration: 0.42,
+            duration:
+              enterDuration,
 
-            ease: "power4.out"
+            ease:
+              mobile
+                ? "power3.out"
+                : "power4.out"
           },
           "<"
         )
@@ -203,11 +219,18 @@ export default function Footer() {
             xPercent:
               impactPosition,
 
-            scale: 1.012,
+            x: 0,
 
-            duration: 0.09,
+            scale:
+              mobile
+                ? 1.006
+                : 1.012,
 
-            ease: "power2.in"
+            duration:
+              impactDuration,
+
+            ease:
+              "power2.in"
           }
         )
 
@@ -217,11 +240,18 @@ export default function Footer() {
             xPercent:
               -impactPosition,
 
-            scale: 1.012,
+            x: 0,
 
-            duration: 0.09,
+            scale:
+              mobile
+                ? 1.006
+                : 1.012,
 
-            ease: "power2.in"
+            duration:
+              impactDuration,
+
+            ease:
+              "power2.in"
           },
           "<"
         )
@@ -232,11 +262,15 @@ export default function Footer() {
             xPercent:
               meetPosition,
 
+            x: 0,
+
             scale: 1,
 
-            duration: 0.12,
+            duration:
+              settleDuration,
 
-            ease: "power2.out"
+            ease:
+              "power2.out"
           }
         )
 
@@ -246,11 +280,15 @@ export default function Footer() {
             xPercent:
               -meetPosition,
 
+            x: 0,
+
             scale: 1,
 
-            duration: 0.12,
+            duration:
+              settleDuration,
 
-            ease: "power2.out"
+            ease:
+              "power2.out"
           },
           "<"
         )
@@ -258,7 +296,8 @@ export default function Footer() {
         .to(
           {},
           {
-            duration: 0.65
+            duration:
+              holdDuration
           }
         )
 
@@ -267,11 +306,17 @@ export default function Footer() {
           {
             xPercent: -125,
 
+            x: 0,
+
             rotation: -3,
 
-            duration: 0.42,
+            duration:
+              exitDuration,
 
-            ease: "power3.in"
+            ease:
+              mobile
+                ? "power2.in"
+                : "power3.in"
           }
         )
 
@@ -280,11 +325,17 @@ export default function Footer() {
           {
             xPercent: 125,
 
+            x: 0,
+
             rotation: 3,
 
-            duration: 0.42,
+            duration:
+              exitDuration,
 
-            ease: "power3.in"
+            ease:
+              mobile
+                ? "power2.in"
+                : "power3.in"
           },
           "<"
         )
@@ -296,7 +347,8 @@ export default function Footer() {
           ],
           {
             autoAlpha: 0,
-            scale: 1
+            scale: 1,
+            x: 0
           }
         );
 
