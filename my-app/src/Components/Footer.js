@@ -88,13 +88,13 @@ export default function Footer() {
 
     const meetPosition =
       mobile
-        ? 15.6
-        : 0;
+        ? 4.6
+        : 2;
 
     const impactPosition =
       mobile
-        ? 16.2
-        : 2.5;
+        ? 5.6
+        : 3;
 
     const enterDuration =
       mobile
@@ -171,7 +171,6 @@ export default function Footer() {
         gsap.timeline();
 
       timeline
-
         .to(
           leftHand,
           {
@@ -762,7 +761,7 @@ export default function Footer() {
             </span>
 
             <strong>
-              SoftSync Developers
+              SoftSync
             </strong>
           </p>
 

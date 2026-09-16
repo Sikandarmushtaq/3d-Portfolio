@@ -295,7 +295,8 @@
     );
 
   padding:
-    8px 0 30px;
+    8px 0
+    30px;
 }
 
 
@@ -400,7 +401,8 @@
   gap: 24px;
 
   padding:
-    10px 4px 4px;
+    10px 4px
+    4px;
 }
 
 
@@ -675,10 +677,10 @@
   .site-footer {
     width: 100%;
 
-    height: 100vh;
-    height: 100svh;
+    height: 94vh;
+    height: 94svh;
 
-    min-height: 620px;
+    min-height: 580px;
 
     padding: 0;
 
@@ -842,7 +844,8 @@
   .footer-bottom {
     position: absolute;
 
-    top: 76%;
+    top: auto;
+    bottom: 16px;
     left: 0;
 
     width: 100%;
@@ -879,9 +882,9 @@
         0.94
       );
 
-    font-size: 0.75rem;
+    font-size: 0.93rem;
 
-    line-height: 1.25;
+    line-height: 1.2;
 
     text-align: center;
   }
@@ -897,7 +900,7 @@
 
     color: #fff;
 
-    font-size: 0.76rem;
+    font-size: 0.93rem;
 
     font-weight: 600;
 
@@ -908,7 +911,7 @@
   .footer-powered {
     order: 3;
 
-    margin-top: 3px;
+    margin-top: 2px;
   }
 
 
@@ -916,7 +919,8 @@
     display: block;
 
     margin:
-      0 0 4px;
+      0 0
+      4px;
 
     color:
       rgba(
@@ -937,17 +941,13 @@
   }
 
 
-  /*
-    IMPORTANT:
-    Mobile hands are now anchored
-    to the exact center of footer.
+  .footer-hands {
+    height: 94svh;
+  }
 
-    Width is relative to viewport,
-    not fixed pixels.
-  */
 
   .footer-hand-motion {
-    top: 255px;
+    top: 46.5%;
 
     width: 82vw;
 
@@ -983,18 +983,17 @@
 
 
   .footer-follow-badge span {
-    font-size:
-      0.58rem;
+    font-size: 0.58rem;
   }
 }
 
 
 @media (max-width: 430px) {
   .site-footer {
-    height: 100vh;
-    height: 100svh;
+    height: 94vh;
+    height: 94svh;
 
-    min-height: 600px;
+    min-height: 560px;
   }
 
 
@@ -1059,30 +1058,29 @@
 
 
   .footer-bottom {
-    top: 75%;
+    bottom: 15px;
 
     gap: 7px;
   }
 
 
   .footer-bottom p {
-    font-size: 0.71rem;
+    font-size: 0.88rem;
   }
 
 
   .footer-domain {
-    font-size: 0.73rem;
+    font-size: 0.88rem;
   }
 
 
-  /*
-    Do NOT override mobile hand width
-    or horizontal positions here.
-    Same ratio on every phone.
-  */
+  .footer-hands {
+    height: 94svh;
+  }
+
 
   .footer-hand-motion {
-    top: 240px;
+    top: 46.5%;
   }
 
 
@@ -1100,15 +1098,14 @@
 
 
   .footer-follow-badge span {
-    font-size:
-      0.53rem;
+    font-size: 0.53rem;
   }
 }
 
 
 @media (max-width: 360px) {
   .site-footer {
-    min-height: 580px;
+    min-height: 540px;
   }
 
 
@@ -1130,26 +1127,26 @@
 
 
   .footer-bottom {
-    top: 74%;
+    bottom: 13px;
   }
 
 
   .footer-bottom p {
-    font-size: 0.67rem;
+    font-size: 0.83rem;
   }
 
 
   .footer-domain {
-    font-size: 0.69rem;
+    font-size: 0.83rem;
   }
 
 
-  /*
-    Only vertical position changes.
-    Width and center anchor stay identical.
-  */
+  .footer-hands {
+    height: 94svh;
+  }
+
 
   .footer-hand-motion {
-    top: 225px;
+    top: 46%;
   }
 }
