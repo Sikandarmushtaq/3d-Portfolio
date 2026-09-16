@@ -1,1048 +1,726 @@
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  useEffect,
+  useRef
+} from "react";
 
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 
 import "./Footer.css";
 
-
-gsap.registerPlugin(
-  ScrollTrigger,
-  useGSAP
-);
-
-
-const REDUCED =
-  typeof window !== "undefined" &&
-  window
-    .matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    )
-    .matches;
-
-
-const MARQUEE_ITEMS = [
-  {
-    text: "BUILD WHAT'S NEXT",
-    type: "fill"
-  },
-  {
-    text: "ENGINEERED FOR SCALE",
-    type: "outline"
-  },
-  {
-    text: "DESIGNED TO BE REMEMBERED",
-    type: "fill"
-  },
-  {
-    text: "FROM IDEA TO IMPACT",
-    type: "outline"
-  },
-  {
-    text: "DIGITAL EXPERIENCES THAT CONVERT",
-    type: "fill"
-  },
-  {
-    text: "OPEN TO AMBITIOUS OPPORTUNITIES",
-    type: "outline"
-  }
+const FOOTER_LINKS = [
+  "Industries",
+  "Locations",
+  "Facebook",
+  "Instagram",
+  "LinkedIn"
 ];
 
-
-// ==========================================
-// MAGNETIC
-// ==========================================
-
-function Magnetic({
-  children,
-  strength = 0.35
-}) {
-
-  const ref =
-    useRef(null);
-
-
-  useGSAP(
-    (context, contextSafe) => {
-
-      const el =
-        ref.current;
-
-
-      if (
-        !el ||
-        REDUCED
-      ) {
-        return;
-      }
-
-
-      if (
-        window.matchMedia(
-          "(hover: none)"
-        ).matches
-      ) {
-        return;
-      }
-
-
-      const xTo =
-        gsap.quickTo(
-          el,
-          "x",
-          {
-            duration: 0.35,
-            ease: "power3.out"
-          }
-        );
-
-
-      const yTo =
-        gsap.quickTo(
-          el,
-          "y",
-          {
-            duration: 0.35,
-            ease: "power3.out"
-          }
-        );
-
-
-      let rect = null;
-
-
-      const enter =
-        contextSafe(() => {
-
-          rect =
-            el.getBoundingClientRect();
-
-        });
-
-
-      const move =
-        contextSafe((e) => {
-
-          if (!rect) {
-            return;
-          }
-
-
-          const centerX =
-            rect.left +
-            rect.width / 2;
-
-
-          const centerY =
-            rect.top +
-            rect.height / 2;
-
-
-          xTo(
-            (
-              e.clientX -
-              centerX
-            ) *
-            strength
-          );
-
-
-          yTo(
-            (
-              e.clientY -
-              centerY
-            ) *
-            strength
-          );
-
-        });
-
-
-      const leave =
-        contextSafe(() => {
-
-          rect = null;
-
-          xTo(0);
-
-          yTo(0);
-
-        });
-
-
-      el.addEventListener(
-        "pointerenter",
-        enter
-      );
-
-
-      el.addEventListener(
-        "pointermove",
-        move
-      );
-
-
-      el.addEventListener(
-        "pointerleave",
-        leave
-      );
-
-
-      return () => {
-
-        el.removeEventListener(
-          "pointerenter",
-          enter
-        );
-
-
-        el.removeEventListener(
-          "pointermove",
-          move
-        );
-
-
-        el.removeEventListener(
-          "pointerleave",
-          leave
-        );
-
-      };
-
-    },
-    {
-      scope: ref,
-      dependencies: [strength]
-    }
-  );
-
-
+function SyncWordmark() {
   return (
-
-    <div
-      className="magnetic"
-      ref={ref}
+    <svg
+      className="footer-sync-svg"
+      viewBox="0 0 1200 300"
+      role="img"
+      aria-label="SYNC"
     >
+      <text
+        x="600"
+        y="230"
+        textAnchor="middle"
+        className="footer-sync-text"
+      >
+        SYNC
+      </text>
 
-      {children}
+      <path
+        className="footer-sync-wave-cut"
+        d="
+          M 440 172
+          C 500 95,
+            565 92,
+            625 171
+          C 690 258,
+            760 256,
+            828 167
+        "
+      />
 
-    </div>
-
+      <path
+        className="footer-sync-wave"
+        d="
+          M 440 172
+          C 500 95,
+            565 92,
+            625 171
+          C 690 258,
+            760 256,
+            828 167
+        "
+      />
+    </svg>
   );
-
 }
-
-
-
-
-function MarqueeSet() {
-
-  return (
-
-    <div
-      className="mq-set"
-      aria-hidden="true"
-    >
-
-      {MARQUEE_ITEMS.map(
-        (item, index) => (
-
-          <div
-            className="mq-item"
-            key={`${item.text}-${index}`}
-          >
-
-            <span
-              className={
-                item.type === "outline"
-                  ? "mq-text mq-outline"
-                  : "mq-text mq-fill"
-              }
-            >
-
-              {item.text}
-
-            </span>
-
-
-            <span
-              className="mq-symbol"
-              aria-hidden="true"
-            >
-
-              ✦
-
-            </span>
-
-          </div>
-
-        )
-      )}
-
-    </div>
-
-  );
-
-}
-
-
-
-
-const scrollTop = () => {
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior:
-      REDUCED
-        ? "auto"
-        : "smooth"
-
-  });
-
-};
-
-
-
 
 export default function Footer() {
-
   const footerRef =
     useRef(null);
 
-
-  const viewportRef =
+  const leftHandRef =
     useRef(null);
 
-
-  const trackRef =
+  const rightHandRef =
     useRef(null);
 
+  const badgeRef =
+    useRef(null);
 
-  const navigate =
-    useNavigate();
+  const timelineRef =
+    useRef(null);
 
+  useEffect(() => {
+    const footer =
+      footerRef.current;
 
-  useGSAP(
-    () => {
+    const leftHand =
+      leftHandRef.current;
 
-      const footer =
-        footerRef.current;
+    const rightHand =
+      rightHandRef.current;
 
+    if (
+      !footer ||
+      !leftHand ||
+      !rightHand
+    ) {
+      return;
+    }
 
-      const viewport =
-        viewportRef.current;
+    const mobile =
+      window.matchMedia(
+        "(max-width: 700px)"
+      ).matches;
 
+    const smallMobile =
+      window.matchMedia(
+        "(max-width: 430px)"
+      ).matches;
 
-      const track =
-        trackRef.current;
+    const meetPosition =
+      smallMobile
+        ? 9.5
+        : mobile
+          ? 8
+          : 0;
 
+    const impactPosition =
+      smallMobile
+        ? 11.5
+        : mobile
+          ? 9.5
+          : 2.5;
 
+    const resetHands = () => {
+      timelineRef.current?.kill();
+
+      timelineRef.current =
+        null;
+
+      gsap.killTweensOf([
+        leftHand,
+        rightHand
+      ]);
+
+      gsap.set(
+        leftHand,
+        {
+          xPercent: -125,
+          rotation: -2,
+          scale: 1,
+          autoAlpha: 0
+        }
+      );
+
+      gsap.set(
+        rightHand,
+        {
+          xPercent: 125,
+          rotation: 2,
+          scale: 1,
+          autoAlpha: 0
+        }
+      );
+    };
+
+    const playHands = () => {
+      resetHands();
+
+      gsap.set(
+        [
+          leftHand,
+          rightHand
+        ],
+        {
+          autoAlpha: 1
+        }
+      );
+
+      const timeline =
+        gsap.timeline();
+
+      timeline
+        .to(
+          leftHand,
+          {
+            xPercent:
+              meetPosition,
+
+            rotation: 0,
+
+            duration: 0.42,
+
+            ease: "power4.out"
+          }
+        )
+
+        .to(
+          rightHand,
+          {
+            xPercent:
+              -meetPosition,
+
+            rotation: 0,
+
+            duration: 0.42,
+
+            ease: "power4.out"
+          },
+          "<"
+        )
+
+        .to(
+          leftHand,
+          {
+            xPercent:
+              impactPosition,
+
+            scale: 1.012,
+
+            duration: 0.09,
+
+            ease: "power2.in"
+          }
+        )
+
+        .to(
+          rightHand,
+          {
+            xPercent:
+              -impactPosition,
+
+            scale: 1.012,
+
+            duration: 0.09,
+
+            ease: "power2.in"
+          },
+          "<"
+        )
+
+        .to(
+          leftHand,
+          {
+            xPercent:
+              meetPosition,
+
+            scale: 1,
+
+            duration: 0.12,
+
+            ease: "power2.out"
+          }
+        )
+
+        .to(
+          rightHand,
+          {
+            xPercent:
+              -meetPosition,
+
+            scale: 1,
+
+            duration: 0.12,
+
+            ease: "power2.out"
+          },
+          "<"
+        )
+
+        .to(
+          {},
+          {
+            duration: 0.65
+          }
+        )
+
+        .to(
+          leftHand,
+          {
+            xPercent: -125,
+
+            rotation: -3,
+
+            duration: 0.42,
+
+            ease: "power3.in"
+          }
+        )
+
+        .to(
+          rightHand,
+          {
+            xPercent: 125,
+
+            rotation: 3,
+
+            duration: 0.42,
+
+            ease: "power3.in"
+          },
+          "<"
+        )
+
+        .set(
+          [
+            leftHand,
+            rightHand
+          ],
+          {
+            autoAlpha: 0,
+            scale: 1
+          }
+        );
+
+      timelineRef.current =
+        timeline;
+    };
+
+    resetHands();
+
+    let active = false;
+
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (
+            entry.isIntersecting &&
+            !active
+          ) {
+            active = true;
+
+            playHands();
+          }
+
+          if (
+            !entry.isIntersecting
+          ) {
+            active = false;
+
+            resetHands();
+          }
+        },
+        {
+          threshold: 0.01,
+
+          rootMargin:
+            "0px 0px 8% 0px"
+        }
+      );
+
+    observer.observe(
+      footer
+    );
+
+    return () => {
+      observer.disconnect();
+
+      resetHands();
+    };
+  }, []);
+
+  useEffect(() => {
+    const footer =
+      footerRef.current;
+
+    const badge =
+      badgeRef.current;
+
+    if (
+      !footer ||
+      !badge
+    ) {
+      return;
+    }
+
+    gsap.set(
+      badge,
+      {
+        xPercent: -50,
+        yPercent: -50,
+        scale: 0.76,
+        autoAlpha: 0
+      }
+    );
+
+    const moveX =
+      gsap.quickTo(
+        badge,
+        "x",
+        {
+          duration: 0.16,
+          ease: "power3.out"
+        }
+      );
+
+    const moveY =
+      gsap.quickTo(
+        badge,
+        "y",
+        {
+          duration: 0.16,
+          ease: "power3.out"
+        }
+      );
+
+    const moveBadge = (
+      clientX,
+      clientY
+    ) => {
+      const rect =
+        footer.getBoundingClientRect();
+
+      moveX(
+        clientX -
+          rect.left
+      );
+
+      moveY(
+        clientY -
+          rect.top
+      );
+    };
+
+    const showBadge = () => {
+      gsap.to(
+        badge,
+        {
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.18,
+          ease: "power2.out"
+        }
+      );
+    };
+
+    const hideBadge = () => {
+      gsap.to(
+        badge,
+        {
+          autoAlpha: 0,
+          scale: 0.76,
+          duration: 0.18,
+          ease: "power2.out"
+        }
+      );
+    };
+
+    const handlePointerEnter = (
+      event
+    ) => {
       if (
-        !footer ||
-        !viewport ||
-        !track
+        event.pointerType ===
+        "touch"
       ) {
         return;
       }
 
-
-      let marqueeTween = null;
-
-      let resizeObserver = null;
-
-      let mouseEnter = null;
-
-      let mouseLeave = null;
-
-
-   
-
-      const createMarquee = () => {
-
-        if (REDUCED) {
-
-          gsap.set(
-            track,
-            {
-              xPercent: 0
-            }
-          );
-
-          return;
-
-        }
-
-
-        if (marqueeTween) {
-
-          marqueeTween.kill();
-
-          marqueeTween = null;
-
-        }
-
-
-        gsap.set(
-          track,
-          {
-            xPercent: 0
-          }
-        );
-
-
-        const firstSet =
-          track.querySelector(
-            ".mq-set"
-          );
-
-
-        if (!firstSet) {
-          return;
-        }
-
-
-        const setWidth =
-          firstSet
-            .getBoundingClientRect()
-            .width;
-
-
-        const duration =
-          Math.max(
-            24,
-            setWidth / 65
-          );
-
-
-        marqueeTween =
-          gsap.to(
-            track,
-            {
-
-              xPercent: -50,
-
-              duration,
-
-              ease: "none",
-
-              repeat: -1
-
-            }
-          );
-
-      };
-
-
-      createMarquee();
-
-
-      if (
-        document.fonts?.ready
-      ) {
-
-        document.fonts.ready.then(
-          () => {
-
-            createMarquee();
-
-          }
-        );
-
-      }
-
-
-      resizeObserver =
-        new ResizeObserver(() => {
-
-          createMarquee();
-
-        });
-
-
-      resizeObserver.observe(
-        viewport
+      moveBadge(
+        event.clientX,
+        event.clientY
       );
 
+      showBadge();
+    };
 
-
-
+    const handlePointerMove = (
+      event
+    ) => {
       if (
-        !REDUCED &&
-        window.matchMedia(
-          "(hover: hover)"
-        ).matches
+        event.pointerType ===
+        "touch"
       ) {
-
-        mouseEnter = () => {
-
-          if (!marqueeTween) {
-            return;
-          }
-
-
-          gsap.to(
-            marqueeTween,
-            {
-
-              timeScale: 0.22,
-
-              duration: 0.5,
-
-              overwrite: true
-
-            }
-          );
-
-        };
-
-
-        mouseLeave = () => {
-
-          if (!marqueeTween) {
-            return;
-          }
-
-
-          gsap.to(
-            marqueeTween,
-            {
-
-              timeScale: 1,
-
-              duration: 0.6,
-
-              overwrite: true
-
-            }
-          );
-
-        };
-
-
-        viewport.addEventListener(
-          "mouseenter",
-          mouseEnter
-        );
-
-
-        viewport.addEventListener(
-          "mouseleave",
-          mouseLeave
-        );
-
+        return;
       }
 
+      moveBadge(
+        event.clientX,
+        event.clientY
+      );
+    };
 
+    const handlePointerLeave = (
+      event
+    ) => {
+      if (
+        event.pointerType ===
+        "touch"
+      ) {
+        return;
+      }
 
-      const observer =
-        new IntersectionObserver(
-          ([entry]) => {
+      hideBadge();
+    };
 
-            footer.classList.toggle(
-              "is-idle",
-              !entry.isIntersecting
-            );
+    const handleTouchStart = (
+      event
+    ) => {
+      const touch =
+        event.touches[0];
 
+      if (!touch) {
+        return;
+      }
 
-            if (!marqueeTween) {
-              return;
-            }
-
-
-            if (
-              entry.isIntersecting
-            ) {
-
-              marqueeTween.play();
-
-            } else {
-
-              marqueeTween.pause();
-
-            }
-
-          },
-          {
-            rootMargin: "150px"
-          }
-        );
-
-
-      observer.observe(
-        footer
+      moveBadge(
+        touch.clientX,
+        touch.clientY
       );
 
+      showBadge();
+    };
 
+    const handleTouchMove = (
+      event
+    ) => {
+      const touch =
+        event.touches[0];
 
-
-      const revealTargets = [
-
-        ".mq-viewport",
-
-        ".footer-main-heading",
-
-        ".footer-description",
-
-        ".connect-wrapper",
-
-        ".footer-bottom-area"
-
-      ];
-
-
-      if (REDUCED) {
-
-        gsap.set(
-          revealTargets,
-          {
-            autoAlpha: 1,
-            y: 0
-          }
-        );
-
-      } else {
-
-        gsap.set(
-          revealTargets,
-          {
-            autoAlpha: 0,
-            y: 32
-          }
-        );
-
-
-        gsap.set(
-          ".connect-line",
-          {
-            scaleX: 0
-          }
-        );
-
-
-        gsap.set(
-          ".footer-divider",
-          {
-            scaleX: 0
-          }
-        );
-
-
-        const reveal =
-          gsap.timeline({
-
-            scrollTrigger: {
-
-              trigger: footer,
-
-              start: "top 88%",
-
-              toggleActions:
-                "play none none reverse",
-
-              invalidateOnRefresh: true
-
-            }
-
-          });
-
-
-        reveal
-
-          .to(
-            ".mq-viewport",
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.85,
-              ease: "power3.out"
-            },
-            0
-          )
-
-
-          .to(
-            ".footer-main-heading",
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 1,
-              ease: "power4.out"
-            },
-            0.12
-          )
-
-
-          .to(
-            ".footer-description",
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power3.out"
-            },
-            0.25
-          )
-
-
-          .to(
-            ".connect-wrapper",
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power3.out"
-            },
-            0.34
-          )
-
-
-          .to(
-            ".connect-line",
-            {
-              scaleX: 1,
-              duration: 0.8,
-              stagger: 0.08,
-              ease: "power3.out"
-            },
-            0.38
-          )
-
-
-          .to(
-            ".footer-bottom-area",
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power3.out"
-            },
-            0.48
-          )
-
-
-          .to(
-            ".footer-divider",
-            {
-              scaleX: 1,
-              duration: 1,
-              ease: "power3.out"
-            },
-            0.52
-          );
-
+      if (!touch) {
+        return;
       }
 
+      moveBadge(
+        touch.clientX,
+        touch.clientY
+      );
+    };
 
-  
+    const handleTouchEnd = () => {
+      hideBadge();
+    };
 
-      return () => {
-
-        observer.disconnect();
-
-
-        if (
-          resizeObserver
-        ) {
-
-          resizeObserver.disconnect();
-
-        }
-
-
-        if (
-          mouseEnter
-        ) {
-
-          viewport.removeEventListener(
-            "mouseenter",
-            mouseEnter
-          );
-
-        }
-
-
-        if (
-          mouseLeave
-        ) {
-
-          viewport.removeEventListener(
-            "mouseleave",
-            mouseLeave
-          );
-
-        }
-
-
-        if (
-          marqueeTween
-        ) {
-
-          marqueeTween.kill();
-
-        }
-
-      };
-
-    },
-    {
-      scope: footerRef
-    }
-  );
-
-
-  const handleConnect = () => {
-
-    navigate(
-      "/contact"
+    footer.addEventListener(
+      "pointerenter",
+      handlePointerEnter
     );
 
-  };
+    footer.addEventListener(
+      "pointermove",
+      handlePointerMove
+    );
 
+    footer.addEventListener(
+      "pointerleave",
+      handlePointerLeave
+    );
+
+    footer.addEventListener(
+      "touchstart",
+      handleTouchStart,
+      {
+        passive: true
+      }
+    );
+
+    footer.addEventListener(
+      "touchmove",
+      handleTouchMove,
+      {
+        passive: true
+      }
+    );
+
+    footer.addEventListener(
+      "touchend",
+      handleTouchEnd,
+      {
+        passive: true
+      }
+    );
+
+    footer.addEventListener(
+      "touchcancel",
+      handleTouchEnd,
+      {
+        passive: true
+      }
+    );
+
+    return () => {
+      footer.removeEventListener(
+        "pointerenter",
+        handlePointerEnter
+      );
+
+      footer.removeEventListener(
+        "pointermove",
+        handlePointerMove
+      );
+
+      footer.removeEventListener(
+        "pointerleave",
+        handlePointerLeave
+      );
+
+      footer.removeEventListener(
+        "touchstart",
+        handleTouchStart
+      );
+
+      footer.removeEventListener(
+        "touchmove",
+        handleTouchMove
+      );
+
+      footer.removeEventListener(
+        "touchend",
+        handleTouchEnd
+      );
+
+      footer.removeEventListener(
+        "touchcancel",
+        handleTouchEnd
+      );
+
+      gsap.killTweensOf(
+        badge
+      );
+    };
+  }, []);
 
   return (
-
     <footer
       ref={footerRef}
-      className="premium-footer"
+      className="site-footer"
     >
-
-
-   
-
       <div
-        className="footer-atmosphere"
+        ref={badgeRef}
+        className="footer-follow-badge"
         aria-hidden="true"
       >
+        <span>
+          CONNECT
+        </span>
 
-        <div className="footer-orb footer-orb-one">
-        </div>
-
-        <div className="footer-orb footer-orb-two">
-        </div>
-
-        <div className="footer-grid">
-        </div>
-
+        <span>
+          NOW
+        </span>
       </div>
 
+      <div className="footer-main">
 
-   
+        <div className="footer-brand-stage">
 
-      <div
-        className="mq-viewport"
-        ref={viewportRef}
-      >
-
-        <div
-          className="mq-track"
-          ref={trackRef}
-        >
-
-          <MarqueeSet />
-
-          <MarqueeSet />
-
-        </div>
-
-      </div>
-
-
-  
-
-      <div className="footer-content">
-
-
-        <h2 className="footer-main-heading">
-
-          HAVE A ROLE,
-
-          <br />
-
-          A PRODUCT,
-
-          <br />
-
-          OR A
-
-          <span>
-            BOLD IDEA?
+          <span className="footer-lets">
+            Let&apos;s
           </span>
 
-        </h2>
+          <div className="footer-wordmark">
+            <SyncWordmark />
+          </div>
 
-
-        <p className="footer-description">
-
-          Whether you're building a company,
-          hiring for your next team, launching
-          a product, or turning an idea into
-          reality — let's create something
-          useful, scalable and impossible
-          to ignore.
-
-        </p>
-
-
-        <div className="connect-wrapper">
-
-          <span
-            className="connect-line"
+          <div
+            className="footer-hands"
             aria-hidden="true"
           >
-          </span>
-
-
-          <Magnetic strength={0.22}>
-
-            <button
-              type="button"
-              className="footer-connect-btn"
-              onClick={handleConnect}
+            <div
+              ref={leftHandRef}
+              className="footer-hand-motion footer-hand-motion-left"
             >
+              <img
+                src="/images/footer/footer-left-hand.png"
+                alt=""
+                className="footer-hand-image"
+                loading="eager"
+                decoding="async"
+                draggable="false"
+              />
+            </div>
 
-              <span>
-                START A CONVERSATION
-              </span>
+            <div
+              ref={rightHandRef}
+              className="footer-hand-motion footer-hand-motion-right"
+            >
+              <img
+                src="/images/footer/footer-right-hand.png"
+                alt=""
+                className="footer-hand-image"
+                loading="eager"
+                decoding="async"
+                draggable="false"
+              />
+            </div>
+          </div>
 
+          <p className="footer-growth-line">
+            Technology With Growth
+          </p>
 
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-
-                <path
-                  d="M5 12h13M13 6l6 6-6 6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-
-              </svg>
-
-            </button>
-
-          </Magnetic>
-
-
-          <span
-            className="connect-line"
-            aria-hidden="true"
-          >
+          <span className="footer-together">
+            Together
           </span>
 
         </div>
 
-      </div>
-
-
-  
-      <div className="footer-bottom-area">
-
-        <div
-          className="footer-divider"
-          aria-hidden="true"
+        <nav
+          className="footer-links"
+          aria-label="Footer navigation"
         >
-        </div>
-
+          {FOOTER_LINKS.map(
+            (item) => (
+              <button
+                key={item}
+                type="button"
+                className="footer-link"
+              >
+                {item}
+              </button>
+            )
+          )}
+        </nav>
 
         <div className="footer-bottom">
 
-
-          <p className="f-copy">
-
-            © 2026 — ALL RIGHTS RESERVED
-
+          <p className="footer-copyright">
+            © 2026 SoftSync
           </p>
 
+          <p className="footer-powered">
+            <span>
+              Powered by:
+            </span>
 
-          <a
-            className="f-mail"
-            href="mailto:email.raisikandar502@gmail.com"
-          >
+            <strong>
+              SoftSync Developers
+            </strong>
+          </p>
 
-            Email.raisikandar502@gmail.com
-
-          </a>
-
-
-          <div className="f-right">
-
-
-            <Magnetic strength={0.32}>
-
-              <a
-                className="f-icon-btn f-li"
-                href="https://www.linkedin.com/in/sikandar-mushtaq-0794a4410"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-                data-tip="LinkedIn"
-              >
-
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-
-                  <path
-                    d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"
-                  />
-
-                </svg>
-
-              </a>
-
-            </Magnetic>
-
-
-            <Magnetic strength={0.32}>
-
-              <button
-                type="button"
-                className="f-icon-btn f-top"
-                onClick={scrollTop}
-                aria-label="Back to top"
-                data-tip="Top"
-              >
-
-                <span
-                  className="f-arrow-wrap"
-                  aria-hidden="true"
-                >
-
-                  <svg
-                    className="f-arrow"
-                    viewBox="0 0 24 24"
-                  >
-
-                    <path
-                      d="M12 20V5M5.5 11.5 12 5l6.5 6.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-
-                  </svg>
-
-                </span>
-
-              </button>
-
-            </Magnetic>
-
-          </div>
+          <p className="footer-domain">
+            www.softsync.com
+          </p>
 
         </div>
 
       </div>
-
     </footer>
-
   );
-
 }

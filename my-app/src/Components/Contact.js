@@ -4,6 +4,10 @@ import {
   useState
 } from "react";
 
+import {
+  Phone
+} from "lucide-react";
+
 import Navbar from "./Navbar";
 import Cursor from "./Cursor";
 
@@ -11,11 +15,9 @@ import axios from "axios";
 
 import "./Contact.css";
 
-
 const API_URL =
   process.env.REACT_APP_API_URL ||
   "http://localhost:3000";
-
 
 const INITIAL_FORM = {
   fullName: "",
@@ -26,242 +28,181 @@ const INITIAL_FORM = {
   source: ""
 };
 
-
 export default function Contact({
-
   maxWidth = "1300px",
-
   paddingTop = 140,
-
   paddingY = 80,
-
   gap = 70,
-
   inputPadding = 18,
-
   fontSize = 0.95,
-
   showNavbar = true,
-
   showCursor = true,
-
   showLeftPanel = true,
-
   minHeight = "100vh",
-
-  twoColumnInputs = false
-
+  twoColumnInputs = false,
+  submitLabel = "Contact Us Now",
+  submitIcon = "phone"
 }) {
+  const [
+    form,
+    setForm
+  ] = useState(
+    INITIAL_FORM
+  );
 
-  const [form, setForm] =
-    useState(INITIAL_FORM);
+  const [
+    loading,
+    setLoading
+  ] = useState(false);
 
-
-  const [loading, setLoading] =
-    useState(false);
-
-
-  const [status, setStatus] =
-    useState({
-      type: "",
-      message: ""
-    });
-
+  const [
+    status,
+    setStatus
+  ] = useState({
+    type: "",
+    message: ""
+  });
 
   const statusTimer =
     useRef(null);
 
-
-
-
   useEffect(() => {
-
     return () => {
-
-      if (statusTimer.current) {
-
+      if (
+        statusTimer.current
+      ) {
         clearTimeout(
           statusTimer.current
         );
-
       }
-
     };
-
   }, []);
-
-
-
 
   const showStatus = (
     type,
     message
   ) => {
-
-    if (statusTimer.current) {
-
+    if (
+      statusTimer.current
+    ) {
       clearTimeout(
         statusTimer.current
       );
-
     }
-
 
     setStatus({
       type,
       message
     });
 
-
     statusTimer.current =
       setTimeout(() => {
-
         setStatus({
           type: "",
           message: ""
         });
-
       }, 3500);
-
   };
 
-
- 
-
-  const handleChange = (e) => {
-
+  const handleChange = (
+    event
+  ) => {
     const {
       name,
       value
-    } = e.target;
+    } = event.target;
 
-
-    setForm((previous) => ({
-
-      ...previous,
-
-      [name]: value
-
-    }));
-
-
-
+    setForm(
+      (previous) => ({
+        ...previous,
+        [name]: value
+      })
+    );
 
     if (
-      status.type === "error"
+      status.type ===
+      "error"
     ) {
+      setStatus({
+        type: "",
+        message: ""
+      });
+    }
+  };
+
+  const handleSubmit =
+    async (
+      event
+    ) => {
+      event.preventDefault();
+
+      if (loading) {
+        return;
+      }
+
+      setLoading(true);
 
       setStatus({
         type: "",
         message: ""
       });
 
-    }
+      try {
+        const response =
+          await axios.post(
+            `${API_URL}/contact/create`,
+            {
+              fullName:
+                form.fullName.trim(),
 
-  };
+              companyName:
+                form.companyName.trim(),
 
+              email:
+                form.email.trim(),
 
+              number:
+                form.number.trim(),
 
+              jobTitle:
+                form.jobTitle.trim(),
 
-  const handleSubmit = async (e) => {
+              source:
+                form.source
+            }
+          );
 
-    e.preventDefault();
+        if (
+          response.status ===
+          201
+        ) {
+          setForm(
+            INITIAL_FORM
+          );
 
-
-    if (loading) {
-      return;
-    }
-
-
-    setLoading(true);
-
-
-    setStatus({
-      type: "",
-      message: ""
-    });
-
-
-    try {
-
-      const response =
-        await axios.post(
-
-          `${API_URL}/contact/create`,
-
-          {
-            fullName:
-              form.fullName.trim(),
-
-            companyName:
-              form.companyName.trim(),
-
-            email:
-              form.email.trim(),
-
-            number:
-              form.number.trim(),
-
-            jobTitle:
-              form.jobTitle.trim(),
-
-            source:
-              form.source
-          }
-
+          showStatus(
+            "success",
+            "Connected successfully"
+          );
+        }
+      } catch (error) {
+        console.error(
+          "Contact submission error:",
+          error
         );
-
-
-      if (
-        response.status === 201
-      ) {
-
-        // Reset form
-
-        setForm(
-          INITIAL_FORM
-        );
-
-
-   
 
         showStatus(
-          "success",
-          "Connected successfully"
+          "error",
+          error.response?.data
+            ?.message ||
+            "Unable to connect. Please try again."
         );
-
+      } finally {
+        setLoading(false);
       }
-
-
-    } catch (err) {
-
-      console.error(
-        "Contact submission error:",
-        err
-      );
-
-
-      showStatus(
-
-        "error",
-
-        err.response?.data?.message ||
-        "Unable to connect. Please try again."
-
-      );
-
-
-    } finally {
-
-      setLoading(false);
-
-    }
-
-  };
-
+    };
 
   return (
-
     <div
       className="contact-page"
       style={{
@@ -269,21 +210,17 @@ export default function Contact({
       }}
     >
 
-
       {showCursor && (
         <Cursor />
       )}
-
 
       {showNavbar && (
         <Navbar />
       )}
 
-
       <div
         className="contact-container"
         style={{
-
           maxWidth,
 
           paddingTop,
@@ -303,50 +240,40 @@ export default function Contact({
 
           "--label-size":
             `${fontSize}rem`
-
         }}
       >
 
-
-    
-
         {showLeftPanel && (
-
           <div className="contact-left">
 
             <p className="contact-help-text">
-
-              We're here to help!
-              Complete the form and
-              our team will reach out
-              to you soon.
-
+              Ready to Innovate with SoftSync?
+              <br />
+              <br />
+              Complete the form, and our team
+              will reach out to discuss how we
+              can create custom software
+              solutions to meet your business
+              needs.
             </p>
-
 
             <a
               className="contact-email"
               href="mailto:raisikandar502@gmail.com"
             >
-
-              Email:
-              {" "}
+              Email:{" "}
               raisikandar502@gmail.com
-
             </a>
 
           </div>
-
         )}
-
-
-       
 
         <form
           className="contact-form"
-          onSubmit={handleSubmit}
+          onSubmit={
+            handleSubmit
+          }
         >
-
 
           <div
             className={
@@ -356,257 +283,158 @@ export default function Contact({
             }
           >
 
-
-           
-
             <div className="form-group">
 
               <label htmlFor="fullName">
-
                 FULL NAME
-
               </label>
 
-
               <input
-
                 type="text"
-
                 id="fullName"
-
                 name="fullName"
-
                 placeholder="Enter Your Full Name"
-
                 value={
                   form.fullName
                 }
-
                 onChange={
                   handleChange
                 }
-
                 autoComplete="name"
-
                 required
-
               />
 
             </div>
-
-
-            {/* COMPANY */}
 
             <div className="form-group">
 
               <label htmlFor="companyName">
-
                 COMPANY NAME
-
               </label>
 
-
               <input
-
                 type="text"
-
                 id="companyName"
-
                 name="companyName"
-
                 placeholder="Your Company Name"
-
                 value={
                   form.companyName
                 }
-
                 onChange={
                   handleChange
                 }
-
                 autoComplete="organization"
-
               />
 
             </div>
-
-
-      
 
             <div className="form-group">
 
               <label htmlFor="email">
-
                 BUSINESS EMAIL
-
               </label>
 
-
               <input
-
                 type="email"
-
                 id="email"
-
                 name="email"
-
                 placeholder="Your Business Email"
-
                 value={
                   form.email
                 }
-
                 onChange={
                   handleChange
                 }
-
                 autoComplete="email"
-
                 required
-
               />
 
             </div>
-
-
-       
 
             <div className="form-group">
 
               <label htmlFor="number">
-
                 PHONE NUMBER
-
               </label>
 
-
               <input
-
                 type="tel"
-
                 id="number"
-
                 name="number"
-
                 placeholder="Enter Your Phone Number"
-
                 value={
                   form.number
                 }
-
                 onChange={
                   handleChange
                 }
-
                 autoComplete="tel"
-
                 required
-
               />
 
             </div>
-
-
-       
 
             <div className="form-group">
 
               <label htmlFor="jobTitle">
-
                 JOB TITLE
-
               </label>
 
-
               <input
-
                 type="text"
-
                 id="jobTitle"
-
                 name="jobTitle"
-
                 placeholder="Enter Your Job Title"
-
                 value={
                   form.jobTitle
                 }
-
                 onChange={
                   handleChange
                 }
-
                 autoComplete="organization-title"
-
               />
 
             </div>
 
-
-        
-
             <div className="form-group">
 
               <label htmlFor="source">
-
                 HOW DID YOU HEAR ABOUT US?
-
               </label>
 
-
               <select
-
                 id="source"
-
                 name="source"
-
                 value={
                   form.source
                 }
-
                 onChange={
                   handleChange
                 }
-
                 required
-
               >
 
                 <option
                   value=""
                   disabled
                 >
-
                   Select
-
                 </option>
-
 
                 <option value="LinkedIn">
-
                   LinkedIn
-
                 </option>
-
 
                 <option value="Google Search">
-
                   Google Search
-
                 </option>
-
 
                 <option value="Referral">
-
                   Referral
-
                 </option>
 
-
                 <option value="Other">
-
                   Other
-
                 </option>
 
               </select>
@@ -615,109 +443,89 @@ export default function Contact({
 
           </div>
 
-
-      
-
           <div className="contact-privacy">
 
             <span
               className="privacy-icon"
               aria-hidden="true"
             >
-
               !
-
             </span>
 
-
             <p>
-
-              Your privacy is important
-              to us. All information
-              submitted through this form
-              will be kept confidential
+              Your privacy is important to us.
+              All information submitted through
+              this form will be kept confidential
               and secure.
-
             </p>
 
           </div>
 
-
-      
-
           {status.message && (
-
             <div
               className={
-                status.type === "success"
+                status.type ===
+                "success"
                   ? "contact-status contact-status-success"
                   : "contact-status contact-status-error"
               }
               role="status"
             >
 
-
               <span
                 className="contact-status-icon"
                 aria-hidden="true"
               >
-
-                {status.type === "success"
+                {status.type ===
+                "success"
                   ? "✓"
                   : "!"
                 }
-
               </span>
 
-
               <span>
-
-                {status.message}
-
+                {
+                  status.message
+                }
               </span>
 
             </div>
-
           )}
-
-
 
           <button
             type="submit"
             className="contact-submit"
             disabled={loading}
           >
-
             {loading ? (
-
               <>
-
-                <span className="contact-button-loader">
-                </span>
+                <span className="contact-button-loader" />
 
                 Connecting...
-
               </>
-
             ) : (
-
               <>
+                {submitIcon ===
+                  "phone" && (
+                  <Phone
+                    size={16}
+                    strokeWidth={2}
+                  />
+                )}
 
-                Connect
+                {submitLabel}
 
-                <span
-                  className="contact-submit-arrow"
-                  aria-hidden="true"
-                >
-
-                  →
-
-                </span>
-
+                {submitIcon ===
+                  "arrow" && (
+                  <span
+                    className="contact-submit-arrow"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                )}
               </>
-
             )}
-
           </button>
 
         </form>
@@ -725,7 +533,5 @@ export default function Contact({
       </div>
 
     </div>
-
   );
-
 }

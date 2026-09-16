@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -9,6 +10,13 @@ import LoadingScreen from "../Components/LoadingScreen";
 import Hero from "../Components/Hero";
 import About from "../Components/About";
 import Services from "../Components/Services";
+import EngineeringStatement from "../Components/EngineeringStatement";
+import ToolsTechnologies from "../Components/ToolsTechnologies";
+import Methodologies  from "../Components/Methodologies";
+import BusinessImpact  from "../Components/BusinessImpact";
+import Blogs from "../Components/Blogs";
+import ContactSection from "../Components/ContactSection";
+import Footer from "../Components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,31 +28,34 @@ export default function Home() {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  // Smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       smoothWheel: true,
+      autoRaf: false,
     });
 
-    let rafId;
-
-    const raf = (time) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+    const handleScroll = () => {
+      ScrollTrigger.update();
     };
 
-    rafId = requestAnimationFrame(raf);
+    const updateLenis = (time) => {
+      lenis.raf(time * 1000);
+    };
 
-    lenis.on("scroll", ScrollTrigger.update);
+    lenis.on("scroll", handleScroll);
+
+    gsap.ticker.add(updateLenis);
+
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      lenis.off("scroll", handleScroll);
+      gsap.ticker.remove(updateLenis);
       lenis.destroy();
     };
   }, []);
 
-  // Hero visibility observer
   useEffect(() => {
     const heroElement = heroRef.current;
 
@@ -66,7 +77,6 @@ export default function Home() {
     };
   }, []);
 
-  // GSAP animations
   useEffect(() => {
     if (loading) return;
 
@@ -82,16 +92,18 @@ export default function Home() {
         ease: "power4.out",
       });
 
-      gsap.to(canvasRef.current, {
-        y: -120,
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      if (canvasRef.current) {
+        gsap.to(canvasRef.current, {
+          y: -120,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
 
       gsap.to(uiRef.current, {
         y: -60,
@@ -106,7 +118,12 @@ export default function Home() {
       });
     }, heroRef);
 
+    const refreshFrame = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
     return () => {
+      cancelAnimationFrame(refreshFrame);
       ctx.revert();
     };
   }, [loading]);
@@ -116,7 +133,9 @@ export default function Home() {
       <Cursor />
 
       {loading && (
-        <LoadingScreen onComplete={() => setLoading(false)} />
+        <LoadingScreen
+          onComplete={() => setLoading(false)}
+        />
       )}
 
       {!loading && (
@@ -133,6 +152,20 @@ export default function Home() {
           <About />
 
           <Services />
+
+          <EngineeringStatement />
+
+          <ToolsTechnologies />
+
+            <Methodologies />
+
+            <BusinessImpact />
+
+            <Blogs />
+
+          <ContactSection />
+
+          <Footer />
         </>
       )}
     </>

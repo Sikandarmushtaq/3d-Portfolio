@@ -1,0 +1,914 @@
+.methodologies-section {
+  position: relative;
+
+  width: 100%;
+
+  margin: 0;
+
+  padding:
+    0 0
+    100px;
+
+  overflow: hidden;
+
+  background: #000;
+
+  color: #fff;
+}
+
+
+.methodologies-spectrum {
+  position: relative;
+
+  width: 100%;
+
+  height: 148px;
+
+  margin:
+    0 0
+    30px;
+
+  overflow: hidden;
+
+  background: #000;
+
+  isolation: isolate;
+}
+
+
+.methodologies-spectrum-glow {
+  position: absolute;
+
+  inset:
+    14px 0;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      ellipse at 5% 50%,
+      rgba(109, 40, 217, 0.28),
+      transparent 26%
+    ),
+    radial-gradient(
+      ellipse at 27% 50%,
+      rgba(168, 85, 247, 0.23),
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(217, 70, 239, 0.24),
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 71% 50%,
+      rgba(244, 63, 94, 0.22),
+      transparent 29%
+    ),
+    radial-gradient(
+      ellipse at 91% 50%,
+      rgba(245, 158, 11, 0.18),
+      transparent 25%
+    );
+
+  filter:
+    blur(17px);
+
+  opacity: 0.8;
+}
+
+
+.methodologies-spectrum::before,
+.methodologies-spectrum::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  z-index: 4;
+
+  width: 100%;
+
+  height: 34%;
+
+  pointer-events: none;
+}
+
+
+.methodologies-spectrum::before {
+  top: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #000 0%,
+      rgba(0, 0, 0, 0.72) 35%,
+      transparent 100%
+    );
+}
+
+
+.methodologies-spectrum::after {
+  bottom: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      #000 0%,
+      rgba(0, 0, 0, 0.78) 38%,
+      transparent 100%
+    );
+}
+
+
+.methodologies-spectrum-code {
+  position: absolute;
+
+  inset:
+    9px 3%;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: stretch;
+
+  justify-content:
+    space-between;
+
+  gap: 3px;
+
+  overflow: hidden;
+
+  opacity: 0.68;
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 14%,
+      #000 82%,
+      transparent 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 14%,
+      #000 82%,
+      transparent 100%
+    );
+}
+
+
+.methodologies-spectrum-code span {
+  display: block;
+
+  flex:
+    0 0 auto;
+
+  width: 7px;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  white-space: pre-line;
+
+  color:
+    rgba(
+      236,
+      72,
+      153,
+      0.82
+    );
+
+  font-family:
+    "Space Mono",
+    "Courier New",
+    monospace;
+
+  font-size:
+    0.39rem;
+
+  font-weight: 500;
+
+  line-height: 0.93;
+
+  text-align: center;
+
+  text-shadow:
+    0 0 7px
+    currentColor;
+}
+
+
+.methodologies-spectrum-code span:nth-child(7n + 1) {
+  color:
+    rgba(
+      124,
+      58,
+      237,
+      0.88
+    );
+}
+
+
+.methodologies-spectrum-code span:nth-child(7n + 2) {
+  color:
+    rgba(
+      168,
+      85,
+      247,
+      0.9
+    );
+}
+
+
+.methodologies-spectrum-code span:nth-child(7n + 3) {
+  color:
+    rgba(
+      217,
+      70,
+      239,
+      0.88
+    );
+}
+
+
+.methodologies-spectrum-code span:nth-child(7n + 4) {
+  color:
+    rgba(
+      236,
+      72,
+      153,
+      0.88
+    );
+}
+
+
+.methodologies-spectrum-code span:nth-child(7n + 5) {
+  color:
+    rgba(
+      244,
+      63,
+      94,
+      0.83
+    );
+}
+
+
+.methodologies-spectrum-code span:nth-child(7n + 6) {
+  color:
+    rgba(
+      249,
+      115,
+      22,
+      0.78
+    );
+}
+
+
+.methodologies-spectrum-code span:nth-child(7n) {
+  color:
+    rgba(
+      245,
+      158,
+      11,
+      0.7
+    );
+}
+
+
+.methodologies-container {
+  width:
+    min(
+      1240px,
+      92%
+    );
+
+  margin:
+    0 auto;
+}
+
+
+.methodologies-header {
+  width:
+    min(
+      760px,
+      100%
+    );
+
+  margin:
+    0 auto
+    32px;
+
+  text-align:
+    center;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+.methodologies-header h2 {
+  margin:
+    0 0
+    16px;
+
+  color: #fff;
+
+  font-size:
+    clamp(
+      2.7rem,
+      5vw,
+      4.8rem
+    );
+
+  font-weight: 400;
+
+  line-height: 0.98;
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+.methodologies-header p {
+  max-width:
+    690px;
+
+  margin:
+    0 auto;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.57
+    );
+
+  font-size:
+    clamp(
+      0.92rem,
+      1.2vw,
+      1.04rem
+    );
+
+  line-height: 1.7;
+}
+
+
+.methodologies-curve-wrap {
+  position: relative;
+
+  width: 100%;
+
+  margin:
+    0 auto
+    6px;
+
+  cursor: default;
+}
+
+
+.methodologies-curve {
+  width: 100%;
+
+  overflow: visible;
+}
+
+
+.methodologies-curve-desktop {
+  display: block;
+
+  height: auto;
+
+  aspect-ratio:
+    1200 / 430;
+}
+
+
+.methodologies-curve-mobile {
+  display: none;
+}
+
+
+.methodologies-path-base,
+.methodologies-path-progress {
+  fill: none;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+}
+
+
+.methodologies-path-base {
+  stroke:
+    rgba(
+      255,
+      255,
+      255,
+      0.145
+    );
+
+  stroke-width: 52;
+}
+
+
+.methodologies-path-progress {
+  stroke-width: 52;
+
+  opacity: 0.96;
+
+  pointer-events: none;
+}
+
+
+.methodology-node circle:first-child {
+  fill: #050505;
+
+  stroke:
+    rgba(
+      255,
+      255,
+      255,
+      0.42
+    );
+
+  stroke-width: 1;
+}
+
+
+.methodology-node-dot {
+  fill:
+    rgba(
+      255,
+      255,
+      255,
+      0.94
+    );
+
+  stroke: none;
+}
+
+
+.methodology-node line {
+  stroke:
+    rgba(
+      255,
+      255,
+      255,
+      0.2
+    );
+
+  stroke-width: 1;
+}
+
+
+.methodologies-stages {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap: 36px;
+
+  margin-top: 4px;
+}
+
+
+.methodology-stage {
+  min-width: 0;
+
+  text-align: left;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+.methodology-stage h3 {
+  max-width: 275px;
+
+  margin:
+    0 0
+    12px;
+
+  color: #fff;
+
+  font-size:
+    clamp(
+      1.08rem,
+      1.5vw,
+      1.4rem
+    );
+
+  font-weight: 500;
+
+  line-height: 1.15;
+
+  letter-spacing:
+    -0.03em;
+}
+
+
+.methodology-stage p {
+  max-width: 275px;
+
+  margin: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.53
+    );
+
+  font-size:
+    0.86rem;
+
+  line-height: 1.65;
+}
+
+
+@media (max-width: 950px) {
+
+  .methodologies-spectrum {
+    height: 122px;
+
+    margin-bottom: 26px;
+  }
+
+  .methodologies-spectrum-code {
+    inset:
+      8px 3%;
+  }
+
+  .methodologies-stages {
+    gap: 23px;
+  }
+
+  .methodology-stage p {
+    font-size:
+      0.81rem;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .methodologies-section {
+    padding-bottom:
+      72px;
+  }
+
+
+  .methodologies-spectrum {
+    height: 84px;
+
+    margin-bottom:
+      18px;
+  }
+
+
+  .methodologies-spectrum-glow {
+    inset:
+      8px 0;
+
+    filter:
+      blur(10px);
+  }
+
+
+  .methodologies-spectrum-code {
+    inset:
+      5px 3%;
+
+    gap: 2px;
+
+    opacity: 0.62;
+  }
+
+
+  .methodologies-spectrum-code span {
+    width: 4px;
+
+    font-size:
+      0.25rem;
+
+    line-height: 0.9;
+  }
+
+
+  .methodologies-container {
+    width:
+      calc(
+        100% - 28px
+      );
+  }
+
+
+  .methodologies-header {
+    max-width:
+      340px;
+
+    margin-bottom:
+      20px;
+  }
+
+
+  .methodologies-header h2 {
+    margin-bottom:
+      11px;
+
+    font-size:
+      clamp(
+        2rem,
+        9.5vw,
+        2.65rem
+      );
+
+    line-height: 1;
+  }
+
+
+  .methodologies-header p {
+    max-width:
+      310px;
+
+    font-size:
+      0.75rem;
+
+    line-height: 1.55;
+  }
+
+
+  .methodologies-curve-wrap {
+    width: 100%;
+
+    max-width:
+      390px;
+
+    margin:
+      0 auto
+      24px;
+  }
+
+
+  .methodologies-curve-desktop {
+    display: none;
+  }
+
+
+  .methodologies-curve-mobile {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    aspect-ratio:
+      360 / 210;
+  }
+
+
+  .methodologies-path-base,
+  .methodologies-path-progress {
+    stroke-width: 24;
+  }
+
+
+  .methodologies-stages {
+    width: 100%;
+
+    max-width:
+      390px;
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+    gap:
+      34px
+      22px;
+
+    margin:
+      0 auto;
+  }
+
+
+  .methodology-stage h3 {
+    max-width:
+      170px;
+
+    margin-bottom:
+      9px;
+
+    font-size:
+      0.96rem;
+
+    line-height: 1.16;
+  }
+
+
+  .methodology-stage p {
+    max-width:
+      170px;
+
+    font-size:
+      0.72rem;
+
+    line-height: 1.57;
+  }
+}
+
+
+@media (max-width: 430px) {
+
+  .methodologies-spectrum {
+    height: 76px;
+
+    margin-bottom:
+      15px;
+  }
+
+
+  .methodologies-spectrum-code span {
+    width: 3px;
+
+    font-size:
+      0.22rem;
+  }
+
+
+  .methodologies-header {
+    max-width:
+      305px;
+
+    margin-bottom:
+      17px;
+  }
+
+
+  .methodologies-header h2 {
+    margin-bottom:
+      10px;
+
+    font-size:
+      clamp(
+        1.85rem,
+        8.7vw,
+        2.35rem
+      );
+
+    letter-spacing:
+      -0.045em;
+  }
+
+
+  .methodologies-header p {
+    max-width:
+      290px;
+
+    font-size:
+      0.69rem;
+
+    line-height: 1.5;
+  }
+
+
+  .methodologies-curve-wrap {
+    max-width:
+      350px;
+
+    margin-bottom:
+      20px;
+  }
+
+
+  .methodologies-path-base,
+  .methodologies-path-progress {
+    stroke-width: 21px;
+  }
+
+
+  .methodologies-stages {
+    max-width:
+      345px;
+
+    gap:
+      29px
+      17px;
+  }
+
+
+  .methodology-stage h3 {
+    max-width:
+      155px;
+
+    margin-bottom:
+      8px;
+
+    font-size:
+      0.88rem;
+  }
+
+
+  .methodology-stage p {
+    max-width:
+      155px;
+
+    font-size:
+      0.65rem;
+
+    line-height: 1.53;
+  }
+}
+
+
+@media (max-width: 360px) {
+
+  .methodologies-spectrum {
+    height: 70px;
+  }
+
+
+  .methodologies-container {
+    width:
+      calc(
+        100% - 22px
+      );
+  }
+
+
+  .methodologies-header h2 {
+    font-size:
+      1.75rem;
+  }
+
+
+  .methodologies-curve-wrap {
+    max-width:
+      315px;
+  }
+
+
+  .methodologies-stages {
+    max-width:
+      310px;
+
+    gap:
+      26px
+      14px;
+  }
+
+
+  .methodology-stage h3 {
+    font-size:
+      0.82rem;
+  }
+
+
+  .methodology-stage p {
+    font-size:
+      0.61rem;
+  }
+}
+
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .methodologies-header,
+  .methodology-stage {
+    transform:
+      none !important;
+
+    opacity:
+      1 !important;
+
+    visibility:
+      visible !important;
+  }
+}
