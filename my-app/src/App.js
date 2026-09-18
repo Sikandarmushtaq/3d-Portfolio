@@ -35,8 +35,28 @@ import MobileApp from "./pages/Mobile";
 import EcommerceWeb from "./pages/Ecommerce";
 import AiDev from "./pages/AIDev";
 
-import EducationPlatform from "./pages/EducationPlatform";
+import EducationPlatform from "./pages/EducationPlatfor";
 import SaaS from "./pages/SaaSProduct";
+import  HealthCare from "./pages/HealthcareTechnology"
+import Fintech from "./pages/FintechSolutions"
+import RealEstate from "./pages/RealEstateTechnology"
+import BusinessAutomation from "./pages/BusinessAutomation"
+import Enterprise from "./pages/EnterpriseManagementSystems"
+
+
+import SEO from "./pages/SEO"
+import LocalSeo from "./pages/LocalSEO"
+import LandingPage from "./pages/LandingPageOptimization"
+import ConversionRateOptimization from "./pages/ConversionRateOptimization"
+import PPCADS from "./pages/PPCAds"
+import SocialMediaAdvertising from "./pages/SocialMediaAdvertising"
+import LeadGeneration from "./pages/LeadGeneration"
+import RemarketingCompaigns from "./pages/RemarketingCampaigns"
+import SocialMediaManagment from "./pages/SocialMediaManagement"
+import EmailMarketing from "./pages/EmailMarketing"
+import BrandOptimization from "./pages/BrandOptimization"
+import MarketingAutomation from "./pages/MarketingAutomation"
+
 
 // ==========================================
 // ADMIN
@@ -52,6 +72,7 @@ import ContactList from "./pages/AdminDashboard/ContactList";
 
 import ChangePassword from "./pages/AdminDashboard/ChangePassword";
 import WebApplication from "./pages/WebApplication";
+
 
 // ==========================================
 // TEMPORARY PAGE
@@ -161,27 +182,27 @@ const App = () => {
 
         <Route
           path="/healthcare-technology"
-          element={<ComingSoon title="Healthcare Technology Solutions" />}
+          element={<HealthCare/>}
         />
 
         <Route
           path="/fintech-solutions"
-          element={<ComingSoon title="FinTech Solutions" />}
+          element={<Fintech/>}
         />
 
         <Route
           path="/real-estate-technology"
-          element={<ComingSoon title="Real Estate Technology" />}
+          element={<RealEstate/>}
         />
 
         <Route
           path="/business-automation"
-          element={<ComingSoon title="Business Automation Solutions" />}
+          element={<BusinessAutomation />}
         />
 
         <Route
           path="/enterprise-management-systems"
-          element={<ComingSoon title="Enterprise Software Systems" />}
+          element={<Enterprise />}
         />
 
         {/* ======================================
@@ -190,59 +211,59 @@ const App = () => {
 
         <Route
           path="/seo"
-          element={<ComingSoon title="Search Engine Optimization" />}
+          element={<SEO />}
         />
 
-        <Route path="/local-seo" element={<ComingSoon title="Local SEO" />} />
+        <Route path="/local-seo" element={<LocalSeo />} />
 
         <Route
           path="/landing-page-optimization"
-          element={<ComingSoon title="Landing Page Optimization" />}
+          element={<LandingPage />}
         />
 
         <Route
           path="/conversion-rate-optimization"
-          element={<ComingSoon title="Conversion Rate Optimization" />}
+          element={<ConversionRateOptimization/>}
         />
 
         <Route
           path="/ppc-ads"
-          element={<ComingSoon title="PPC & Paid Advertising" />}
+          element={<PPCADS/>}
         />
 
         <Route
           path="/social-media-advertising"
-          element={<ComingSoon title="Social Media Advertising" />}
+          element={<SocialMediaAdvertising/>}
         />
 
         <Route
           path="/lead-generation"
-          element={<ComingSoon title="Lead Generation Campaigns" />}
+          element={<LeadGeneration/>}
         />
 
         <Route
           path="/remarketing-campaigns"
-          element={<ComingSoon title="Remarketing Campaigns" />}
+          element={<RemarketingCompaigns />}
         />
 
         <Route
           path="/social-media-management"
-          element={<ComingSoon title="Social Media Management" />}
+          element={<SocialMediaManagment/>}
         />
 
         <Route
           path="/email-marketing"
-          element={<ComingSoon title="Email Marketing" />}
+          element={<EmailMarketing />}
         />
 
         <Route
           path="/brand-optimization"
-          element={<ComingSoon title="Brand Optimization" />}
+          element={<BrandOptimization/>}
         />
 
         <Route
           path="/marketing-automation"
-          element={<ComingSoon title="Marketing Automation" />}
+          element={<MarketingAutomation/>}
         />
 
         {/* ======================================
