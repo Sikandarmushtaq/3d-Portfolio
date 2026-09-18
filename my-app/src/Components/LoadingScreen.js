@@ -102,7 +102,7 @@ export default function LoadingScreen({
         <img
           ref={logoRef}
           src="/softsync-wordmark.svg"
-          alt="SoftSync"
+          alt="SyncSolvo"
           className="loading-logo"
           draggable="false"
         />

@@ -6,7 +6,7 @@ const leadGenerationData = {
   },
   "intro": {
     "title": "Build a Lead Engine, Not Just a Form",
-    "description": "SoftSync connects targeting, offers, landing pages, forms, paid campaigns, qualification, CRM handoff, and reporting into one lead-generation workflow. The goal is not simply to collect more names. We focus on creating a clearer path from audience interest to a lead your sales process can actually use.",
+    "description": "SyncSolvo connects targeting, offers, landing pages, forms, paid campaigns, qualification, CRM handoff, and reporting into one lead-generation workflow. The goal is not simply to collect more names. We focus on creating a clearer path from audience interest to a lead your sales process can actually use.",
     "button": {
       "label": "Discuss Your Lead Generation Campaign",
       "to": "/contact"

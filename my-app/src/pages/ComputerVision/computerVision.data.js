@@ -15,7 +15,7 @@ const computerVisionData = {
       "Turn Visual Data Into Actionable Intelligence",
 
     description:
-      "SoftSync develops computer vision systems that help applications understand and act on information contained in images, documents, and video. From object detection and visual inspection to OCR, classification, tracking, and automated analysis, we build vision solutions around the exact visual signals and operational decisions your business needs.",
+      "SyncSolvo develops computer vision systems that help applications understand and act on information contained in images, documents, and video. From object detection and visual inspection to OCR, classification, tracking, and automated analysis, we build vision solutions around the exact visual signals and operational decisions your business needs.",
 
     button: {
       label:

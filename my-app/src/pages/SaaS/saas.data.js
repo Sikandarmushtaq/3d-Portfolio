@@ -15,7 +15,7 @@ const saasData = {
       "Build SaaS Products Ready to Launch, Sell & Scale",
 
     description:
-      "SoftSync designs and develops SaaS products that support the complete journey from user onboarding to recurring subscriptions, workspace management, administration, integrations, and long-term product growth. We build the technical foundation around how your SaaS will operate as a real product, not just how it looks on launch day.",
+      "SyncSolvo designs and develops SaaS products that support the complete journey from user onboarding to recurring subscriptions, workspace management, administration, integrations, and long-term product growth. We build the technical foundation around how your SaaS will operate as a real product, not just how it looks on launch day.",
 
     button: {
       label:

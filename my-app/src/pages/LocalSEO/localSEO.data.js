@@ -6,7 +6,7 @@ const localSEOData = {
   },
   "intro": {
     "title": "Make Your Business Easier to Find Locally",
-    "description": "SoftSync helps local and multi-location businesses improve how they appear across location-based search results. We connect Google Business Profile optimization, local landing pages, citation consistency, review signals, local content, and performance tracking into a practical visibility program built around the areas you actually serve.",
+    "description": "SyncSolvo helps local and multi-location businesses improve how they appear across location-based search results. We connect Google Business Profile optimization, local landing pages, citation consistency, review signals, local content, and performance tracking into a practical visibility program built around the areas you actually serve.",
     "button": {
       "label": "Discuss Your Local SEO Strategy",
       "to": "/contact"

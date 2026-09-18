@@ -15,7 +15,7 @@ const agenticAIData = {
       "Move From AI Assistance to AI-Driven Action",
 
     description:
-      "SoftSync builds AI agents that can do more than generate responses. We design systems that understand a task, gather information, use approved tools, interact with business applications, make controlled decisions, and complete multi-step workflows. From internal operations to customer-facing processes, agentic automation can reduce repetitive work while keeping important actions governed and observable.",
+      "SyncSolvo builds AI agents that can do more than generate responses. We design systems that understand a task, gather information, use approved tools, interact with business applications, make controlled decisions, and complete multi-step workflows. From internal operations to customer-facing processes, agentic automation can reduce repetitive work while keeping important actions governed and observable.",
 
     button: {
       label:

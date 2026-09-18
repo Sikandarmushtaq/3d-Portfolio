@@ -15,7 +15,7 @@ const conversationalAIData = {
       "Create Conversations That Actually Help Your Users",
 
     description:
-      "SoftSync builds conversational AI systems that help customers and teams get answers, complete tasks, discover information, and move through business workflows using natural language. From website support assistants and knowledge-based chatbots to voice agents and omnichannel experiences, we design conversational products around the real questions, journeys, and actions your users need.",
+      "SyncSolvo builds conversational AI systems that help customers and teams get answers, complete tasks, discover information, and move through business workflows using natural language. From website support assistants and knowledge-based chatbots to voice agents and omnichannel experiences, we design conversational products around the real questions, journeys, and actions your users need.",
 
     button: {
       label:

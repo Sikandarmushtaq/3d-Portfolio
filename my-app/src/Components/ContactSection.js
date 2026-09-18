@@ -106,7 +106,7 @@ export default function ContactSection() {
             </span>
 
             <span>
-              with SoftSync?
+              with SyncSolvo?
             </span>
           </h2>
 

@@ -15,7 +15,7 @@ const fintechSolutionsData = {
       "Build Reliable Digital Financial Experiences",
 
     description:
-      "SoftSync develops financial technology platforms that connect users, transactions, payment services, financial operations, reporting, and business workflows within structured digital systems. From payment-enabled applications and financial dashboards to onboarding, verification, lending operations, and platform integrations, we design software around the actual processes that financial organizations and digital businesses need to manage.",
+      "SyncSolvo develops financial technology platforms that connect users, transactions, payment services, financial operations, reporting, and business workflows within structured digital systems. From payment-enabled applications and financial dashboards to onboarding, verification, lending operations, and platform integrations, we design software around the actual processes that financial organizations and digital businesses need to manage.",
 
     button: {
       label:
@@ -427,7 +427,7 @@ const fintechSolutionsData = {
     items: [
       {
         question:
-          "What types of FinTech platforms can SoftSync build?",
+          "What types of FinTech platforms can SyncSolvo build?",
 
         answer:
           "FinTech projects can include payment-enabled platforms, financial dashboards, transaction management systems, lending workflows, onboarding systems, KYC and review workflows, customer portals, and other financial operations software."

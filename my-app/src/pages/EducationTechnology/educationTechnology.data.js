@@ -15,7 +15,7 @@ const educationTechnologyData = {
       "Build a Connected Digital Education Ecosystem",
 
     description:
-      "SoftSync develops education technology platforms that connect administration, academics, communication, finance, learning, and user experiences within one structured digital environment. From school management systems and student portals to LMS capabilities and multi-tenant education SaaS, we design platforms around the actual workflows of institutions, teachers, students, parents, and administrators.",
+      "SyncSolvo develops education technology platforms that connect administration, academics, communication, finance, learning, and user experiences within one structured digital environment. From school management systems and student portals to LMS capabilities and multi-tenant education SaaS, we design platforms around the actual workflows of institutions, teachers, students, parents, and administrators.",
 
     button: {
       label:

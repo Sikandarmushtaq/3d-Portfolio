@@ -15,7 +15,7 @@ const healthcareTechnologyData = {
       "Build Connected Digital Healthcare Operations",
 
     description:
-      "SoftSync develops healthcare technology platforms that help clinics, practices, healthcare organizations, and service providers manage patient-facing and operational workflows through connected digital systems. From appointment management and patient portals to telehealth, clinical record integrations, billing workflows, and healthcare analytics, we design software around the people, processes, and systems involved in everyday healthcare operations.",
+      "SyncSolvo develops healthcare technology platforms that help clinics, practices, healthcare organizations, and service providers manage patient-facing and operational workflows through connected digital systems. From appointment management and patient portals to telehealth, clinical record integrations, billing workflows, and healthcare analytics, we design software around the people, processes, and systems involved in everyday healthcare operations.",
 
     button: {
       label:
@@ -427,7 +427,7 @@ const healthcareTechnologyData = {
     items: [
       {
         question:
-          "What types of healthcare software can SoftSync build?",
+          "What types of healthcare software can SyncSolvo build?",
 
         answer:
           "Healthcare technology projects can include patient management systems, appointment platforms, patient portals, telehealth experiences, clinic management tools, dashboards, integrations, billing workflows, and other operational healthcare software."

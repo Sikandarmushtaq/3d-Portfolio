@@ -6,7 +6,7 @@ const croData = {
   },
   "intro": {
     "title": "Improve the Journey Before Buying More Traffic",
-    "description": "SoftSync uses analytics, user behavior, funnel review, UX analysis, messaging, and structured experiments to identify where potential customers hesitate or drop out. CRO is not about changing button colors at random. It is a disciplined process for finding friction, forming hypotheses, improving the experience, and measuring whether those changes create better business outcomes.",
+    "description": "SyncSolvo uses analytics, user behavior, funnel review, UX analysis, messaging, and structured experiments to identify where potential customers hesitate or drop out. CRO is not about changing button colors at random. It is a disciplined process for finding friction, forming hypotheses, improving the experience, and measuring whether those changes create better business outcomes.",
     "button": {
       "label": "Discuss Your Conversion Funnel",
       "to": "/contact"

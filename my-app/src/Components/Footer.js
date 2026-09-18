@@ -669,7 +669,7 @@ export default function Footer() {
         aria-hidden="true"
       >
         <span>
-          CONNECT
+         SYNC
         </span>
 
         <span>
@@ -752,7 +752,7 @@ export default function Footer() {
         <div className="footer-bottom">
 
           <p className="footer-copyright">
-            © 2026 SoftSync
+            © 2026 Syncsolvo
           </p>
 
           <p className="footer-powered">
@@ -761,12 +761,12 @@ export default function Footer() {
             </span>
 
             <strong>
-              SoftSync
+              SyncSolvo
             </strong>
           </p>
 
           <p className="footer-domain">
-            www.softsync.com
+            www.syncsolvo.com
           </p>
 
         </div>

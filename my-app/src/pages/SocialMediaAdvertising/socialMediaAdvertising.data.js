@@ -6,7 +6,7 @@ const socialAdsData = {
   },
   "intro": {
     "title": "Reach the Right Audience With Paid Social",
-    "description": "SoftSync plans paid social campaigns around the combination of audience, platform behavior, creative angle, offer, landing experience, and conversion measurement. Whether the goal is lead generation, demand creation, product sales, or retargeting, the campaign structure is built around what the audience should understand and do next.",
+    "description": "SyncSolvo plans paid social campaigns around the combination of audience, platform behavior, creative angle, offer, landing experience, and conversion measurement. Whether the goal is lead generation, demand creation, product sales, or retargeting, the campaign structure is built around what the audience should understand and do next.",
     "button": {
       "label": "Discuss Your Paid Social Campaign",
       "to": "/contact"

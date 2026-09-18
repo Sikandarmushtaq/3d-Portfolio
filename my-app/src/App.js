@@ -102,7 +102,7 @@ const ComingSoon = ({ title }) => {
             textTransform: "uppercase",
           }}
         >
-          SoftSync
+          SyncSolvo
         </p>
 
         <h1

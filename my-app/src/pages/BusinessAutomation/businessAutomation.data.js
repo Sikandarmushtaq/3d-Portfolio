@@ -15,7 +15,7 @@ const businessAutomationData = {
       "Turn Repetitive Business Processes Into Structured Workflows",
 
     description:
-      "SoftSync builds business automation solutions that connect people, systems, approvals, data, and recurring operational tasks into reliable digital workflows. Instead of managing important processes through spreadsheets, disconnected tools, manual follow-ups, and repeated data entry, we design automation around the way your business actually operates.",
+      "SyncSolvo builds business automation solutions that connect people, systems, approvals, data, and recurring operational tasks into reliable digital workflows. Instead of managing important processes through spreadsheets, disconnected tools, manual follow-ups, and repeated data entry, we design automation around the way your business actually operates.",
 
     button: {
       label:

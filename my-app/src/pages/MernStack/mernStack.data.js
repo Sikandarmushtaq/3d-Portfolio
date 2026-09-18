@@ -14,7 +14,7 @@ export const mernStackData = {
       "Expert MERN & MEAN Stack Development Company",
 
     description:
-      "SoftSync delivers full stack development using MongoDB, Express.js, React.js, Angular, and Node.js. We build scalable, high-performance web applications around real business requirements, whether you need a new product, a modernization project, or a dedicated development team.",
+      "SyncSolvo delivers full stack development using MongoDB, Express.js, React.js, Angular, and Node.js. We build scalable, high-performance web applications around real business requirements, whether you need a new product, a modernization project, or a dedicated development team.",
 
     button: {
       label:

@@ -15,7 +15,7 @@ const machineLearningData = {
       "Turn Business Data Into Predictive Intelligence",
 
     description:
-      "SoftSync builds machine learning and data intelligence solutions that help businesses understand patterns, predict outcomes, identify opportunities, and improve decision-making. From forecasting and recommendation engines to anomaly detection and intelligent analytics, we design ML systems around the data you have and the decisions your business needs to make.",
+      "SyncSolvo builds machine learning and data intelligence solutions that help businesses understand patterns, predict outcomes, identify opportunities, and improve decision-making. From forecasting and recommendation engines to anomaly detection and intelligent analytics, we design ML systems around the data you have and the decisions your business needs to make.",
 
     button: {
       label:

@@ -6,7 +6,7 @@ const automationData = {
   },
   "intro": {
     "title": "Automate the Follow-Up Without Losing the Customer Context",
-    "description": "SoftSync designs marketing automation around real customer journeys rather than isolated software features. We connect forms, CRM data, email, lead stages, behaviors, tags, notifications, and campaign triggers so routine follow-up happens consistently while sales and marketing teams retain control over important decisions.",
+    "description": "SyncSolvo designs marketing automation around real customer journeys rather than isolated software features. We connect forms, CRM data, email, lead stages, behaviors, tags, notifications, and campaign triggers so routine follow-up happens consistently while sales and marketing teams retain control over important decisions.",
     "button": {
       "label": "Discuss Your Marketing Automation",
       "to": "/contact"

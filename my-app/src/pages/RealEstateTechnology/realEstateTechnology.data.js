@@ -15,7 +15,7 @@ const realEstateTechnologyData = {
       "Build a Connected Real Estate Technology Platform",
 
     description:
-      "SoftSync develops real estate technology platforms that connect properties, leads, agents, tenants, owners, transactions, communication, and operational workflows within one structured digital system. From listing marketplaces and property management software to CRM workflows, portals, analytics, and integrations, we design platforms around how real estate businesses actually operate.",
+      "SyncSolvo develops real estate technology platforms that connect properties, leads, agents, tenants, owners, transactions, communication, and operational workflows within one structured digital system. From listing marketplaces and property management software to CRM workflows, portals, analytics, and integrations, we design platforms around how real estate businesses actually operate.",
 
     button: {
       label:
@@ -427,7 +427,7 @@ const realEstateTechnologyData = {
     items: [
       {
         question:
-          "What types of real estate software can SoftSync build?",
+          "What types of real estate software can SyncSolvo build?",
 
         answer:
           "Real estate projects can include listing marketplaces, property management systems, CRM platforms, brokerage tools, tenant and owner portals, booking workflows, dashboards, and other property-related operational software."

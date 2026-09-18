@@ -6,7 +6,7 @@ const socialMediaData = {
   },
   "intro": {
     "title": "Build a Social Presence That Feels Intentional",
-    "description": "SoftSync manages social media as an ongoing brand system rather than a stream of disconnected posts. We connect audience insight, content pillars, brand voice, planning, publishing, engagement, reputation, and analytics so each platform supports a consistent business narrative.",
+    "description": "SyncSolvo manages social media as an ongoing brand system rather than a stream of disconnected posts. We connect audience insight, content pillars, brand voice, planning, publishing, engagement, reputation, and analytics so each platform supports a consistent business narrative.",
     "button": {
       "label": "Discuss Your Social Media Strategy",
       "to": "/contact"

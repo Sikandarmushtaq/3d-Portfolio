@@ -6,7 +6,7 @@ const landingPageData = {
   },
   "intro": {
     "title": "Turn Campaign Traffic Into Clearer Customer Journeys",
-    "description": "SoftSync optimizes landing pages around one primary goal: helping the right visitor understand the offer and take the next useful action. We bring together message clarity, conversion copy, layout hierarchy, form design, mobile usability, performance, SEO foundations, and analytics so campaign traffic reaches a page built for decision-making.",
+    "description": "SyncSolvo optimizes landing pages around one primary goal: helping the right visitor understand the offer and take the next useful action. We bring together message clarity, conversion copy, layout hierarchy, form design, mobile usability, performance, SEO foundations, and analytics so campaign traffic reaches a page built for decision-making.",
     "button": {
       "label": "Discuss Your Landing Page",
       "to": "/contact"

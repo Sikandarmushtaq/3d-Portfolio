@@ -6,7 +6,7 @@ const emailMarketingData = {
   },
   "intro": {
     "title": "Use Email as a Customer Journey, Not a Broadcast List",
-    "description": "SoftSync plans email around audience segments, lifecycle moments, useful content, offers, automation, deliverability, and measurement. From one-off campaigns to welcome, nurture, re-engagement, and customer sequences, each message should have a clear reason to exist and a defined next action.",
+    "description": "SyncSolvo plans email around audience segments, lifecycle moments, useful content, offers, automation, deliverability, and measurement. From one-off campaigns to welcome, nurture, re-engagement, and customer sequences, each message should have a clear reason to exist and a defined next action.",
     "button": {
       "label": "Discuss Your Email Marketing",
       "to": "/contact"

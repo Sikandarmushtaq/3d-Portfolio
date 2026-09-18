@@ -65,7 +65,7 @@ export default function About() {
       
 <div className="about-text">
   <p className="about-description">
-SoftSync builds custom software, SaaS platforms, AI-powered systems, and mobile applications designed to solve real business challenges. We combine technology and digital growth expertise to help businesses automate operations, scale efficiently, and create lasting impact.
+SyncSolvo builds custom software, SaaS platforms, AI-powered systems, and mobile applications designed to solve real business challenges. We combine technology and digital growth expertise to help businesses automate operations, scale efficiently, and create lasting impact.
   </p>
 </div>
 

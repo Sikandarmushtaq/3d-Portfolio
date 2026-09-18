@@ -1436,43 +1436,43 @@ const DEVELOPMENT_SERVICES = [
   {
     title: 'AI & Automation Solutions',
     description:
-      'Manual processes slow teams down and limit responsiveness. SoftSync builds AI agents, intelligent chatbots, AI call systems, and workflow automation that reduce repetitive work and keep operations moving efficiently.',
+      'Manual processes slow teams down and limit responsiveness. SyncSolvo builds AI agents, intelligent chatbots, AI call systems, and workflow automation that reduce repetitive work and keep operations moving efficiently.',
     Icon: AiIcon,
   },
   {
     title: 'Custom Software Development',
     description:
-      'When off-the-shelf tools do not fit your workflow, SoftSync builds tailored dashboards, portals, and business systems that simplify operations and scale around the way your organization works.',
+      'When off-the-shelf tools do not fit your workflow, SyncSolvo builds tailored dashboards, portals, and business systems that simplify operations and scale around the way your organization works.',
     Icon: CustomSoftwareIcon,
   },
   {
     title: 'SaaS Product Development',
     description:
-      'Turn your product idea into a secure, scalable SaaS platform. SoftSync engineers multi-tenant systems, subscriptions, dashboards, and reliable product architecture built for long-term growth.',
+      'Turn your product idea into a secure, scalable SaaS platform. SyncSolvo engineers multi-tenant systems, subscriptions, dashboards, and reliable product architecture built for long-term growth.',
     Icon: SaasIcon,
   },
   {
     title: 'Web Application Development',
     description:
-      'Slow or limited web systems create friction for customers and teams. SoftSync builds fast, secure web applications that improve user experience, support workflows, and scale with demand.',
+      'Slow or limited web systems create friction for customers and teams. SyncSolvo builds fast, secure web applications that improve user experience, support workflows, and scale with demand.',
     Icon: WebAppIcon,
   },
   {
     title: 'Mobile App Development',
     description:
-      'Customers expect convenient mobile access. SoftSync develops intuitive mobile applications that make services easier to use, strengthen engagement, and keep your business connected to users.',
+      'Customers expect convenient mobile access. SyncSolvo develops intuitive mobile applications that make services easier to use, strengthen engagement, and keep your business connected to users.',
     Icon: MobileIcon,
   },
   {
     title: 'E-Commerce & Marketplace Solutions',
     description:
-      'Poor product discovery and complicated buying journeys cost sales. SoftSync builds modern commerce and marketplace platforms with smoother customer experiences, scalable management tools, and conversion-focused flows.',
+      'Poor product discovery and complicated buying journeys cost sales. SyncSolvo builds modern commerce and marketplace platforms with smoother customer experiences, scalable management tools, and conversion-focused flows.',
     Icon: EcommerceIcon,
   },
   {
     title: 'Interactive & 3D Web Experiences',
     description:
-      'When a standard website cannot express the brand, SoftSync creates refined 3D and motion-driven experiences that make your digital presence more memorable without sacrificing usability or performance.',
+      'When a standard website cannot express the brand, SyncSolvo creates refined 3D and motion-driven experiences that make your digital presence more memorable without sacrificing usability or performance.',
     Icon: InteractiveIcon,
   },
 ];
@@ -1482,31 +1482,31 @@ const MARKETING_SERVICES = [
   {
     title: 'SEO & Organic Growth',
     description:
-      'If customers are searching but cannot find you, opportunities are being missed. SoftSync improves technical SEO, local visibility, and content performance to attract relevant, sustainable organic traffic.',
+      'If customers are searching but cannot find you, opportunities are being missed. SyncSolvo improves technical SEO, local visibility, and content performance to attract relevant, sustainable organic traffic.',
     Icon: SeoIcon,
   },
   {
     title: 'Paid Advertising & Lead Generation',
     description:
-      'Ad spend should create opportunities, not just clicks. SoftSync builds targeted PPC and social campaigns focused on qualified leads, stronger customer acquisition, and measurable business outcomes.',
+      'Ad spend should create opportunities, not just clicks. SyncSolvo builds targeted PPC and social campaigns focused on qualified leads, stronger customer acquisition, and measurable business outcomes.',
     Icon: AdsIcon,
   },
   {
     title: 'Landing Page & Conversion Optimization',
     description:
-      'Traffic is valuable only when people take action. SoftSync improves landing pages, messaging, and conversion journeys to turn more visitors into enquiries, leads, and customers.',
+      'Traffic is valuable only when people take action. SyncSolvo improves landing pages, messaging, and conversion journeys to turn more visitors into enquiries, leads, and customers.',
     Icon: ConversionIcon,
   },
   {
     title: 'Social Media & Brand Growth',
     description:
-      'An inconsistent digital presence weakens trust. SoftSync combines social media management, content strategy, and brand optimization to strengthen visibility, engagement, and credibility across the right channels.',
+      'An inconsistent digital presence weakens trust. SyncSolvo combines social media management, content strategy, and brand optimization to strengthen visibility, engagement, and credibility across the right channels.',
     Icon: SocialIcon,
   },
   {
     title: 'Email Marketing & Customer Engagement',
     description:
-      'Growth continues after the first conversion. SoftSync creates targeted email and customer engagement journeys that strengthen relationships, improve retention, and encourage meaningful repeat interaction.',
+      'Growth continues after the first conversion. SyncSolvo creates targeted email and customer engagement journeys that strengthen relationships, improve retention, and encourage meaningful repeat interaction.',
     Icon: EmailIcon,
   },
 ];
@@ -1939,7 +1939,7 @@ export default function Services() {
           <div className="services-intro-copy">
 
             <p>
-              SoftSync combines software engineering,
+              SyncSolvo combines software engineering,
               AI, product development, and digital growth
               to solve real business challenges—helping
               companies automate operations, build
@@ -1956,7 +1956,7 @@ export default function Services() {
           number="01"
           category="Development & Technology"
           title="Technology We Build"
-          description="SoftSync engineers scalable digital products and intelligent systems built around real business needs—helping companies automate operations, improve efficiency, and create stronger foundations for growth."
+          description="SyncSolvo engineers scalable digital products and intelligent systems built around real business needs—helping companies automate operations, improve efficiency, and create stronger foundations for growth."
         />
 
 
@@ -1969,7 +1969,7 @@ export default function Services() {
           number="02"
           category="Marketing & Growth"
           title="Growth We Drive"
-          description="Great technology creates the foundation. SoftSync combines search, advertising, content, and conversion strategy to help the right audience discover your business and turn visibility into measurable growth."
+          description="Great technology creates the foundation. SyncSolvo combines search, advertising, content, and conversion strategy to help the right audience discover your business and turn visibility into measurable growth."
         />
 
 

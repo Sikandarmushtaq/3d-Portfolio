@@ -15,7 +15,7 @@ const ecommerceMarketplaceData = {
       "Commerce Platforms Designed Around the Complete Buying Journey",
 
     description:
-      "SoftSync builds e-commerce stores and marketplace platforms that connect product discovery, customer accounts, carts, checkout, payments, orders, inventory and administration into one connected commerce system. Whether you are selling your own products or bringing multiple sellers onto one platform, we design the experience around both conversion and operational control.",
+      "SyncSolvo builds e-commerce stores and marketplace platforms that connect product discovery, customer accounts, carts, checkout, payments, orders, inventory and administration into one connected commerce system. Whether you are selling your own products or bringing multiple sellers onto one platform, we design the experience around both conversion and operational control.",
 
     button: {
       label:

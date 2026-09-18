@@ -309,7 +309,7 @@ export default function Contact({
             </div>
 
             <p className="contact-help-text">
-              Ready to innovate with SoftSync?
+              Ready to innovate with SyncSolvo?
               <br />
               <br />
               Complete the form and our team will

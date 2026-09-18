@@ -6,7 +6,7 @@ const remarketingData = {
   },
   "intro": {
     "title": "Stay Relevant After the First Visit",
-    "description": "Most people do not convert on their first interaction. SoftSync designs remarketing systems that segment audiences by behavior, funnel stage, product interest, and prior engagement so follow-up ads are more relevant than repeating the same message to everyone.",
+    "description": "Most people do not convert on their first interaction. SyncSolvo designs remarketing systems that segment audiences by behavior, funnel stage, product interest, and prior engagement so follow-up ads are more relevant than repeating the same message to everyone.",
     "button": {
       "label": "Discuss Your Remarketing Strategy",
       "to": "/contact"

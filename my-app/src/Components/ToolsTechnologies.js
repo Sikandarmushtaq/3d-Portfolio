@@ -470,7 +470,7 @@ export default function ToolsTechnologies() {
           </h2>
 
           <p>
-            At SoftSync, every technology
+            At SyncSolvo, every technology
             has a purpose. We combine proven
             engineering frameworks, cloud
             infrastructure and intelligent

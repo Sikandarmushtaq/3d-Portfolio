@@ -15,7 +15,7 @@ const webApplicationData = {
       "Web Applications Built for More Than Just Browsing",
 
     description:
-      "SoftSync builds web applications that allow users to work, manage, communicate, collaborate and complete real business tasks directly from the browser. From customer portals and operational dashboards to real-time platforms and interactive digital products, we combine application engineering with thoughtful user experience to create systems people can rely on every day.",
+      "SyncSolvo builds web applications that allow users to work, manage, communicate, collaborate and complete real business tasks directly from the browser. From customer portals and operational dashboards to real-time platforms and interactive digital products, we combine application engineering with thoughtful user experience to create systems people can rely on every day.",
 
     button: {
       label:

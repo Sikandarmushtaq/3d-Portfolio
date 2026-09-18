@@ -15,7 +15,7 @@ const mobileApplicationData = {
       "Mobile Apps Built Around Real User Experience",
 
     description:
-      "SoftSync designs and develops mobile applications that connect people with products, services and business workflows through intuitive mobile experiences. From customer-facing apps and internal business tools to booking, marketplace and real-time platforms, we build mobile products around how users actually interact on the go.",
+      "SyncSolvo designs and develops mobile applications that connect people with products, services and business workflows through intuitive mobile experiences. From customer-facing apps and internal business tools to booking, marketplace and real-time platforms, we build mobile products around how users actually interact on the go.",
 
     button: {
       label:

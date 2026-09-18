@@ -6,7 +6,7 @@ const ppcData = {
   },
   "intro": {
     "title": "Make Paid Media Accountable to Business Outcomes",
-    "description": "SoftSync plans and manages paid advertising around the full path from targeting and creative to landing pages, tracking, optimization, and reporting. Instead of treating clicks as the finish line, we connect campaign structure with the actions your business actually values—qualified leads, purchases, demos, bookings, or other defined conversions.",
+    "description": "SyncSolvo plans and manages paid advertising around the full path from targeting and creative to landing pages, tracking, optimization, and reporting. Instead of treating clicks as the finish line, we connect campaign structure with the actions your business actually values—qualified leads, purchases, demos, bookings, or other defined conversions.",
     "button": {
       "label": "Discuss Your Paid Media Strategy",
       "to": "/contact"

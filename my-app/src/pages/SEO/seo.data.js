@@ -6,7 +6,7 @@ const seoData = {
   },
   "intro": {
     "title": "Build a Search Presence That Compounds Over Time",
-    "description": "SoftSync combines technical SEO, search-intent research, content optimization, site architecture, authority building, and measurement into one structured organic growth program. The goal is not short-term ranking tricks. We focus on making your website easier for search engines to understand and more useful for the people actively searching for what your business offers.",
+    "description": "SyncSolvo combines technical SEO, search-intent research, content optimization, site architecture, authority building, and measurement into one structured organic growth program. The goal is not short-term ranking tricks. We focus on making your website easier for search engines to understand and more useful for the people actively searching for what your business offers.",
     "button": {
       "label": "Discuss Your SEO Strategy",
       "to": "/contact"

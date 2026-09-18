@@ -304,7 +304,7 @@ const marketingGroups = [
 
 const aboutGroups = [
   {
-    title: "About SoftSync",
+    title: "About SyncSolvo",
     items: [
       {
         to: "/who-we-are",
@@ -317,7 +317,7 @@ const aboutGroups = [
         to: "/our-team",
         label: "Our Team",
         description:
-          "Meet the people behind SoftSync",
+          "Meet the people behind SyncSolvo",
         icon: UserRound
       },
       {
@@ -369,7 +369,7 @@ const aboutGroups = [
         to: "/contact",
         label: "Careers",
         description:
-          "Build your career with SoftSync",
+          "Build your career with SyncSolvo",
         icon: BriefcaseBusiness
       },
       {
@@ -410,7 +410,7 @@ function BrandLogo({
   return (
     <img
       src="/softsync-wordmark.svg"
-      alt="SoftSync"
+      alt="SyncSolvo"
       className={className}
       draggable="false"
     />
@@ -788,7 +788,7 @@ export default function Navbar() {
         <Link
           to="/"
           className="brand-logo-link"
-          aria-label="SoftSync home"
+          aria-label="SyncSolvo home"
         >
           <BrandLogo
             className="navbar-brand-logo"

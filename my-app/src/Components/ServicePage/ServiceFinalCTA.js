@@ -8,11 +8,11 @@ export default function ServiceFinalCTA() {
       <div className="softsync-final-cta-shell">
         <div className="service-final-cta softsync-final-cta-card">
           <h2 className="service-final-cta-title">
-            Why Choose SoftSync?
+            Why Choose SyncSolvo?
           </h2>
 
           <p className="service-final-cta-description">
-            Think of SoftSync as your technology and growth partner,
+            Think of SyncSolvo as your technology and growth partner,
             turning complex ideas into digital products that are built
             to perform and ready to scale. We combine software
             engineering, intelligent automation, modern user

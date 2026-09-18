@@ -15,7 +15,7 @@ const enterpriseSoftwareData = {
       "Bring Enterprise Operations Into One Connected System",
 
     description:
-      "SoftSync develops enterprise software that connects departments, teams, business processes, data, reporting, and administrative control within structured digital platforms. From employee portals and executive dashboards to CRM, ERP-style modules, workflow systems, and enterprise integrations, we design software around how larger organizations actually operate.",
+      "SyncSolvo develops enterprise software that connects departments, teams, business processes, data, reporting, and administrative control within structured digital platforms. From employee portals and executive dashboards to CRM, ERP-style modules, workflow systems, and enterprise integrations, we design software around how larger organizations actually operate.",
 
     button: {
       label:
@@ -435,7 +435,7 @@ const enterpriseSoftwareData = {
 
       {
         question:
-          "What types of enterprise systems can SoftSync build?",
+          "What types of enterprise systems can SyncSolvo build?",
 
         answer:
           "Enterprise projects can include management platforms, employee portals, CRM systems, ERP-style modules, executive dashboards, workflow systems, reporting platforms, administration tools, and multi-department operational software."

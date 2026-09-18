@@ -15,7 +15,7 @@ const aiDevelopmentData = {
       "Turn AI Into a Practical Business Product",
 
     description:
-      "SoftSync develops AI-powered applications that solve real operational and product challenges instead of adding intelligence without purpose. From generative AI features and knowledge systems to intelligent copilots and AI-enabled business applications, we design the complete experience around your users, information, workflows, and measurable product goals.",
+      "SyncSolvo develops AI-powered applications that solve real operational and product challenges instead of adding intelligence without purpose. From generative AI features and knowledge systems to intelligent copilots and AI-enabled business applications, we design the complete experience around your users, information, workflows, and measurable product goals.",
 
     button: {
       label:
@@ -427,7 +427,7 @@ const aiDevelopmentData = {
     items: [
       {
         question:
-          "What types of AI applications can SoftSync build?",
+          "What types of AI applications can SyncSolvo build?",
 
         answer:
           "AI development can include generative AI applications, knowledge assistants, copilots, AI-powered product features, intelligent search, content workflows, analysis tools, and other applications built around specific business use cases."

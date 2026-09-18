@@ -15,7 +15,7 @@ const customSoftwareData = {
       "Custom Software Built Around Your Business",
 
     description:
-      "SoftSync designs and develops custom software around the way your business actually works. From internal management platforms and workflow systems to integrated business applications, we build solutions that remove operational limitations and give your teams greater control.",
+      "SyncSolvo designs and develops custom software around the way your business actually works. From internal management platforms and workflow systems to integrated business applications, we build solutions that remove operational limitations and give your teams greater control.",
 
     button: {
       label:

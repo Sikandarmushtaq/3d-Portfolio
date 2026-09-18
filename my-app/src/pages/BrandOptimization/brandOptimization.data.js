@@ -6,7 +6,7 @@ const brandData = {
   },
   "intro": {
     "title": "Make Every Brand Touchpoint Feel Like the Same Company",
-    "description": "SoftSync helps businesses clarify how they are positioned, how they speak, how they look, and how those decisions carry across websites, social channels, campaigns, sales material, and customer interactions. Brand optimization is not only a logo exercise—it is the system that keeps the business recognizable and credible as it grows.",
+    "description": "SyncSolvo helps businesses clarify how they are positioned, how they speak, how they look, and how those decisions carry across websites, social channels, campaigns, sales material, and customer interactions. Brand optimization is not only a logo exercise—it is the system that keeps the business recognizable and credible as it grows.",
     "button": {
       "label": "Discuss Your Brand",
       "to": "/contact"

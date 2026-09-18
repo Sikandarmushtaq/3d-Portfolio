@@ -15,7 +15,7 @@ const aiIntegrationsData = {
       "Bring AI Into the Systems Your Business Already Runs",
 
     description:
-      "SoftSync integrates AI capabilities into existing applications, platforms, and business workflows without forcing organizations to rebuild everything from the ground up. We connect AI models, APIs, enterprise data, knowledge sources, and third-party systems so intelligent features become a practical part of the software your teams and customers already use.",
+      "SyncSolvo integrates AI capabilities into existing applications, platforms, and business workflows without forcing organizations to rebuild everything from the ground up. We connect AI models, APIs, enterprise data, knowledge sources, and third-party systems so intelligent features become a practical part of the software your teams and customers already use.",
 
     button: {
       label:
