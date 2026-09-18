@@ -1,7 +1,7 @@
 import Navbar from "../../Components/Navbar.js";
 import Cursor from "../../Components/Cursor.js";
-import Scene3 from "../../Components/Scene3.jsx";
-import Contact from "../../Components/Contact.jsx";
+import Scene3 from "../../Components/Scene3.js";
+import Contact from "../../Components/Contact.js";
 import Footer from "../../Components/Footer.js";
 
 import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection.js";
@@ -11,14 +11,14 @@ import ServicePackages from "../../Components/ServicePage/ServicePackages.js";
 import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ.js";
 import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA.js";
 import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations.js";
-import MarketingImageVisual from "../../Components/MarketingPage/MarketingImageVisual.jsx";
+import MarketingImageVisual from "../../Components/MarketingPage/MarketingImageVisual.js";
 
 import {
  
   PPCAdsWhyIllustration,
   PPCAdsProcessIllustration,
   PPCAdsFaqIllustration
-} from "./illustrations/PPCAdsIllustrations.jsx";
+} from "./illustrations/PPCAdsIllustrations.js";
 
 import ppcData from "./ppcAds.data.js";
 

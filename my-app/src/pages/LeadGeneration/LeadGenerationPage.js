@@ -1,7 +1,7 @@
 import Navbar from "../../Components/Navbar.js";
 import Cursor from "../../Components/Cursor.js";
-import Scene3 from "../../Components/Scene3.jsx";
-import Contact from "../../Components/Contact.jsx";
+import Scene3 from "../../Components/Scene3.js";
+import Contact from "../../Components/Contact.js";
 import Footer from "../../Components/Footer.js";
 
 import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection.js";
