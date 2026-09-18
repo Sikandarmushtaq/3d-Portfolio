@@ -1,31 +1,31 @@
-import Navbar from "../../Components/Navbar";
-import Cursor from "../../Components/Cursor";
-import Scene3 from "../../Components/Scene3";
-import Contact from "../../Components/Contact";
-import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar.js";
+import Cursor from "../../Components/Cursor.js";
+import Scene3 from "../../Components/Scene3.jsx";
+import Contact from "../../Components/Contact.js";
+import Footer from "../../Components/Footer.js";
 
-import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection";
-import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities";
-import ServiceProcess from "../../Components/ServicePage/ServiceProcess";
-import ServicePackages from "../../Components/ServicePage/ServicePackages";
-import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ";
-import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA";
-import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations";
-import MarketingImageVisual from "../../Components/MarketingPage/MarketingImageVisual";
+import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection.js";
+import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities.js";
+import ServiceProcess from "../../Components/ServicePage/ServiceProcess.js";
+import ServicePackages from "../../Components/ServicePage/ServicePackages.js";
+import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ.js";
+import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA.js";
+import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations.js";
+import MarketingImageVisual from "../../Components/MarketingPage/MarketingImageVisual.js";
 
 import {
-  ConversionRateOptimizationIllustration,
-  ConversionRateOptimizationWhyIllustration,
-  ConversionRateOptimizationProcessIllustration,
-  ConversionRateOptimizationFaqIllustration
-} from "./illustrations/ConversionRateOptimizationIllustrations";
 
-import croData from "./conversionRateOptimization.data.js";
+  SocialMediaManagementWhyIllustration,
+  SocialMediaManagementProcessIllustration,
+  SocialMediaManagementFaqIllustration
+} from "./illustrations/SocialMediaManagementIllustrations.js";
+
+import socialMediaData from "./socialMediaManagement.data.js";
 
 import "../../Components/ServicePage/ServicePage.css";
 
-export default function ConversionRateOptimizationPage() {
-  useServicePageAnimations(".cro-service-page");
+export default function SocialMediaManagementPage() {
+  useServicePageAnimations(".social-service-page");
 
   const {
     hero,
@@ -35,12 +35,12 @@ export default function ConversionRateOptimizationPage() {
     process,
     packages,
     faq
-  } = croData;
+  } = socialMediaData;
 
   return (
     <main
-      className="service-page cro-service-page"
-      data-service="cro"
+      className="service-page social-service-page"
+      data-service="social"
     >
       <Cursor />
       <Navbar />
@@ -52,27 +52,27 @@ export default function ConversionRateOptimizationPage() {
       />
 
       <ServiceSplitSection
-        sectionId="cro-intro"
+        sectionId="social-intro"
         title={intro.title}
         description={intro.description}
         button={intro.button}
         illustration={
           <MarketingImageVisual
-            src="https://images.unsplash.com/photo-1686061592689-312bbfb5c055?auto=format&fit=crop&fm=jpg&q=82&w=1800"
-            alt="Analytics retention dashboard on a screen"
-            eyebrow="Conversion analytics"
+            src="https://images.unsplash.com/photo-1769596722257-282ec3fe8594?auto=format&fit=crop&fm=jpg&q=82&w=1800"
+            alt="Laptop showing a social media content calendar"
+            eyebrow="Content planning"
           />
         }
         imageFirstMobile
       />
 
       <ServiceSplitSection
-        sectionId="cro-why"
+        sectionId="social-why"
         title={whyChoose.title}
         description={whyChoose.description}
         bullets={whyChoose.bullets}
         illustration={
-          <ConversionRateOptimizationWhyIllustration />
+          <SocialMediaManagementWhyIllustration />
         }
         reverse
         imageFirstMobile
@@ -89,7 +89,7 @@ export default function ConversionRateOptimizationPage() {
         steps={process.steps}
         button={process.button}
         illustration={
-          <ConversionRateOptimizationProcessIllustration />
+          <SocialMediaManagementProcessIllustration />
         }
       />
 
@@ -102,7 +102,7 @@ export default function ConversionRateOptimizationPage() {
         title={faq.title}
         items={faq.items}
         illustration={
-          <ConversionRateOptimizationFaqIllustration />
+          <SocialMediaManagementFaqIllustration />
         }
       />
 

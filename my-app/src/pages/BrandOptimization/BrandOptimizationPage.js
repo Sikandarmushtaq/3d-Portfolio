@@ -1,31 +1,30 @@
-import Navbar from "../../Components/Navbar";
-import Cursor from "../../Components/Cursor";
-import Scene3 from "../../Components/Scene3";
-import Contact from "../../Components/Contact.js";
-import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar.js";
+import Cursor from "../../Components/Cursor.js";
+import Scene3 from "../../Components/Scene3.jsx";
+import Contact from "../../Components/Contact.jsx";
+import Footer from "../../Components/Footer.js";
 
-import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection";
-import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities";
-import ServiceProcess from "../../Components/ServicePage/ServiceProcess";
-import ServicePackages from "../../Components/ServicePage/ServicePackages";
-import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ";
-import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA";
-import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations";
-import MarketingImageVisual from "../../Components/MarketingPage/MarketingImageVisual.js";
+import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection.js";
+import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities.js";
+import ServiceProcess from "../../Components/ServicePage/ServiceProcess.js";
+import ServicePackages from "../../Components/ServicePage/ServicePackages.js";
+import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ.js";
+import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA.js";
+import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations.js";
 
 import {
+  BrandOptimizationIllustration,
+  BrandOptimizationWhyIllustration,
+  BrandOptimizationProcessIllustration,
+  BrandOptimizationFaqIllustration
+} from "./illustrations/BrandOptimizationIllustrations.js";
 
-  SEOWhyIllustration,
-  SEOProcessIllustration,
-  SEOFaqIllustration
-} from "./illustrations/SEOIllustrations";
-
-import seoData from "./seo.data.js";
+import brandData from "./brandOptimization.data.js";
 
 import "../../Components/ServicePage/ServicePage.css";
 
-export default function SEOPage() {
-  useServicePageAnimations(".seo-service-page");
+export default function BrandOptimizationPage() {
+  useServicePageAnimations(".brand-service-page");
 
   const {
     hero,
@@ -35,12 +34,12 @@ export default function SEOPage() {
     process,
     packages,
     faq
-  } = seoData;
+  } = brandData;
 
   return (
     <main
-      className="service-page seo-service-page"
-      data-service="seo"
+      className="service-page brand-service-page"
+      data-service="brand"
     >
       <Cursor />
       <Navbar />
@@ -52,27 +51,23 @@ export default function SEOPage() {
       />
 
       <ServiceSplitSection
-        sectionId="seo-intro"
+        sectionId="brand-intro"
         title={intro.title}
         description={intro.description}
         button={intro.button}
         illustration={
-          <MarketingImageVisual
-            src="https://images.unsplash.com/photo-1686061592689-312bbfb5c055?auto=format&fit=crop&fm=jpg&q=82&w=1800"
-            alt="Analytics dashboard on a computer screen"
-            eyebrow="Search performance"
-          />
+          <BrandOptimizationIllustration />
         }
         imageFirstMobile
       />
 
       <ServiceSplitSection
-        sectionId="seo-why"
+        sectionId="brand-why"
         title={whyChoose.title}
         description={whyChoose.description}
         bullets={whyChoose.bullets}
         illustration={
-          <SEOWhyIllustration />
+          <BrandOptimizationWhyIllustration />
         }
         reverse
         imageFirstMobile
@@ -89,7 +84,7 @@ export default function SEOPage() {
         steps={process.steps}
         button={process.button}
         illustration={
-          <SEOProcessIllustration />
+          <BrandOptimizationProcessIllustration />
         }
       />
 
@@ -102,7 +97,7 @@ export default function SEOPage() {
         title={faq.title}
         items={faq.items}
         illustration={
-          <SEOFaqIllustration />
+          <BrandOptimizationFaqIllustration />
         }
       />
 

@@ -1,31 +1,31 @@
-import Navbar from "../../Components/Navbar";
-import Cursor from "../../Components/Cursor";
-import Scene3 from "../../Components/Scene3";
-import Contact from "../../Components/Contact";
-import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar.js";
+import Cursor from "../../Components/Cursor.js";
+import Scene3 from "../../Components/Scene3.jsx";
+import Contact from "../../Components/Contact.jsx";
+import Footer from "../../Components/Footer.js";
 
-import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection";
-import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities";
-import ServiceProcess from "../../Components/ServicePage/ServiceProcess";
-import ServicePackages from "../../Components/ServicePage/ServicePackages";
-import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ";
-import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA";
-import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations";
-import MarketingImageVisual from "../../Components/MarketingPage/MarketingImageVisual";
+import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection.js";
+import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities.js";
+import ServiceProcess from "../../Components/ServicePage/ServiceProcess.js";
+import ServicePackages from "../../Components/ServicePage/ServicePackages.js";
+import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ.js";
+import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA.js";
+import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations.js";
+import MarketingImageVisual from "../../Components/MarketingPage/MarketingImageVisual.jsx";
 
 import {
-  PPCAdsIllustration,
-  PPCAdsWhyIllustration,
-  PPCAdsProcessIllustration,
-  PPCAdsFaqIllustration
-} from "./illustrations/PPCAdsIllustrations";
 
-import ppcData from "./ppcAds.data.js";
+  ConversionRateOptimizationWhyIllustration,
+  ConversionRateOptimizationProcessIllustration,
+  ConversionRateOptimizationFaqIllustration
+} from "./illustrations/ConversionRateOptimizationIllustrations.jsx";
+
+import croData from "./conversionRateOptimization.data.js";
 
 import "../../Components/ServicePage/ServicePage.css";
 
-export default function PPCAdsPage() {
-  useServicePageAnimations(".ppc-service-page");
+export default function ConversionRateOptimizationPage() {
+  useServicePageAnimations(".cro-service-page");
 
   const {
     hero,
@@ -35,12 +35,12 @@ export default function PPCAdsPage() {
     process,
     packages,
     faq
-  } = ppcData;
+  } = croData;
 
   return (
     <main
-      className="service-page ppc-service-page"
-      data-service="ppc"
+      className="service-page cro-service-page"
+      data-service="cro"
     >
       <Cursor />
       <Navbar />
@@ -52,27 +52,27 @@ export default function PPCAdsPage() {
       />
 
       <ServiceSplitSection
-        sectionId="ppc-intro"
+        sectionId="cro-intro"
         title={intro.title}
         description={intro.description}
         button={intro.button}
         illustration={
           <MarketingImageVisual
-            src="https://images.unsplash.com/photo-1784729553968-07da5d7b7c99?auto=format&fit=crop&fm=jpg&q=82&w=1800"
-            alt="Paid media analytics displayed on a laptop"
-            eyebrow="Campaign analytics"
+            src="https://images.unsplash.com/photo-1686061592689-312bbfb5c055?auto=format&fit=crop&fm=jpg&q=82&w=1800"
+            alt="Analytics retention dashboard on a screen"
+            eyebrow="Conversion analytics"
           />
         }
         imageFirstMobile
       />
 
       <ServiceSplitSection
-        sectionId="ppc-why"
+        sectionId="cro-why"
         title={whyChoose.title}
         description={whyChoose.description}
         bullets={whyChoose.bullets}
         illustration={
-          <PPCAdsWhyIllustration />
+          <ConversionRateOptimizationWhyIllustration />
         }
         reverse
         imageFirstMobile
@@ -89,7 +89,7 @@ export default function PPCAdsPage() {
         steps={process.steps}
         button={process.button}
         illustration={
-          <PPCAdsProcessIllustration />
+          <ConversionRateOptimizationProcessIllustration />
         }
       />
 
@@ -102,7 +102,7 @@ export default function PPCAdsPage() {
         title={faq.title}
         items={faq.items}
         illustration={
-          <PPCAdsFaqIllustration />
+          <ConversionRateOptimizationFaqIllustration />
         }
       />
 

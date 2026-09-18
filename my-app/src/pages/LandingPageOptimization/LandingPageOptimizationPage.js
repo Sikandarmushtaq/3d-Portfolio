@@ -1,30 +1,30 @@
-import Navbar from "../../Components/Navbar";
-import Cursor from "../../Components/Cursor";
-import Scene3 from "../../Components/Scene3";
-import Contact from "../../Components/Contact";
-import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar.js";
+import Cursor from "../../Components/Cursor.js";
+import Scene3 from "../../Components/Scene3.jsx";
+import Contact from "../../Components/Contact.jsx";
+import Footer from "../../Components/Footer.js";
 
-import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection";
-import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities";
-import ServiceProcess from "../../Components/ServicePage/ServiceProcess";
-import ServicePackages from "../../Components/ServicePage/ServicePackages";
-import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ";
-import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA";
-import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations";
+import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection.js";
+import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities.js";
+import ServiceProcess from "../../Components/ServicePage/ServiceProcess.js";
+import ServicePackages from "../../Components/ServicePage/ServicePackages.js";
+import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ.js";
+import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA.js";
+import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations.js";
 
 import {
-  LeadGenerationIllustration,
-  LeadGenerationWhyIllustration,
-  LeadGenerationProcessIllustration,
-  LeadGenerationFaqIllustration
-} from "./illustrations/LeadGenerationIllustrations";
+  LandingOptimizationIllustration,
+  LandingOptimizationWhyIllustration,
+  LandingOptimizationProcessIllustration,
+  LandingOptimizationFaqIllustration
+} from "./illustrations/LandingOptimizationIllustrations.js";
 
-import leadGenerationData from "./leadGeneration.data.js";
+import landingPageData from "./landingPageOptimization.data.js";
 
 import "../../Components/ServicePage/ServicePage.css";
 
-export default function LeadGenerationPage() {
-  useServicePageAnimations(".lead-service-page");
+export default function LandingPageOptimizationPage() {
+  useServicePageAnimations(".landing-service-page");
 
   const {
     hero,
@@ -34,12 +34,12 @@ export default function LeadGenerationPage() {
     process,
     packages,
     faq
-  } = leadGenerationData;
+  } = landingPageData;
 
   return (
     <main
-      className="service-page lead-service-page"
-      data-service="lead"
+      className="service-page landing-service-page"
+      data-service="landing"
     >
       <Cursor />
       <Navbar />
@@ -51,23 +51,23 @@ export default function LeadGenerationPage() {
       />
 
       <ServiceSplitSection
-        sectionId="lead-intro"
+        sectionId="landing-intro"
         title={intro.title}
         description={intro.description}
         button={intro.button}
         illustration={
-          <LeadGenerationIllustration />
+          <LandingOptimizationIllustration />
         }
         imageFirstMobile
       />
 
       <ServiceSplitSection
-        sectionId="lead-why"
+        sectionId="landing-why"
         title={whyChoose.title}
         description={whyChoose.description}
         bullets={whyChoose.bullets}
         illustration={
-          <LeadGenerationWhyIllustration />
+          <LandingOptimizationWhyIllustration />
         }
         reverse
         imageFirstMobile
@@ -84,7 +84,7 @@ export default function LeadGenerationPage() {
         steps={process.steps}
         button={process.button}
         illustration={
-          <LeadGenerationProcessIllustration />
+          <LandingOptimizationProcessIllustration />
         }
       />
 
@@ -97,7 +97,7 @@ export default function LeadGenerationPage() {
         title={faq.title}
         items={faq.items}
         illustration={
-          <LeadGenerationFaqIllustration />
+          <LandingOptimizationFaqIllustration />
         }
       />
 

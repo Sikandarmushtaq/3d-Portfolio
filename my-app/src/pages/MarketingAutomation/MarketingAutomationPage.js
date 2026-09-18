@@ -1,30 +1,30 @@
-import Navbar from "../../Components/Navbar";
-import Cursor from "../../Components/Cursor";
-import Scene3 from "../../Components/Scene3";
-import Contact from "../../Components/Contact";
-import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar.js";
+import Cursor from "../../Components/Cursor.js";
+import Scene3 from "../../Components/Scene3.jsx";
+import Contact from "../../Components/Contact.js";
+import Footer from "../../Components/Footer.js";
 
-import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection";
-import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities";
-import ServiceProcess from "../../Components/ServicePage/ServiceProcess";
-import ServicePackages from "../../Components/ServicePage/ServicePackages";
-import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ";
-import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA";
-import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations";
+import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection.js";
+import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities.js";
+import ServiceProcess from "../../Components/ServicePage/ServiceProcess.js";
+import ServicePackages from "../../Components/ServicePage/ServicePackages.js";
+import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ.js";
+import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA.js";
+import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations.js";
 
 import {
-  SocialMediaAdvertisingIllustration,
-  SocialMediaAdvertisingWhyIllustration,
-  SocialMediaAdvertisingProcessIllustration,
-  SocialMediaAdvertisingFaqIllustration
-} from "./illustrations/SocialMediaAdvertisingIllustrations";
+  MarketingAutomationIllustration,
+  MarketingAutomationWhyIllustration,
+  MarketingAutomationProcessIllustration,
+  MarketingAutomationFaqIllustration
+} from "./illustrations/MarketingAutomationIllustrations.js";
 
-import socialAdsData from "./socialMediaAdvertising.data.js";
+import automationData from "./marketingAutomation.data.js";
 
 import "../../Components/ServicePage/ServicePage.css";
 
-export default function SocialMediaAdvertisingPage() {
-  useServicePageAnimations(".socialAds-service-page");
+export default function MarketingAutomationPage() {
+  useServicePageAnimations(".automation-service-page");
 
   const {
     hero,
@@ -34,12 +34,12 @@ export default function SocialMediaAdvertisingPage() {
     process,
     packages,
     faq
-  } = socialAdsData;
+  } = automationData;
 
   return (
     <main
-      className="service-page socialAds-service-page"
-      data-service="socialAds"
+      className="service-page automation-service-page"
+      data-service="automation"
     >
       <Cursor />
       <Navbar />
@@ -51,23 +51,23 @@ export default function SocialMediaAdvertisingPage() {
       />
 
       <ServiceSplitSection
-        sectionId="socialAds-intro"
+        sectionId="automation-intro"
         title={intro.title}
         description={intro.description}
         button={intro.button}
         illustration={
-          <SocialMediaAdvertisingIllustration />
+          <MarketingAutomationIllustration />
         }
         imageFirstMobile
       />
 
       <ServiceSplitSection
-        sectionId="socialAds-why"
+        sectionId="automation-why"
         title={whyChoose.title}
         description={whyChoose.description}
         bullets={whyChoose.bullets}
         illustration={
-          <SocialMediaAdvertisingWhyIllustration />
+          <MarketingAutomationWhyIllustration />
         }
         reverse
         imageFirstMobile
@@ -84,7 +84,7 @@ export default function SocialMediaAdvertisingPage() {
         steps={process.steps}
         button={process.button}
         illustration={
-          <SocialMediaAdvertisingProcessIllustration />
+          <MarketingAutomationProcessIllustration />
         }
       />
 
@@ -97,7 +97,7 @@ export default function SocialMediaAdvertisingPage() {
         title={faq.title}
         items={faq.items}
         illustration={
-          <SocialMediaAdvertisingFaqIllustration />
+          <MarketingAutomationFaqIllustration />
         }
       />
 

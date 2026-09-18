@@ -1,30 +1,31 @@
-import Navbar from "../../Components/Navbar";
-import Cursor from "../../Components/Cursor";
-import Scene3 from "../../Components/Scene3";
-import Contact from "../../Components/Contact";
-import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar.js";
+import Cursor from "../../Components/Cursor.js";
+import Scene3 from "../../Components/Scene3.jsx";
+import Contact from "../../Components/Contact.jsx";
+import Footer from "../../Components/Footer.js";
 
-import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection";
-import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities";
-import ServiceProcess from "../../Components/ServicePage/ServiceProcess";
-import ServicePackages from "../../Components/ServicePage/ServicePackages";
-import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ";
-import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA";
-import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations";
+import ServiceSplitSection from "../../Components/ServicePage/ServiceSplitSection.js";
+import ServiceCapabilities from "../../Components/ServicePage/ServiceCapabilities.js";
+import ServiceProcess from "../../Components/ServicePage/ServiceProcess.js";
+import ServicePackages from "../../Components/ServicePage/ServicePackages.js";
+import ServiceFAQ from "../../Components/ServicePage/ServiceFAQ.js";
+import ServiceFinalCTA from "../../Components/ServicePage/ServiceFinalCTA.js";
+import useServicePageAnimations from "../../Components/ServicePage/useServicePageAnimations.js";
+import MarketingImageVisual from "../../Components/MarketingPage/MarketingImageVisual.jsx";
 
 import {
-  BrandOptimizationIllustration,
-  BrandOptimizationWhyIllustration,
-  BrandOptimizationProcessIllustration,
-  BrandOptimizationFaqIllustration
-} from "./illustrations/BrandOptimizationIllustrations";
+ 
+  PPCAdsWhyIllustration,
+  PPCAdsProcessIllustration,
+  PPCAdsFaqIllustration
+} from "./illustrations/PPCAdsIllustrations.jsx";
 
-import brandData from "./brandOptimization.data.js";
+import ppcData from "./ppcAds.data.js";
 
 import "../../Components/ServicePage/ServicePage.css";
 
-export default function BrandOptimizationPage() {
-  useServicePageAnimations(".brand-service-page");
+export default function PPCAdsPage() {
+  useServicePageAnimations(".ppc-service-page");
 
   const {
     hero,
@@ -34,12 +35,12 @@ export default function BrandOptimizationPage() {
     process,
     packages,
     faq
-  } = brandData;
+  } = ppcData;
 
   return (
     <main
-      className="service-page brand-service-page"
-      data-service="brand"
+      className="service-page ppc-service-page"
+      data-service="ppc"
     >
       <Cursor />
       <Navbar />
@@ -51,23 +52,27 @@ export default function BrandOptimizationPage() {
       />
 
       <ServiceSplitSection
-        sectionId="brand-intro"
+        sectionId="ppc-intro"
         title={intro.title}
         description={intro.description}
         button={intro.button}
         illustration={
-          <BrandOptimizationIllustration />
+          <MarketingImageVisual
+            src="https://images.unsplash.com/photo-1784729553968-07da5d7b7c99?auto=format&fit=crop&fm=jpg&q=82&w=1800"
+            alt="Paid media analytics displayed on a laptop"
+            eyebrow="Campaign analytics"
+          />
         }
         imageFirstMobile
       />
 
       <ServiceSplitSection
-        sectionId="brand-why"
+        sectionId="ppc-why"
         title={whyChoose.title}
         description={whyChoose.description}
         bullets={whyChoose.bullets}
         illustration={
-          <BrandOptimizationWhyIllustration />
+          <PPCAdsWhyIllustration />
         }
         reverse
         imageFirstMobile
@@ -84,7 +89,7 @@ export default function BrandOptimizationPage() {
         steps={process.steps}
         button={process.button}
         illustration={
-          <BrandOptimizationProcessIllustration />
+          <PPCAdsProcessIllustration />
         }
       />
 
@@ -97,7 +102,7 @@ export default function BrandOptimizationPage() {
         title={faq.title}
         items={faq.items}
         illustration={
-          <BrandOptimizationFaqIllustration />
+          <PPCAdsFaqIllustration />
         }
       />
 
