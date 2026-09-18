@@ -1,0 +1,679 @@
+.service-final-cta-section.softsync-final-cta-section {
+  position: relative;
+
+  padding:
+    24px 0
+    78px;
+
+  background:
+    #000000;
+}
+
+
+.softsync-final-cta-shell {
+  width:
+    calc(
+      100% - 96px
+    );
+
+  max-width:
+    1260px;
+
+  margin:
+    0 auto;
+}
+
+
+.service-final-cta.softsync-final-cta-card {
+  min-height:
+    442px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  padding:
+    68px
+    90px
+    66px;
+
+  border-radius:
+    18px;
+
+  text-align:
+    center;
+
+  background:
+    radial-gradient(
+      circle
+      at 5% 100%,
+      rgba(
+        66,
+        0,
+        255,
+        1
+      )
+      0%,
+      rgba(
+        66,
+        0,
+        255,
+        0.82
+      )
+      20%,
+      transparent
+      52%
+    ),
+    radial-gradient(
+      circle
+      at 100% 100%,
+      rgba(
+        218,
+        37,
+        166,
+        0.92
+      )
+      0%,
+      rgba(
+        190,
+        32,
+        158,
+        0.72
+      )
+      28%,
+      transparent
+      58%
+    ),
+    linear-gradient(
+      115deg,
+      #191821
+      0%,
+      #20203a
+      28%,
+      #302153
+      48%,
+      #48187c
+      67%,
+      #7f198f
+      84%,
+      #ad2496
+      100%
+    );
+
+  box-shadow:
+    inset
+    0 1px 0
+    rgba(
+      255,
+      255,
+      255,
+      0.035
+    );
+
+  isolation:
+    isolate;
+}
+
+
+.service-final-cta.softsync-final-cta-card::before {
+  content:
+    "";
+
+  width:
+    720px;
+
+  height:
+    430px;
+
+  position:
+    absolute;
+
+  left:
+    -280px;
+
+  bottom:
+    -300px;
+
+  z-index:
+    -1;
+
+  border-radius:
+    50%;
+
+  pointer-events:
+    none;
+
+  background:
+    rgba(
+      67,
+      0,
+      255,
+      0.72
+    );
+
+  filter:
+    blur(
+      85px
+    );
+}
+
+
+.service-final-cta.softsync-final-cta-card::after {
+  content:
+    "";
+
+  width:
+    650px;
+
+  height:
+    400px;
+
+  position:
+    absolute;
+
+  right:
+    -250px;
+
+  bottom:
+    -290px;
+
+  z-index:
+    -1;
+
+  border-radius:
+    50%;
+
+  pointer-events:
+    none;
+
+  background:
+    rgba(
+      226,
+      40,
+      169,
+      0.58
+    );
+
+  filter:
+    blur(
+      90px
+    );
+}
+
+
+.service-final-cta.softsync-final-cta-card
+.service-final-cta-title {
+  max-width:
+    1000px;
+
+  margin:
+    0 0
+    30px;
+
+  color:
+    #ffffff;
+
+  font-size:
+    clamp(
+      2.8rem,
+      4.4vw,
+      3.8rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.04;
+
+  letter-spacing:
+    -0.045em;
+}
+
+
+.service-final-cta.softsync-final-cta-card
+.service-final-cta-description {
+  width:
+    100%;
+
+  max-width:
+    1010px;
+
+  margin:
+    0 auto
+    31px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.91
+    );
+
+  font-family:
+    "Space Mono",
+    "Courier New",
+    monospace;
+
+  font-size:
+    0.92rem;
+
+  font-weight:
+    400;
+
+  line-height:
+    1.55;
+
+  letter-spacing:
+    -0.025em;
+}
+
+
+.service-final-cta.softsync-final-cta-card
+.service-final-cta-button {
+  min-height:
+    49px;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    8px;
+
+  position:
+    relative;
+
+  padding:
+    0 18px;
+
+  border:
+    0;
+
+  border-radius:
+    12px;
+
+  color:
+    #080808;
+
+  background:
+    #ffffff;
+
+  font-size:
+    0.92rem;
+
+  font-weight:
+    700;
+
+  line-height:
+    1;
+
+  text-decoration:
+    none;
+
+  box-shadow:
+    none;
+
+  transition:
+    transform
+    0.25s ease,
+    box-shadow
+    0.25s ease,
+    background
+    0.25s ease;
+}
+
+
+.service-final-cta.softsync-final-cta-card
+.service-final-cta-button span {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  font-size:
+    1rem;
+
+  line-height:
+    1;
+
+  transition:
+    transform
+    0.25s ease;
+}
+
+
+.service-final-cta.softsync-final-cta-card
+.service-final-cta-button:hover {
+  transform:
+    translateY(
+      -2px
+    );
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 13px
+    30px
+    rgba(
+      0,
+      0,
+      0,
+      0.2
+    );
+}
+
+
+.service-final-cta.softsync-final-cta-card
+.service-final-cta-button:hover
+span {
+  transform:
+    translateX(
+      3px
+    );
+}
+
+
+@media (max-width: 1100px) {
+  .softsync-final-cta-shell {
+    width:
+      calc(
+        100% - 64px
+      );
+  }
+
+
+  .service-final-cta.softsync-final-cta-card {
+    min-height:
+      420px;
+
+    padding:
+      62px
+      58px
+      60px;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-description {
+    max-width:
+      900px;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .service-final-cta-section.softsync-final-cta-section {
+    padding:
+      28px 0
+      62px;
+  }
+
+
+  .softsync-final-cta-shell {
+    width:
+      calc(
+        100% - 48px
+      );
+
+    max-width:
+      760px;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card {
+    min-height:
+      390px;
+
+    padding:
+      56px
+      42px
+      54px;
+
+    border-radius:
+      17px;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-title {
+    margin-bottom:
+      25px;
+
+    font-size:
+      clamp(
+        2.5rem,
+        7vw,
+        3.2rem
+      );
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-description {
+    max-width:
+      680px;
+
+    margin-bottom:
+      28px;
+
+    font-size:
+      0.86rem;
+
+    line-height:
+      1.58;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .service-final-cta-section.softsync-final-cta-section {
+    padding:
+      24px 0
+      50px;
+  }
+
+
+  .softsync-final-cta-shell {
+    width:
+      calc(
+        100% - 28px
+      );
+  }
+
+
+  .service-final-cta.softsync-final-cta-card {
+    min-height:
+      auto;
+
+    padding:
+      47px
+      22px
+      45px;
+
+    border-radius:
+      15px;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card::before {
+    width:
+      400px;
+
+    height:
+      310px;
+
+    left:
+      -230px;
+
+    bottom:
+      -205px;
+
+    filter:
+      blur(
+        65px
+      );
+  }
+
+
+  .service-final-cta.softsync-final-cta-card::after {
+    width:
+      380px;
+
+    height:
+      290px;
+
+    right:
+      -220px;
+
+    bottom:
+      -190px;
+
+    filter:
+      blur(
+        68px
+      );
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-title {
+    margin-bottom:
+      23px;
+
+    font-size:
+      clamp(
+        2rem,
+        10vw,
+        2.55rem
+      );
+
+    line-height:
+      1.06;
+
+    letter-spacing:
+      -0.04em;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-description {
+    max-width:
+      100%;
+
+    margin-bottom:
+      27px;
+
+    font-size:
+      0.78rem;
+
+    line-height:
+      1.6;
+
+    letter-spacing:
+      -0.02em;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-button {
+    min-height:
+      48px;
+
+    padding:
+      0 17px;
+
+    border-radius:
+      11px;
+
+    font-size:
+      0.86rem;
+  }
+}
+
+
+@media (max-width: 390px) {
+  .service-final-cta-section.softsync-final-cta-section {
+    padding-bottom:
+      44px;
+  }
+
+
+  .softsync-final-cta-shell {
+    width:
+      calc(
+        100% - 24px
+      );
+  }
+
+
+  .service-final-cta.softsync-final-cta-card {
+    padding:
+      42px
+      17px
+      41px;
+
+    border-radius:
+      14px;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-title {
+    font-size:
+      1.95rem;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-description {
+    font-size:
+      0.75rem;
+
+    line-height:
+      1.58;
+  }
+
+
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-button {
+    font-size:
+      0.82rem;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-button,
+  .service-final-cta.softsync-final-cta-card
+  .service-final-cta-button span {
+    transition:
+      none;
+  }
+}

@@ -1,0 +1,14 @@
+.mern-service-page {
+  --service-purple: #5415e8;
+  --service-purple-deep: #27114b;
+  --service-pink: #df2f61;
+  --service-magenta: #d53e97;
+}
+
+.mern-service-page .contact-page {
+  background: #000;
+}
+
+.mern-service-page .contact-container {
+  width: min(1150px, 92%);
+}

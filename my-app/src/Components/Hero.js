@@ -50,10 +50,7 @@ export default function Hero({
           />
 
           <p className="hero-description">
-            SoftSync builds scalable web platforms,
-            SaaS products, AI-powered systems,
-            mobile applications, and growth-focused
-            digital solutions for modern businesses.
+          SoftSync engineers intelligent software, scalable digital platforms, and performance-driven growth solutions designed to help modern businesses operate smarter, launch faster, and scale further.
           </p>
         </section>
       </div>

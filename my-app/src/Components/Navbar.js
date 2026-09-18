@@ -5,17 +5,24 @@ import {
   useState
 } from "react";
 
-import { Link } from "react-router-dom";
-import { gsap } from "gsap";
+import {
+  Link
+} from "react-router-dom";
+
+import {
+  gsap
+} from "gsap";
 
 import {
   Bot,
+  BrainCircuit,
   MessageSquareText,
-  Headphones,
+  Plug,
+  BarChart3,
+  Eye,
   Code2,
   Cloud,
   Smartphone,
-  Sparkles,
   GraduationCap,
   ShoppingBag,
   Workflow,
@@ -32,35 +39,66 @@ import {
   UserRound,
   Route,
   BriefcaseBusiness,
-  Package,
   CircleHelp,
   BookOpenText,
-  ContactRound
+  ContactRound,
+  Globe,
+  HeartPulse,
+  Landmark,
+  Building2,
+  LayoutDashboard,
+  RefreshCw,
+  Handshake
 } from "lucide-react";
 
 import "./Navbar.css";
 
+
 const serviceGroups = [
   {
-    title: "AI & Technology",
+    title: "AI & Intelligent Systems",
     items: [
       {
+        to: "/ai-development",
+        label: "AI Development Services",
+        description:
+          "Custom AI systems for business applications",
+        icon: BrainCircuit
+      },
+      {
         to: "/agentic-ai",
-        label: "Agentic AI Solutions",
-        description: "Autonomous AI agents & workflow automation",
+        label: "AI Agents & Automation",
+        description:
+          "Autonomous agents, workflows & task automation",
         icon: Bot
       },
       {
         to: "/ai-chatbot",
-        label: "AI Chatbot Development",
-        description: "Intelligent conversational AI solutions",
+        label: "Conversational AI Solutions",
+        description:
+          "Chatbots, voice agents & intelligent support systems",
         icon: MessageSquareText
       },
       {
-        to: "/ai-call-agents",
-        label: "AI Call Agents",
-        description: "AI-powered voice & customer assistance",
-        icon: Headphones
+        to: "/machine-learning",
+        label: "Machine Learning & Data Intelligence",
+        description:
+          "Predictive models, analytics & intelligent decisions",
+        icon: BarChart3
+      },
+      {
+        to: "/ai-integrations",
+        label: "AI Integration Services",
+        description:
+          "LLM, API & enterprise system integrations",
+        icon: Plug
+      },
+      {
+        to: "/computer-vision",
+        label: "Computer Vision Solutions",
+        description:
+          "Image recognition & visual intelligence systems",
+        icon: Eye
       }
     ]
   },
@@ -69,54 +107,97 @@ const serviceGroups = [
     items: [
       {
         to: "/mern",
-        label: "MERN Stack Development",
-        description: "Full-stack JavaScript web solutions",
+        label: "MERN / MEAN Stack Development",
+        description:
+          "React or Angular full-stack JavaScript solutions",
         icon: Code2
       },
       {
+        to: "/custom-software",
+        label: "Custom Software Development",
+        description:
+          "Tailored systems for complex business requirements",
+        icon: LayoutDashboard
+      },
+      {
         to: "/saas",
-        label: "SaaS Development",
-        description: "Scalable multi-tenant cloud platforms",
+        label: "SaaS Product Development",
+        description:
+          "Scalable multi-tenant cloud products",
         icon: Cloud
       },
       {
+        to: "/web-application-development",
+        label: "Web Application Development",
+        description:
+          "Modern, secure & scalable web platforms",
+        icon: Globe
+      },
+      {
         to: "/mobile-app",
-        label: "Mobile App Development",
-        description: "Cross-platform mobile applications",
+        label: "Mobile Application Development",
+        description:
+          "Cross-platform mobile solutions",
         icon: Smartphone
       },
       {
-        to: "/3d-animated",
-        label: "Interactive Web Experiences",
-        description: "Immersive 3D & motion-driven websites",
-        icon: Sparkles
+        to: "/ecommerce-web",
+        label: "E-Commerce & Marketplace Development",
+        description:
+          "Stores, marketplaces & digital commerce platforms",
+        icon: ShoppingBag
       }
     ]
   },
   {
-    title: "Industry Solutions",
+    title: "Industry & Business Solutions",
     items: [
       {
         to: "/education-platform",
-        label: "Education Technology",
-        description: "School management & learning platforms",
+        label: "Education Technology Solutions",
+        description:
+          "School systems, portals & digital learning platforms",
         icon: GraduationCap
       },
       {
-        to: "/ecommerce-web",
-        label: "E-Commerce Solutions",
-        description: "Online stores & marketplace platforms",
-        icon: ShoppingBag
+        to: "/healthcare-technology",
+        label: "Healthcare Technology Solutions",
+        description:
+          "Digital platforms for healthcare operations",
+        icon: HeartPulse
+      },
+      {
+        to: "/fintech-solutions",
+        label: "FinTech Solutions",
+        description:
+          "Financial platforms & workflow systems",
+        icon: Landmark
+      },
+      {
+        to: "/real-estate-technology",
+        label: "Real Estate Technology",
+        description:
+          "Property platforms & management systems",
+        icon: Building2
       },
       {
         to: "/business-automation",
-        label: "Business Automation",
-        description: "Smart workflow & process automation",
+        label: "Business Automation Solutions",
+        description:
+          "Operational workflows & process automation",
         icon: Workflow
+      },
+      {
+        to: "/enterprise-management-systems",
+        label: "Enterprise Software Systems",
+        description:
+          "Dashboards, portals & operational management systems",
+        icon: LayoutDashboard
       }
     ]
   }
 ];
+
 
 const marketingGroups = [
   {
@@ -125,20 +206,30 @@ const marketingGroups = [
       {
         to: "/seo",
         label: "Search Engine Optimization",
-        description: "Improve organic search visibility",
+        description:
+          "Improve organic search visibility",
         icon: Search
       },
       {
         to: "/local-seo",
         label: "Local SEO",
-        description: "Reach customers in local searches",
+        description:
+          "Reach customers in local searches",
         icon: MapPin
       },
       {
         to: "/landing-page-optimization",
         label: "Landing Page Optimization",
-        description: "Improve conversions & user journeys",
+        description:
+          "Improve conversions & user journeys",
         icon: PanelsTopLeft
+      },
+      {
+        to: "/conversion-rate-optimization",
+        label: "Conversion Rate Optimization",
+        description:
+          "Turn more traffic into qualified actions",
+        icon: BarChart3
       }
     ]
   },
@@ -147,21 +238,31 @@ const marketingGroups = [
     items: [
       {
         to: "/ppc-ads",
-        label: "PPC & Paid Ads",
-        description: "Targeted performance campaigns",
+        label: "PPC & Paid Advertising",
+        description:
+          "Targeted performance campaigns",
         icon: BadgeDollarSign
       },
       {
         to: "/social-media-advertising",
         label: "Social Media Advertising",
-        description: "Reach audiences across social platforms",
+        description:
+          "Reach audiences across social platforms",
         icon: Megaphone
       },
       {
         to: "/lead-generation",
-        label: "Lead Generation",
-        description: "Generate qualified business leads",
+        label: "Lead Generation Campaigns",
+        description:
+          "Generate qualified business leads",
         icon: UserRoundSearch
+      },
+      {
+        to: "/remarketing-campaigns",
+        label: "Remarketing Campaigns",
+        description:
+          "Re-engage high-intent visitors",
+        icon: RefreshCw
       }
     ]
   },
@@ -171,45 +272,59 @@ const marketingGroups = [
       {
         to: "/social-media-management",
         label: "Social Media Management",
-        description: "Build consistent brand presence",
+        description:
+          "Build consistent brand presence",
         icon: Share2
       },
       {
         to: "/email-marketing",
         label: "Email Marketing",
-        description: "Engage and retain customers",
+        description:
+          "Engage and retain customers",
         icon: Mail
       },
       {
         to: "/brand-optimization",
         label: "Brand Optimization",
-        description: "Strengthen digital brand identity",
+        description:
+          "Strengthen digital brand identity",
         icon: BadgeCheck
+      },
+      {
+        to: "/marketing-automation",
+        label: "Marketing Automation",
+        description:
+          "Automate follow-ups & customer journeys",
+        icon: Workflow
       }
     ]
   }
 ];
 
+
 const aboutGroups = [
   {
-    title: "About Us",
+    title: "About SoftSync",
     items: [
       {
         to: "/who-we-are",
         label: "Who We Are",
-        description: "Our story",
+        description:
+          "Our story, vision & direction",
         icon: Users
       },
       {
         to: "/our-team",
         label: "Our Team",
-        description: "Meet the team",
+        description:
+          "Meet the people behind SoftSync",
         icon: UserRound
       },
       {
         to: "/how-we-work",
         label: "How We Work",
-        description: "Our process",
+        description:
+          "Our approach from idea to delivery",
         icon: Route
       }
     ]
@@ -220,47 +335,54 @@ const aboutGroups = [
       {
         to: "/portfolio",
         label: "Portfolio",
-        description: "Our work",
+        description:
+          "Explore selected work",
         icon: BriefcaseBusiness
       },
       {
         to: "/packages",
-        label: "Packages",
-        description: "Our offerings",
-        icon: Package
+        label: "Engagement Models",
+        description:
+          "Flexible ways to work with us",
+        icon: Handshake
       },
       {
         to: "/faqs",
         label: "FAQs",
-        description: "Get answers",
+        description:
+          "Common questions, clear answers",
         icon: CircleHelp
       }
     ]
   },
   {
-    title: "Resources",
+    title: "Resources & Opportunities",
     items: [
       {
         to: "/blogs",
-        label: "Blogs",
-        description: "Insights & updates",
+        label: "Insights",
+        description:
+          "Ideas, technology & growth",
         icon: BookOpenText
       },
       {
-        to: "/careers",
+        to: "/contact",
         label: "Careers",
-        description: "Join our team",
+        description:
+          "Build your career with SoftSync",
         icon: BriefcaseBusiness
       },
       {
         to: "/contact",
         label: "Contact",
-        description: "Let's work together",
+        description:
+          "Start a conversation with our team",
         icon: ContactRound
       }
     ]
   }
 ];
+
 
 function ChevronIcon() {
   return (
@@ -281,7 +403,10 @@ function ChevronIcon() {
   );
 }
 
-function BrandLogo({ className = "" }) {
+
+function BrandLogo({
+  className = ""
+}) {
   return (
     <img
       src="/softsync-wordmark.svg"
@@ -292,8 +417,12 @@ function BrandLogo({ className = "" }) {
   );
 }
 
-function MegaMenuItem({ item }) {
-  const Icon = item.icon;
+
+function MegaMenuItem({
+  item
+}) {
+  const Icon =
+    item.icon;
 
   return (
     <Link
@@ -302,8 +431,8 @@ function MegaMenuItem({ item }) {
     >
       <span className="mega-item-icon">
         <Icon
-          size={20}
-          strokeWidth={1.5}
+          size={21}
+          strokeWidth={1.55}
         />
       </span>
 
@@ -320,33 +449,47 @@ function MegaMenuItem({ item }) {
   );
 }
 
-function DesktopMegaMenu({ groups }) {
-  return (
-    <div className="dropdown-menu mega-menu">
-      {groups.map((group) => (
-        <div
-          className="mega-col"
-          key={group.title}
-        >
-          <h4>{group.title}</h4>
 
-          <div className="mega-col-items">
-            {group.items.map((item) => (
-              <MegaMenuItem
-                key={item.to}
-                item={item}
-              />
-            ))}
+function DesktopMegaMenu({
+  groups,
+  variant
+}) {
+  return (
+    <div
+      className={`dropdown-menu mega-menu mega-menu--${variant}`}
+    >
+      {groups.map(
+        (group) => (
+          <div
+            className="mega-col"
+            key={group.title}
+          >
+            <h4>
+              {group.title}
+            </h4>
+
+            <div className="mega-col-items">
+              {group.items.map(
+                (item) => (
+                  <MegaMenuItem
+                    key={`${group.title}-${item.label}`}
+                    item={item}
+                  />
+                )
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      )}
     </div>
   );
 }
 
+
 function DesktopDropdown({
   label,
-  groups
+  groups,
+  variant
 }) {
   return (
     <div className="nav-dropdown">
@@ -354,16 +497,21 @@ function DesktopDropdown({
         type="button"
         className="nav-link nav-link-button"
       >
-        <span>{label}</span>
+        <span>
+          {label}
+        </span>
+
         <ChevronIcon />
       </button>
 
       <DesktopMegaMenu
         groups={groups}
+        variant={variant}
       />
     </div>
   );
 }
+
 
 function MobileAccordion({
   label,
@@ -374,31 +522,35 @@ function MobileAccordion({
   onLinkClick
 }) {
   const isOpen =
-    openAccordion === accordionKey;
-
-  const items =
-    groups.flatMap(
-      (group) => group.items
-    );
+    openAccordion ===
+    accordionKey;
 
   return (
     <div
       className={`mobile-accordion ${
-        isOpen ? "is-open" : ""
+        isOpen
+          ? "is-open"
+          : ""
       }`}
     >
       <button
         type="button"
         className="mobile-accordion-trigger"
         onClick={() =>
-          onToggle(accordionKey)
+          onToggle(
+            accordionKey
+          )
         }
       >
-        <span>{label}</span>
+        <span>
+          {label}
+        </span>
 
         <span
           className={`mobile-chevron ${
-            isOpen ? "is-open" : ""
+            isOpen
+              ? "is-open"
+              : ""
           }`}
         >
           <ChevronIcon />
@@ -407,38 +559,65 @@ function MobileAccordion({
 
       <div
         className={`mobile-accordion-panel ${
-          isOpen ? "is-open" : ""
+          isOpen
+            ? "is-open"
+            : ""
         }`}
       >
-        {items.map((item) => (
-          <Link
-            key={item.to}
-            to={item.to}
-            className="mobile-accordion-item"
-            onClick={onLinkClick}
-          >
-            {item.label}
-          </Link>
-        ))}
+        {groups.map(
+          (group) => (
+            <div
+              className="mobile-accordion-group"
+              key={group.title}
+            >
+              <span className="mobile-group-title">
+                {group.title}
+              </span>
+
+              <div className="mobile-group-items">
+                {group.items.map(
+                  (item) => (
+                    <Link
+                      key={`${group.title}-${item.label}`}
+                      to={item.to}
+                      className="mobile-accordion-item"
+                      onClick={onLinkClick}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                )}
+              </div>
+            </div>
+          )
+        )}
       </div>
     </div>
   );
 }
 
+
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] =
+  const [
+    menuOpen,
+    setMenuOpen
+  ] =
     useState(false);
 
   const [
     openAccordion,
     setOpenAccordion
-  ] = useState(null);
+  ] =
+    useState(null);
 
   const mobileMenuRef =
     useRef(null);
 
+
   useLayoutEffect(() => {
-    if (!mobileMenuRef.current) {
+    if (
+      !mobileMenuRef.current
+    ) {
       return;
     }
 
@@ -446,10 +625,12 @@ export default function Navbar() {
       mobileMenuRef.current,
       {
         xPercent: -100,
-        visibility: "hidden"
+        visibility:
+          "hidden"
       }
     );
   }, []);
+
 
   useEffect(() => {
     if (!menuOpen) {
@@ -457,7 +638,8 @@ export default function Navbar() {
     }
 
     const previousOverflow =
-      document.body.style.overflow;
+      document.body.style
+        .overflow;
 
     document.body.style.overflow =
       "hidden";
@@ -468,8 +650,11 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+
   const openMenu = () => {
-    if (!mobileMenuRef.current) {
+    if (
+      !mobileMenuRef.current
+    ) {
       return;
     }
 
@@ -478,72 +663,110 @@ export default function Navbar() {
 
     const items =
       menu.querySelectorAll(
-        ".mobile-menu-header, .mobile-accordion, .mobile-book-demo"
+        ".mobile-menu-close, .mobile-accordion, .mobile-book-demo"
       );
 
     setMenuOpen(true);
 
-    gsap.killTweensOf(menu);
-    gsap.killTweensOf(items);
+    gsap.killTweensOf(
+      menu
+    );
 
-    gsap.set(menu, {
-      visibility: "visible"
-    });
+    gsap.killTweensOf(
+      items
+    );
 
-    gsap.set(items, {
-      opacity: 0,
-      y: 12
-    });
+    gsap.set(
+      menu,
+      {
+        visibility:
+          "visible",
+        xPercent:
+          -100
+      }
+    );
+
+    gsap.set(
+      items,
+      {
+        opacity: 0,
+        y: 8
+      }
+    );
 
     const timeline =
       gsap.timeline();
 
     timeline
-      .to(menu, {
-        xPercent: 0,
-        duration: 0.36,
-        ease: "power3.out"
-      })
+      .to(
+        menu,
+        {
+          xPercent: 0,
+          duration: 0.38,
+          ease:
+            "back.out(1.18)"
+        }
+      )
       .to(
         items,
         {
           opacity: 1,
           y: 0,
-          duration: 0.3,
-          stagger: 0.055,
-          ease: "power2.out"
+          duration: 0.22,
+          stagger: 0.035,
+          ease:
+            "power2.out"
         },
-        "-=0.16"
+        "-=0.2"
       );
   };
 
+
   const closeMenu = () => {
-    if (!mobileMenuRef.current) {
+    if (
+      !mobileMenuRef.current
+    ) {
       return;
     }
 
     const menu =
       mobileMenuRef.current;
 
-    gsap.killTweensOf(menu);
+    gsap.killTweensOf(
+      menu
+    );
 
-    gsap.to(menu, {
-      xPercent: -100,
-      duration: 0.3,
-      ease: "power2.in",
+    gsap.to(
+      menu,
+      {
+        xPercent: -100,
+        duration: 0.27,
+        ease:
+          "power3.in",
 
-      onComplete: () => {
-        setMenuOpen(false);
-        setOpenAccordion(null);
+        onComplete: () => {
+          setMenuOpen(false);
 
-        gsap.set(menu, {
-          visibility: "hidden"
-        });
+          setOpenAccordion(
+            null
+          );
+
+          gsap.set(
+            menu,
+            {
+              visibility:
+                "hidden"
+            }
+          );
+        }
       }
-    });
+    );
   };
 
-  const toggleAccordion = (key) => {
+
+  const toggleAccordion = (
+    key
+  ) => {
     setOpenAccordion(
       (previous) =>
         previous === key
@@ -552,31 +775,49 @@ export default function Navbar() {
     );
   };
 
+
   return (
     <>
-      <header className="navbar-sikandar">
+      <header
+        className={`navbar-sikandar ${
+          menuOpen
+            ? "mobile-menu-active"
+            : ""
+        }`}
+      >
         <Link
           to="/"
           className="brand-logo-link"
           aria-label="SoftSync home"
         >
-          <BrandLogo className="navbar-brand-logo" />
+          <BrandLogo
+            className="navbar-brand-logo"
+          />
         </Link>
 
         <nav className="nav">
           <DesktopDropdown
             label="Services"
-            groups={serviceGroups}
+            groups={
+              serviceGroups
+            }
+            variant="services"
           />
 
           <DesktopDropdown
             label="Marketing"
-            groups={marketingGroups}
+            groups={
+              marketingGroups
+            }
+            variant="marketing"
           />
 
           <DesktopDropdown
             label="About"
-            groups={aboutGroups}
+            groups={
+              aboutGroups
+            }
+            variant="about"
           />
         </nav>
 
@@ -584,15 +825,19 @@ export default function Navbar() {
           to="/contact"
           className="book-demo-btn"
         >
-          Let's Talk
+          Let&apos;s Connect
         </Link>
 
         <button
           type="button"
           className="hamburger-btn"
           aria-label="Open navigation menu"
-          aria-expanded={menuOpen}
-          onClick={openMenu}
+          aria-expanded={
+            menuOpen
+          }
+          onClick={
+            openMenu
+          }
         >
           <span />
           <span />
@@ -601,67 +846,90 @@ export default function Navbar() {
       </header>
 
       <aside
-        ref={mobileMenuRef}
+        ref={
+          mobileMenuRef
+        }
         className={`mobile-menu-overlay ${
-          menuOpen ? "is-open" : ""
+          menuOpen
+            ? "is-open"
+            : ""
         }`}
-        aria-hidden={!menuOpen}
+        aria-hidden={
+          !menuOpen
+        }
       >
-        <div className="mobile-menu-header">
-          <Link
-            to="/"
-            className="brand-logo-link"
-            aria-label="SoftSync home"
-            onClick={closeMenu}
-          >
-            <BrandLogo className="mobile-brand-logo" />
-          </Link>
-
-          <button
-            type="button"
-            className="mobile-menu-close"
-            aria-label="Close navigation menu"
-            onClick={closeMenu}
-          >
-            <span />
-            <span />
-          </button>
-        </div>
+        <button
+          type="button"
+          className="mobile-menu-close"
+          aria-label="Close navigation menu"
+          onClick={
+            closeMenu
+          }
+        >
+          <span />
+          <span />
+        </button>
 
         <div className="mobile-menu-body">
           <MobileAccordion
             label="Services"
             accordionKey="services"
-            groups={serviceGroups}
-            openAccordion={openAccordion}
-            onToggle={toggleAccordion}
-            onLinkClick={closeMenu}
+            groups={
+              serviceGroups
+            }
+            openAccordion={
+              openAccordion
+            }
+            onToggle={
+              toggleAccordion
+            }
+            onLinkClick={
+              closeMenu
+            }
           />
 
           <MobileAccordion
             label="Marketing"
             accordionKey="marketing"
-            groups={marketingGroups}
-            openAccordion={openAccordion}
-            onToggle={toggleAccordion}
-            onLinkClick={closeMenu}
+            groups={
+              marketingGroups
+            }
+            openAccordion={
+              openAccordion
+            }
+            onToggle={
+              toggleAccordion
+            }
+            onLinkClick={
+              closeMenu
+            }
           />
 
           <MobileAccordion
             label="About"
             accordionKey="about"
-            groups={aboutGroups}
-            openAccordion={openAccordion}
-            onToggle={toggleAccordion}
-            onLinkClick={closeMenu}
+            groups={
+              aboutGroups
+            }
+            openAccordion={
+              openAccordion
+            }
+            onToggle={
+              toggleAccordion
+            }
+            onLinkClick={
+              closeMenu
+            }
           />
 
           <Link
             to="/contact"
             className="mobile-book-demo"
-            onClick={closeMenu}
+            onClick={
+              closeMenu
+            }
           >
-             Let's Talk
+            Let&apos;s Connect
           </Link>
         </div>
       </aside>
