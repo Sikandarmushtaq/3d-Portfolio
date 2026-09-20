@@ -1,0 +1,606 @@
+.pib-section {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  padding:
+    clamp(82px, 8vw, 118px)
+    0
+    clamp(60px, 6vw, 82px);
+
+  background: #050505;
+
+  color: #fff;
+
+  font-family: inherit;
+}
+
+.pib-shell {
+  width: min(1320px, 94%);
+
+  margin: 0 auto;
+}
+
+.pib-heading {
+  display: grid;
+
+  grid-template-columns:
+    1.35fr
+    0.55fr;
+
+  gap:
+    clamp(
+      48px,
+      6vw,
+      78px
+    );
+
+  align-items: end;
+
+  margin-bottom:
+    clamp(
+      48px,
+      5vw,
+      68px
+    );
+}
+
+.pib-heading-title {
+  font-size:
+    clamp(
+      4.8rem,
+      10vw,
+      9.8rem
+    );
+
+  font-weight: 400;
+
+  line-height: 0.75;
+
+  letter-spacing:
+    -0.085em;
+}
+
+.pib-heading-title > div {
+  overflow: hidden;
+}
+
+.pib-heading-title
+> div:nth-child(2) {
+  padding-left:
+    clamp(
+      35px,
+      8vw,
+      115px
+    );
+}
+
+.pib-title-line {
+  display: block;
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.pib-heading-copy {
+  padding-bottom: 5px;
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.pib-heading-copy span {
+  display: block;
+
+  margin-bottom: 20px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.38
+    );
+
+  font-size: 0.63rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+}
+
+.pib-heading-copy p {
+  max-width: 315px;
+
+  margin: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.64
+    );
+
+  font-size:
+    clamp(
+      0.95rem,
+      1.15vw,
+      1.08rem
+    );
+
+  line-height: 1.6;
+
+  letter-spacing:
+    -0.015em;
+}
+
+.pib-map {
+  position: relative;
+
+  width: 100%;
+
+  height: 620px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.14
+    );
+
+  background: #020202;
+}
+
+.pib-wires {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+}
+
+.pib-wire {
+  fill: none;
+
+  stroke:
+    rgba(
+      255,
+      255,
+      255,
+      0.32
+    );
+
+  stroke-width: 1;
+
+  vector-effect:
+    non-scaling-stroke;
+}
+
+.pib-origin {
+  position: absolute;
+
+  top: -6px;
+
+  left: 50%;
+
+  width: 11px;
+
+  height: 11px;
+
+  border:
+    1px solid #fff;
+
+  border-radius: 50%;
+
+  background: #050505;
+
+  transform:
+    translateX(-50%);
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.pib-system-tag {
+  position: absolute;
+
+  display: grid;
+
+  place-items: center;
+
+  min-width: 170px;
+
+  min-height: 86px;
+
+  padding:
+    15px
+    24px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.36
+    );
+
+  background: #0d0d0e;
+
+  box-shadow:
+    0
+    18px
+    45px
+    rgba(
+      0,
+      0,
+      0,
+      0.34
+    );
+
+  transform-origin:
+    top center;
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.pib-system-tag span {
+  font-size:
+    clamp(
+      1.05rem,
+      1.8vw,
+      1.65rem
+    );
+
+  font-weight: 450;
+
+  letter-spacing:
+    -0.04em;
+}
+
+.pib-system-tag.product {
+  top: 210px;
+
+  left: 8%;
+
+  transform:
+    rotate(-5deg);
+}
+
+.pib-system-tag.frontend {
+  top: 320px;
+
+  left: 27%;
+
+  transform:
+    rotate(3deg);
+}
+
+.pib-system-tag.backend {
+  top: 238px;
+
+  left: 44%;
+
+  transform:
+    rotate(-2deg);
+}
+
+.pib-system-tag.data {
+  top: 330px;
+
+  right: 26%;
+
+  transform:
+    rotate(4deg);
+}
+
+.pib-system-tag.ai {
+  top: 205px;
+
+  right: 7%;
+
+  transform:
+    rotate(5deg);
+}
+
+.pib-system-tag.cloud {
+  top: 430px;
+
+  right: 8%;
+
+  transform:
+    rotate(-4deg);
+}
+
+@media (max-width: 850px) {
+  .pib-section {
+    padding:
+      78px
+      0
+      60px;
+  }
+
+  .pib-heading {
+    grid-template-columns: 1fr;
+
+    gap: 34px;
+
+    margin-bottom: 42px;
+  }
+
+  .pib-heading-copy {
+    width: 72%;
+
+    margin-left: auto;
+  }
+
+  .pib-map {
+    height: 430px;
+  }
+
+  .pib-system-tag {
+    min-width: 118px;
+
+    min-height: 62px;
+
+    padding:
+      10px
+      14px;
+
+    box-shadow:
+      0
+      12px
+      30px
+      rgba(
+        0,
+        0,
+        0,
+        0.28
+      );
+  }
+
+  .pib-system-tag span {
+    font-size: 0.78rem;
+  }
+
+  .pib-system-tag.product {
+    top: 140px;
+
+    left: 4%;
+  }
+
+  .pib-system-tag.frontend {
+    top: 232px;
+
+    left: 21%;
+  }
+
+  .pib-system-tag.backend {
+    top: 165px;
+
+    left: 40%;
+  }
+
+  .pib-system-tag.data {
+    top: 242px;
+
+    right: 22%;
+  }
+
+  .pib-system-tag.ai {
+    top: 138px;
+
+    right: 4%;
+  }
+
+  .pib-system-tag.cloud {
+    top: 330px;
+
+    right: 7%;
+  }
+}
+
+@media (max-width: 600px) {
+  .pib-section {
+    padding:
+      72px
+      0
+      54px;
+  }
+
+  .pib-shell {
+    width: 94%;
+  }
+
+  .pib-heading {
+    gap: 28px;
+
+    margin-bottom: 36px;
+  }
+
+  .pib-heading-title {
+    font-size:
+      clamp(
+        3.55rem,
+        15.5vw,
+        5rem
+      );
+
+    line-height: 0.78;
+  }
+
+  .pib-heading-title
+  > div:nth-child(2) {
+    padding-left: 20px;
+  }
+
+  .pib-heading-copy {
+    width: 82%;
+
+    margin-left: auto;
+  }
+
+  .pib-heading-copy span {
+    margin-bottom: 14px;
+
+    font-size: 0.55rem;
+  }
+
+  .pib-heading-copy p {
+    max-width: 100%;
+
+    font-size: 0.78rem;
+
+    line-height: 1.55;
+  }
+
+  .pib-map {
+    height: 360px;
+  }
+
+  .pib-origin {
+    width: 9px;
+
+    height: 9px;
+
+    top: -5px;
+  }
+
+  .pib-system-tag {
+    min-width: 90px;
+
+    min-height: 50px;
+
+    padding:
+      8px
+      10px;
+  }
+
+  .pib-system-tag span {
+    font-size: 0.62rem;
+
+    letter-spacing:
+      -0.025em;
+  }
+
+  .pib-system-tag.product {
+    top: 112px;
+
+    left: 2%;
+  }
+
+  .pib-system-tag.frontend {
+    top: 194px;
+
+    left: 16%;
+  }
+
+  .pib-system-tag.backend {
+    top: 140px;
+
+    left: 38%;
+  }
+
+  .pib-system-tag.data {
+    top: 200px;
+
+    right: 18%;
+  }
+
+  .pib-system-tag.ai {
+    top: 108px;
+
+    right: 2%;
+  }
+
+  .pib-system-tag.cloud {
+    top: 284px;
+
+    right: 5%;
+  }
+}
+
+@media (max-width: 390px) {
+  .pib-heading-title {
+    font-size:
+      clamp(
+        3.25rem,
+        15vw,
+        4.4rem
+      );
+  }
+
+  .pib-heading-copy {
+    width: 86%;
+  }
+
+  .pib-map {
+    height: 335px;
+  }
+
+  .pib-system-tag {
+    min-width: 82px;
+
+    min-height: 46px;
+
+    padding:
+      7px
+      8px;
+  }
+
+  .pib-system-tag span {
+    font-size: 0.56rem;
+  }
+
+  .pib-system-tag.product {
+    top: 103px;
+
+    left: 1%;
+  }
+
+  .pib-system-tag.frontend {
+    top: 181px;
+
+    left: 14%;
+  }
+
+  .pib-system-tag.backend {
+    top: 130px;
+
+    left: 38%;
+  }
+
+  .pib-system-tag.data {
+    top: 188px;
+
+    right: 15%;
+  }
+
+  .pib-system-tag.ai {
+    top: 100px;
+
+    right: 1%;
+  }
+
+  .pib-system-tag.cloud {
+    top: 266px;
+
+    right: 4%;
+  }
+}

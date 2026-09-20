@@ -1,0 +1,538 @@
+.psp-section {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  padding:
+    clamp(38px, 5vh, 58px)
+    0
+    clamp(34px, 4vh, 50px);
+
+  background: #050505;
+
+  color: #fff;
+
+  font-family: inherit;
+}
+
+.psp-shell {
+  width: min(1320px, 92%);
+
+  margin: 0 auto;
+}
+
+.psp-title {
+  font-size:
+    clamp(
+      3.8rem,
+      6.4vw,
+      6.2rem
+    );
+
+  font-weight: 400;
+
+  line-height: 0.77;
+
+  letter-spacing:
+    -0.08em;
+}
+
+.psp-title > div {
+  overflow: hidden;
+}
+
+.psp-title
+> div:nth-child(2) {
+  padding-left:
+    clamp(
+      28px,
+      5vw,
+      68px
+    );
+}
+
+.psp-title-line {
+  display: block;
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.psp-profile-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(240px, 280px)
+    minmax(0, 1fr);
+
+  grid-template-areas:
+    "left founder right";
+
+  gap:
+    clamp(
+      34px,
+      4vw,
+      62px
+    );
+
+  align-items: center;
+
+  margin-top:
+    clamp(
+      24px,
+      3vh,
+      34px
+    );
+}
+
+.psp-content-column {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap:
+    clamp(
+      34px,
+      4.5vh,
+      52px
+    );
+}
+
+.psp-content-left {
+  grid-area: left;
+
+  align-items: flex-end;
+}
+
+.psp-content-right {
+  grid-area: right;
+
+  align-items: flex-start;
+}
+
+.psp-statement {
+  width: min(
+    100%,
+    285px
+  );
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.psp-statement > span {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.36
+    );
+
+  font-size: 0.56rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+}
+
+.psp-statement strong {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.96
+    );
+
+  font-size:
+    clamp(
+      1.02rem,
+      1.35vw,
+      1.28rem
+    );
+
+  font-weight: 450;
+
+  line-height: 1.08;
+
+  letter-spacing:
+    -0.04em;
+}
+
+.psp-statement p {
+  margin: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.45
+    );
+
+  font-size: 0.74rem;
+
+  line-height: 1.58;
+}
+
+.psp-founder-card {
+  grid-area: founder;
+
+  width: 100%;
+
+  max-width: 280px;
+
+  justify-self: center;
+
+  overflow: hidden;
+
+  background: #0a0a0a;
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.psp-founder-image {
+  width: 100%;
+
+  aspect-ratio: 0.82;
+
+  overflow: hidden;
+
+  background: #111;
+}
+
+.psp-founder-image img {
+  width: 100%;
+
+  height: 104%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position:
+    center top;
+
+  filter:
+    grayscale(100%)
+    contrast(1.035);
+}
+
+.psp-founder-meta {
+  min-height: 66px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 18px;
+
+  box-sizing: border-box;
+
+  padding:
+    13px
+    14px;
+
+  background: #f1f1ef;
+
+  color: #111;
+}
+
+.psp-founder-meta > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.psp-founder-meta strong {
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  letter-spacing:
+    -0.035em;
+}
+
+.psp-founder-meta span {
+  color:
+    rgba(
+      0,
+      0,
+      0,
+      0.56
+    );
+
+  font-size: 0.67rem;
+}
+
+.psp-founder-meta small {
+  margin-top: 2px;
+
+  color:
+    rgba(
+      0,
+      0,
+      0,
+      0.4
+    );
+
+  font-size: 0.48rem;
+
+  font-weight: 650;
+
+  letter-spacing: 0.14em;
+}
+
+@media (max-width: 1000px) {
+  .psp-section {
+    padding:
+      66px
+      0
+      56px;
+  }
+
+  .psp-profile-grid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(230px, 270px)
+      minmax(0, 1fr);
+
+    gap: 28px;
+  }
+
+  .psp-content-column {
+    gap: 34px;
+  }
+
+  .psp-statement {
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .psp-section {
+    padding:
+      72px
+      0
+      56px;
+  }
+
+  .psp-profile-grid {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "founder"
+      "left"
+      "right";
+
+    gap: 38px;
+
+    margin-top: 38px;
+  }
+
+  .psp-founder-card {
+    width: min(
+      300px,
+      82%
+    );
+
+    max-width: 300px;
+
+    margin: 0 auto;
+  }
+
+  .psp-content-left,
+  .psp-content-right {
+    align-items: stretch;
+
+    gap: 34px;
+  }
+
+  .psp-statement {
+    width: 100%;
+
+    max-width: none;
+
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .psp-section {
+    padding:
+      68px
+      0
+      52px;
+  }
+
+  .psp-shell {
+    width: 90%;
+  }
+
+  .psp-title {
+    font-size:
+      clamp(
+        3.7rem,
+        17vw,
+        5.7rem
+      );
+  }
+
+  .psp-title
+  > div:nth-child(2) {
+    padding-left: 24px;
+  }
+
+  .psp-profile-grid {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "founder"
+      "left"
+      "right";
+
+    gap: 34px;
+
+    margin-top: 34px;
+  }
+
+  .psp-founder-card {
+    width: min(
+      290px,
+      88%
+    );
+
+    max-width: 290px;
+
+    justify-self: center;
+
+    margin: 0 auto;
+  }
+
+  .psp-content-column {
+    width: 100%;
+
+    gap: 32px;
+  }
+
+  .psp-content-left,
+  .psp-content-right {
+    align-items: stretch;
+  }
+
+  .psp-statement {
+    width: 100%;
+
+    max-width: 100%;
+
+    margin: 0;
+
+    padding-bottom: 28px;
+
+    border-bottom:
+      1px solid
+      rgba(
+        255,
+        255,
+        255,
+        0.1
+      );
+  }
+
+  .psp-content-right
+  .psp-statement:last-child {
+    padding-bottom: 0;
+
+    border-bottom: 0;
+  }
+
+  .psp-statement > span {
+    margin-bottom: 12px;
+
+    font-size: 0.54rem;
+  }
+
+  .psp-statement strong {
+    max-width: 330px;
+
+    margin-bottom: 11px;
+
+    font-size:
+      clamp(
+        1.08rem,
+        5vw,
+        1.3rem
+      );
+
+    line-height: 1.08;
+  }
+
+  .psp-statement p {
+    max-width: 340px;
+
+    font-size: 0.76rem;
+
+    line-height: 1.58;
+  }
+}
+
+@media (max-width: 390px) {
+  .psp-shell {
+    width: 89%;
+  }
+
+  .psp-title {
+    font-size:
+      clamp(
+        3.3rem,
+        16vw,
+        4.8rem
+      );
+  }
+
+  .psp-founder-card {
+    width: 86%;
+  }
+
+  .psp-content-column {
+    gap: 28px;
+  }
+
+  .psp-statement {
+    padding-bottom: 25px;
+  }
+
+  .psp-statement strong {
+    font-size: 1.05rem;
+  }
+
+  .psp-statement p {
+    font-size: 0.72rem;
+  }
+}

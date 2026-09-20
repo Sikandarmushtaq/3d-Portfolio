@@ -41,7 +41,6 @@ import {
   BriefcaseBusiness,
   CircleHelp,
   BookOpenText,
-  ContactRound,
   Globe,
   HeartPulse,
   Landmark,
@@ -52,7 +51,6 @@ import {
 } from "lucide-react";
 
 import "./Navbar.css";
-
 
 const serviceGroups = [
   {
@@ -198,7 +196,6 @@ const serviceGroups = [
   }
 ];
 
-
 const marketingGroups = [
   {
     title: "Search & Growth",
@@ -301,30 +298,32 @@ const marketingGroups = [
   }
 ];
 
-
 const aboutGroups = [
   {
-    title: "About SyncSolvo",
+    title: "About Us",
     items: [
       {
         to: "/who-we-are",
         label: "Who We Are",
-        description:
-          "Our story, vision & direction",
+        description: "Our story",
         icon: Users
       },
       {
         to: "/our-team",
-        label: "Our Team",
-        description:
-          "Meet the people behind SyncSolvo",
+        label: "Meet Our Lead",
+        description: "Leadership",
         icon: UserRound
+      },
+      {
+        to: "/our-team",
+        label: "Our Team",
+        description: "Meet us",
+        icon: Users
       },
       {
         to: "/how-we-work",
         label: "How We Work",
-        description:
-          "Our approach from idea to delivery",
+        description: "Our process",
         icon: Route
       }
     ]
@@ -335,54 +334,47 @@ const aboutGroups = [
       {
         to: "/portfolio",
         label: "Portfolio",
-        description:
-          "Explore selected work",
+        description: "Our work",
         icon: BriefcaseBusiness
       },
       {
         to: "/packages",
-        label: "Engagement Models",
-        description:
-          "Flexible ways to work with us",
+        label: "Packages",
+        description: "Our offerings",
         icon: Handshake
       },
       {
-        to: "/faqs",
-        label: "FAQs",
-        description:
-          "Common questions, clear answers",
-        icon: CircleHelp
+        to: "/courses",
+        label: "Courses",
+        description: "Our courses",
+        icon: GraduationCap
       }
     ]
   },
   {
-    title: "Resources & Opportunities",
+    title: "Resources & Careers",
     items: [
       {
+        to: "/faqs",
+        label: "FAQs",
+        description: "Get answers",
+        icon: CircleHelp
+      },
+      {
         to: "/blogs",
-        label: "Insights",
-        description:
-          "Ideas, technology & growth",
+        label: "Blogs",
+        description: "Insights & updates",
         icon: BookOpenText
       },
       {
-        to: "/contact",
-        label: "Careers",
-        description:
-          "Build your career with SyncSolvo",
+        to: "/careers",
+        label: "We Are Hiring!",
+        description: "Careers",
         icon: BriefcaseBusiness
-      },
-      {
-        to: "/contact",
-        label: "Contact",
-        description:
-          "Start a conversation with our team",
-        icon: ContactRound
       }
     ]
   }
 ];
-
 
 function ChevronIcon() {
   return (
@@ -403,7 +395,6 @@ function ChevronIcon() {
   );
 }
 
-
 function BrandLogo({
   className = ""
 }) {
@@ -416,7 +407,6 @@ function BrandLogo({
     />
   );
 }
-
 
 function MegaMenuItem({
   item
@@ -448,7 +438,6 @@ function MegaMenuItem({
     </Link>
   );
 }
-
 
 function DesktopMegaMenu({
   groups,
@@ -485,7 +474,6 @@ function DesktopMegaMenu({
   );
 }
 
-
 function DesktopDropdown({
   label,
   groups,
@@ -511,7 +499,6 @@ function DesktopDropdown({
     </div>
   );
 }
-
 
 function MobileAccordion({
   label,
@@ -596,7 +583,6 @@ function MobileAccordion({
   );
 }
 
-
 export default function Navbar() {
   const [
     menuOpen,
@@ -612,7 +598,6 @@ export default function Navbar() {
 
   const mobileMenuRef =
     useRef(null);
-
 
   useLayoutEffect(() => {
     if (
@@ -631,7 +616,6 @@ export default function Navbar() {
     );
   }, []);
 
-
   useEffect(() => {
     if (!menuOpen) {
       return;
@@ -649,7 +633,6 @@ export default function Navbar() {
         previousOverflow;
     };
   }, [menuOpen]);
-
 
   const openMenu = () => {
     if (
@@ -721,7 +704,6 @@ export default function Navbar() {
       );
   };
 
-
   const closeMenu = () => {
     if (
       !mobileMenuRef.current
@@ -763,7 +745,6 @@ export default function Navbar() {
     );
   };
 
-
   const toggleAccordion = (
     key
   ) => {
@@ -774,7 +755,6 @@ export default function Navbar() {
           : key
     );
   };
-
 
   return (
     <>

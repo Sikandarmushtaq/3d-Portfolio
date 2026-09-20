@@ -1,0 +1,180 @@
+.how-we-work-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: #000;
+  color: #fff;
+}
+
+.how-we-work-main {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  background: #000;
+}
+
+.how-we-work-page section {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.how-we-work-page .scene3-title {
+  width:
+    min(
+      1000px,
+      calc(100% - 70px)
+    );
+
+  max-width: 1000px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #fff;
+
+  font-family: inherit;
+
+  font-size:
+    clamp(
+      3.8rem,
+      6vw,
+      6rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.94;
+
+  letter-spacing: -0.055em;
+
+  text-align: center;
+
+  white-space: normal;
+
+  text-wrap: balance;
+
+  word-break: normal;
+
+  overflow-wrap: normal;
+}
+
+.hww-shell {
+  width:
+    min(
+      1240px,
+      92%
+    );
+
+  margin: 0 auto;
+}
+
+.hww-eyebrow {
+  display: inline-block;
+
+  margin:
+    0 0
+    17px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.46
+    );
+
+  font-family: inherit;
+
+  font-size: 0.67rem;
+
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.hww-eyebrow::before,
+.hww-eyebrow::after {
+  display: none !important;
+
+  content: none !important;
+}
+
+.how-we-work-page
+.contact-page,
+.how-we-work-page
+.service-final-cta-section {
+  border: 0;
+}
+
+
+@media (max-width: 1000px) {
+  .how-we-work-page
+  .scene3-title {
+    width:
+      min(
+        760px,
+        calc(100% - 52px)
+      );
+
+    font-size:
+      clamp(
+        3.1rem,
+        7vw,
+        4.8rem
+      );
+  }
+}
+
+
+@media (max-width: 700px) {
+  .hww-shell {
+    width: 90%;
+  }
+
+  .how-we-work-page
+  .scene3-title {
+    width: 88%;
+
+    max-width: 390px;
+
+    font-size:
+      clamp(
+        2.35rem,
+        10vw,
+        3.25rem
+      );
+
+    line-height: 0.98;
+
+    letter-spacing: -0.045em;
+  }
+
+  .hww-eyebrow {
+    margin-bottom: 13px;
+
+    font-size: 0.61rem;
+
+    letter-spacing: 0.14em;
+  }
+}
+
+
+@media (max-width: 380px) {
+  .how-we-work-page
+  .scene3-title {
+    width: 90%;
+
+    max-width: 300px;
+
+    font-size:
+      clamp(
+        2.05rem,
+        9.5vw,
+        2.7rem
+      );
+  }
+}

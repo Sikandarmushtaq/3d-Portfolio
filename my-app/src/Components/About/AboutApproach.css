@@ -1,0 +1,328 @@
+.about-approach-section {
+  position: relative;
+  width: 100%;
+  padding: 80px 0;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.05);
+}
+
+.about-section-container {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
+
+.about-approach-title {
+  margin:
+    0 0
+    50px;
+
+  color: #fff;
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3rem
+    );
+
+  font-weight: 700;
+  line-height: 1.08;
+  text-align: center;
+  text-transform: uppercase;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+.about-approach-list {
+  display: flex;
+  max-width: 1000px;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.about-approach-item {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  padding:
+    28px 10px;
+
+  overflow: hidden;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  cursor: default;
+
+  transition:
+    border-color 0.28s ease,
+    padding-left
+      0.35s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      ),
+    padding-right
+      0.35s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      );
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+.about-approach-item::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(
+        123,
+        31,
+        162,
+        0.82
+      ),
+      rgba(
+        123,
+        31,
+        162,
+        0.32
+      ),
+      transparent
+    );
+
+  transform: scaleX(0);
+  transform-origin:
+    left center;
+
+  transition:
+    transform
+      0.42s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      );
+}
+
+.about-approach-item:last-child {
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+}
+
+.about-approach-left {
+  display: flex;
+  min-width: 280px;
+  align-items: center;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+}
+
+.about-approach-dot {
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-approach-item h3 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+
+  text-transform: uppercase;
+
+  transition:
+    color 0.3s ease,
+    transform
+      0.35s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      );
+}
+
+.about-approach-item p {
+  max-width: 550px;
+
+  margin: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.6
+    );
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: right;
+
+  transition:
+    color 0.3s ease;
+}
+
+.about-approach-item:hover {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border-color:
+    rgba(
+      196,
+      165,
+      255,
+      0.5
+    );
+}
+
+.about-approach-item:hover::before {
+  transform: scaleX(1);
+}
+
+.about-approach-item:hover
+.about-approach-dot {
+  background: #d8b4fe;
+
+  transform:
+    scale(1.35);
+
+  box-shadow:
+    0 0 12px
+      rgba(
+        216,
+        180,
+        254,
+        0.8
+      ),
+    0 0 28px
+      rgba(
+        216,
+        180,
+        254,
+        0.35
+      );
+}
+
+.about-approach-item:hover h3 {
+  color: #fff;
+
+  transform:
+    translateX(3px);
+}
+
+.about-approach-item:hover p {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.9
+    );
+}
+
+@media (max-width: 700px) {
+  .about-approach-section {
+    padding: 60px 0;
+  }
+
+  .about-approach-title {
+    margin-bottom: 38px;
+  }
+
+  .about-approach-item {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding:
+      22px 8px;
+  }
+
+  .about-approach-left {
+    min-width: 0;
+  }
+
+  .about-approach-item p {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .about-approach-item:hover {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section-container {
+    width: 92%;
+  }
+
+  .about-approach-item h3 {
+    font-size: 1.08rem;
+  }
+
+  .about-approach-item p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .about-approach-item,
+  .about-approach-item::before,
+  .about-approach-dot,
+  .about-approach-item h3 {
+    transition: none;
+  }
+}

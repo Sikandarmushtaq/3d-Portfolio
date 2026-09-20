@@ -1,0 +1,80 @@
+.pm-section {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.12);
+
+  background: #050505;
+
+  color: #fff;
+
+  font-family: inherit;
+}
+
+.pm-track {
+  width: max-content;
+
+  display: flex;
+
+  white-space: nowrap;
+
+  will-change: transform;
+}
+
+.pm-group {
+  display: flex;
+
+  align-items: center;
+}
+
+.pm-group span {
+  display: flex;
+
+  align-items: center;
+
+  gap: clamp(28px, 3vw, 48px);
+
+  padding:
+    clamp(27px, 3vw, 38px)
+    clamp(24px, 3vw, 42px);
+
+  color:
+    rgba(255, 255, 255, 0.88);
+
+  font-size:
+    clamp(1rem, 1.55vw, 1.45rem);
+
+  font-weight: 450;
+
+  line-height: 1;
+
+  letter-spacing: -0.025em;
+}
+
+.pm-group i {
+  color:
+    rgba(255, 255, 255, 0.2);
+
+  font-style: normal;
+
+  font-weight: 300;
+}
+
+@media (max-width: 600px) {
+  .pm-group span {
+    gap: 22px;
+
+    padding: 25px 22px;
+
+    font-size: 0.92rem;
+  }
+}

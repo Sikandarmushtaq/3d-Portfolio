@@ -1,0 +1,112 @@
+.packages-intro-section {
+  position: relative;
+
+  width: 100%;
+
+  padding:
+    110px 0;
+
+  overflow: hidden;
+
+  background: #000;
+}
+
+.packages-intro-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      0.95fr
+    )
+    minmax(
+      0,
+      1.05fr
+    );
+
+  gap:
+    clamp(
+      65px,
+      8vw,
+      125px
+    );
+
+  align-items: center;
+}
+
+.packages-infrastructure-svg {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+}
+
+.packages-intro-cloud,
+.packages-intro-window,
+.packages-intro-gear,
+.packages-server-stack {
+  transform-box:
+    fill-box;
+
+  transform-origin:
+    center;
+
+  will-change:
+    transform;
+}
+
+.packages-intro-glow,
+.packages-server-led {
+  will-change:
+    opacity;
+}
+
+.packages-intro-connector {
+  will-change:
+    stroke-dashoffset;
+}
+
+
+@media (max-width: 900px) {
+  .packages-intro-section {
+    padding:
+      82px 0;
+  }
+
+  .packages-intro-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      46px;
+  }
+
+  .packages-intro-visual {
+    width:
+      min(
+        620px,
+        100%
+      );
+
+    margin:
+      0 auto;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .packages-intro-section {
+    padding:
+      62px 0;
+  }
+
+  .packages-intro-grid {
+    gap:
+      34px;
+  }
+
+  .packages-intro-visual {
+    width: 100%;
+  }
+}

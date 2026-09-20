@@ -1,0 +1,350 @@
+.about-services-section {
+  position: relative;
+
+  width: 100%;
+
+  padding: 100px 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(
+        215,
+        65,
+        190,
+        0.25
+      ),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #0d0524 0%,
+      #3b0a70 42%,
+      #7b1fa2 72%,
+      #b026a8 100%
+    );
+
+  background-size:
+    150% 150%;
+
+  background-position:
+    30% 50%;
+
+  color: #fff;
+}
+
+.about-services-container {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
+
+.about-services-title {
+  margin:
+    0 0
+    50px;
+
+  color: #fff;
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3rem
+    );
+
+  font-weight: 700;
+  line-height: 1.08;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+.about-services-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap: 25px;
+
+  perspective: 1200px;
+}
+
+.about-services-grid
++ .about-services-grid {
+  margin-top: 25px;
+}
+
+.about-service-card {
+  position: relative;
+
+  isolation: isolate;
+
+  min-width: 0;
+
+  padding:
+    35px 32px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.2
+    );
+
+  border-radius: 20px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.035
+    );
+
+  backdrop-filter:
+    blur(8px);
+
+  transform-style:
+    preserve-3d;
+
+  backface-visibility:
+    hidden;
+
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.35s ease;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+.about-service-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      125deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.11
+      ),
+      transparent 25%,
+      transparent 75%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.3s ease;
+}
+
+.about-service-card::after {
+  content: "";
+
+  position: absolute;
+
+  top: -100px;
+  right: -100px;
+
+  width: 200px;
+  height: 200px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      216,
+      180,
+      254,
+      0.16
+    );
+
+  filter:
+    blur(50px);
+
+  opacity: 0;
+
+  transform:
+    scale(0.6);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease,
+    transform
+      0.45s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      );
+}
+
+.about-service-card:hover {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.52
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.065
+    );
+
+  box-shadow:
+    0 25px 60px
+      rgba(
+        25,
+        5,
+        55,
+        0.22
+      ),
+    inset 0 1px 0
+      rgba(
+        255,
+        255,
+        255,
+        0.08
+      );
+}
+
+.about-service-card:hover::before,
+.about-service-card:hover::after {
+  opacity: 1;
+}
+
+.about-service-card:hover::after {
+  transform:
+    scale(1);
+}
+
+.about-service-card h3 {
+  position: relative;
+  z-index: 2;
+
+  margin:
+    0 0
+    16px;
+
+  color: #fff;
+
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.about-service-card p {
+  position: relative;
+  z-index: 2;
+
+  margin: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.75
+    );
+
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .about-services-grid {
+    grid-template-columns:
+      1fr;
+
+    perspective: none;
+  }
+
+  .about-services-grid
+  + .about-services-grid {
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 700px) {
+  .about-services-section {
+    padding: 70px 0;
+
+    background-size:
+      120% 120%;
+  }
+
+  .about-services-title {
+    margin-bottom: 38px;
+  }
+
+  .about-service-card {
+    padding:
+      28px 24px;
+
+    backdrop-filter:
+      blur(5px);
+  }
+
+  .about-service-card::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-services-container {
+    width: 92%;
+  }
+
+  .about-service-card h3 {
+    font-size: 1.45rem;
+  }
+
+  .about-service-card p {
+    font-size: 0.91rem;
+  }
+}
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .about-service-card,
+  .about-service-card::before,
+  .about-service-card::after {
+    transition: none;
+  }
+}

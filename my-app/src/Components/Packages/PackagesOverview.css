@@ -1,0 +1,131 @@
+.packages-overview-section {
+  position: relative;
+
+  width: 100%;
+
+  padding:
+    110px 0;
+
+  overflow: hidden;
+
+  background: #000;
+}
+
+.packages-overview-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1fr
+    )
+    minmax(
+      0,
+      0.95fr
+    );
+
+  align-items: center;
+
+  gap:
+    clamp(
+      65px,
+      8vw,
+      120px
+    );
+}
+
+.packages-dashboard-svg {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+}
+
+.packages-dashboard-device,
+.packages-dashboard-card,
+.packages-dashboard-bubble-left,
+.packages-dashboard-bubble-right {
+  transform-box:
+    fill-box;
+
+  transform-origin:
+    center;
+
+  will-change:
+    transform;
+}
+
+.packages-dashboard-glow {
+  will-change:
+    opacity;
+}
+
+.packages-dashboard-graph {
+  stroke-dasharray:
+    180;
+
+  stroke-dashoffset:
+    180;
+
+  will-change:
+    stroke-dashoffset;
+}
+
+
+/* ===================================== */
+/* TABLET */
+/* ===================================== */
+
+@media (max-width: 900px) {
+  .packages-overview-section {
+    padding:
+      82px 0;
+  }
+
+  .packages-overview-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      42px;
+  }
+
+  .packages-overview-visual {
+    order: 1;
+
+    width:
+      min(
+        620px,
+        100%
+      );
+
+    margin:
+      0 auto;
+  }
+
+  .packages-overview-copy {
+    order: 2;
+  }
+}
+
+
+/* ===================================== */
+/* MOBILE */
+/* ===================================== */
+
+@media (max-width: 600px) {
+  .packages-overview-section {
+    padding:
+      62px 0;
+  }
+
+  .packages-overview-grid {
+    gap:
+      32px;
+  }
+
+  .packages-overview-visual {
+    width: 100%;
+  }
+}

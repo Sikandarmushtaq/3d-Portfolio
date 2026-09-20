@@ -1,41 +1,42 @@
-import Navbar from '../Components/Navbar';
-import Cursor from '../Components/Cursor';
-import './OurTeam.css';
-import Footer from "../Components/Footer";
-import PlexusCanvas from '../Components/PlexusCanvas';
-import TeamDeck from '../Components/TeamDeck';
-import { teamMembers } from '../data/TeamData';   
+import Navbar from "../Components/Navbar.js";
+import Cursor from "../Components/Cursor.js";
+import Scene3 from "../Components/Scene3.js";
+import TeamDeck from "../Components/TeamDeck.js";
+import Footer from "../Components/Footer.js";
+
+import {
+  teamMembers
+} from "../data/TeamData.js";
+
+import "./OurTeam.css";
 
 export default function OurTeam() {
-
-
   return (
     <div className="our-team-page">
       <Cursor />
+
       <Navbar />
 
-      <section className="ot-hero-section">
-        <PlexusCanvas
-          className="ot-network-canvas"
-          speed={3.5}
-          mouseRepel
-          repelRadius={150}
-          repelStrength={0.8}
+      <main className="our-team-content">
+        <Scene3
+          title="Our Team"
+          variant="corporate"
         />
-        <div className="ot-hero-content">
-          <h1 className="ot-heading">Our Team</h1>
-        </div>
-      </section>
 
-      <div className="page-content-wrapper">
-        {/* 2. TEAM — shared data */}
-        <section className="ot-section team-section-white">
-          <div className="ot-container team-center-layout">
-            <h1 className="section-title dark-title">Meet Our Team</h1>
-            <TeamDeck members={teamMembers} />  
+        <section className="our-team-section">
+          <div className="our-team-container">
+            <h2 className="our-team-title">
+              Meet Our Team
+            </h2>
+
+            <div className="our-team-deck">
+              <TeamDeck
+                members={teamMembers}
+              />
+            </div>
           </div>
         </section>
-      </div>
+      </main>
 
       <Footer />
     </div>

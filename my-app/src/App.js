@@ -14,6 +14,9 @@ import "./styles/global.css";
 import Home from "./pages/Home";
 import WhoWeAre from "./pages/WhoWeAre";
 import OurTeam from "./pages/OurTeam";
+import Packages from "./pages/Packages.js";
+import HowWeWork from "./pages/HowWeWork.js";
+import Portfolio from "./pages/Portfolio.js";
 
 import Contact from "./Components/Contact";
 
@@ -272,14 +275,14 @@ const App = () => {
 
         <Route
           path="/how-we-work"
-          element={<ComingSoon title="How We Work" />}
+          element={< HowWeWork/>}
         />
 
-        <Route path="/portfolio" element={<ComingSoon title="Portfolio" />} />
+        <Route path="/portfolio" element={<Portfolio />} />
 
         <Route
           path="/packages"
-          element={<ComingSoon title="Engagement Models" />}
+          element={<Packages/>}
         />
 
         <Route

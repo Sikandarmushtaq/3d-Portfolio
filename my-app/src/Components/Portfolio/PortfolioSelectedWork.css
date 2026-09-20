@@ -1,0 +1,252 @@
+.psw-section {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  padding:
+    clamp(82px, 8vw, 118px)
+    0
+    clamp(62px, 6vw, 84px);
+
+  background: #050505;
+
+  color: #fff;
+
+  font-family: inherit;
+}
+
+.psw-shell {
+  width: min(1320px, 92%);
+
+  margin: 0 auto;
+}
+
+.psw-intro {
+  margin-bottom:
+    clamp(50px, 5.5vw, 72px);
+}
+
+.psw-title {
+  font-size:
+    clamp(4.7rem, 9.4vw, 9.4rem);
+
+  font-weight: 400;
+
+  line-height: 0.74;
+
+  letter-spacing: -0.085em;
+}
+
+.psw-title > div {
+  overflow: hidden;
+}
+
+.psw-title > div:nth-child(2) {
+  padding-left:
+    clamp(35px, 8vw, 120px);
+}
+
+.psw-title-line {
+  display: block;
+}
+
+.psw-project-stage {
+  display: grid;
+
+  grid-template-columns:
+    repeat(12, 1fr);
+
+  column-gap:
+    clamp(22px, 3vw, 42px);
+
+  row-gap:
+    clamp(48px, 6vw, 76px);
+
+  align-items: start;
+}
+
+.psw-project-card {
+  min-width: 0;
+}
+
+.psw-project-card.shopsphere {
+  grid-column:
+    1 / span 5;
+}
+
+.psw-project-card.edunexa {
+  grid-column:
+    8 / span 4;
+
+  margin-top: 52px;
+}
+
+.psw-project-card.taakra {
+  grid-column:
+    2 / span 4;
+}
+
+.psw-project-card.ecommerce {
+  grid-column:
+    7 / span 5;
+
+  margin-top: 34px;
+}
+
+.psw-project-media {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1.42 / 1;
+
+  overflow: hidden;
+
+  background: #0a0a0a;
+}
+
+.psw-project-media img {
+  width: 100%;
+
+  height: 108%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  filter:
+    grayscale(100%)
+    contrast(1.04);
+
+  will-change: transform;
+
+  transition:
+    filter 0.5s ease;
+}
+
+.psw-project-meta {
+  padding-top: 15px;
+}
+
+.psw-project-meta h3 {
+  margin:
+    0
+    0
+    7px;
+
+  color: #fff;
+
+  font-size:
+    clamp(
+      1.12rem,
+      1.55vw,
+      1.42rem
+    );
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing:
+    -0.045em;
+}
+
+.psw-project-meta span {
+  display: block;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.4
+    );
+
+  font-size: 0.56rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+}
+
+@media (max-width: 900px) {
+  .psw-project-stage {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap:
+      46px
+      24px;
+  }
+
+  .psw-project-card.shopsphere,
+  .psw-project-card.edunexa,
+  .psw-project-card.taakra,
+  .psw-project-card.ecommerce {
+    grid-column: auto;
+
+    margin-top: 0;
+  }
+
+  .psw-project-card:nth-child(even) {
+    margin-top: 42px;
+  }
+}
+
+@media (max-width: 600px) {
+  .psw-section {
+    padding:
+      78px
+      0
+      62px;
+  }
+
+  .psw-intro {
+    margin-bottom: 46px;
+  }
+
+  .psw-title {
+    font-size:
+      clamp(
+        4rem,
+        19vw,
+        6rem
+      );
+  }
+
+  .psw-title > div:nth-child(2) {
+    padding-left: 26px;
+  }
+
+  .psw-project-stage {
+    grid-template-columns: 1fr;
+
+    gap: 38px;
+  }
+
+  .psw-project-card:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .psw-project-card:nth-child(odd) {
+    width: 94%;
+  }
+
+  .psw-project-card:nth-child(even) {
+    width: 94%;
+
+    margin-left: auto;
+  }
+
+  .psw-project-media {
+    aspect-ratio: 1.35 / 1;
+  }
+
+  .psw-project-meta {
+    padding-top: 13px;
+  }
+}
