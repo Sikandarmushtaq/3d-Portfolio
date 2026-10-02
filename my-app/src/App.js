@@ -7,9 +7,7 @@ import {
 
 import "./styles/global.css";
 
-// ==========================================
-// MAIN PAGES
-// ==========================================
+
 
 import Home from "./pages/Home";
 import WhoWeAre from "./pages/WhoWeAre";
@@ -20,9 +18,7 @@ import Portfolio from "./pages/Portfolio.js";
 
 import Contact from "./Components/Contact";
 
-// ==========================================
-// EXISTING SERVICES
-// ==========================================
+
 
 import AgenticAI from "./pages/Agentic";
 import AIChatbot from "./pages/AiChatB";
@@ -61,9 +57,7 @@ import BrandOptimization from "./pages/BrandOptimization"
 import MarketingAutomation from "./pages/MarketingAutomation"
 
 
-// ==========================================
-// ADMIN
-// ==========================================
+
 
 import AdminLogin from "./pages/AdminDashboard/AdminLogin";
 
@@ -77,9 +71,6 @@ import ChangePassword from "./pages/AdminDashboard/ChangePassword";
 import WebApplication from "./pages/WebApplication";
 
 
-// ==========================================
-// TEMPORARY PAGE
-// ==========================================
 
 const ComingSoon = ({ title }) => {
   return (
@@ -127,9 +118,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* ======================================
-            MAIN WEBSITE
-        ====================================== */}
+       
 
         <Route path="/" element={<Home />} />
 
@@ -139,9 +128,7 @@ const App = () => {
 
         <Route path="/contact" element={<Contact />} />
 
-        {/* ======================================
-            AI & INTELLIGENT SYSTEMS
-        ====================================== */}
+     
 
         <Route path="/ai-development" element={<AiDev />} />
 
@@ -158,9 +145,7 @@ const App = () => {
           element={<ComputerVision title="Computer Vision Solutions" />}
         />
 
-        {/* ======================================
-            DEVELOPMENT SERVICES
-        ====================================== */}
+       
 
         <Route path="/mern" element={<MernStack />} />
 
@@ -177,9 +162,7 @@ const App = () => {
 
         <Route path="/ecommerce-web" element={<EcommerceWeb />} />
 
-        {/* ======================================
-            INDUSTRY & BUSINESS SOLUTIONS
-        ====================================== */}
+      
 
         <Route path="/education-platform" element={<EducationPlatform />} />
 
@@ -208,9 +191,6 @@ const App = () => {
           element={<Enterprise />}
         />
 
-        {/* ======================================
-            MARKETING
-        ====================================== */}
 
         <Route
           path="/seo"
@@ -269,9 +249,7 @@ const App = () => {
           element={<MarketingAutomation/>}
         />
 
-        {/* ======================================
-            ABOUT / COMPANY
-        ====================================== */}
+        
 
         <Route
           path="/how-we-work"
@@ -292,19 +270,15 @@ const App = () => {
 
         <Route path="/blogs" element={<ComingSoon title="Insights" />} />
 
-        {/* Careers intentionally opens Contact */}
+      
 
         <Route path="/careers" element={<Navigate to="/contact" replace />} />
 
-        {/* ======================================
-            ADMIN LOGIN
-        ====================================== */}
+   
 
-        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin-ceo/login" element={<AdminLogin />} />
 
-        {/* ======================================
-            PROTECTED ADMIN
-        ====================================== */}
+       
 
         <Route element={<ProtectedRoute />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />}>
@@ -316,9 +290,7 @@ const App = () => {
           </Route>
         </Route>
 
-        {/* ======================================
-            404
-        ====================================== */}
+      
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
