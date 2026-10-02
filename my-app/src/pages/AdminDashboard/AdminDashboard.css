@@ -6,6 +6,23 @@ body {
   margin: 0;
 }
 
+.admin-dashboard,
+.admin-dashboard * {
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: default !important;
+}
+
+.admin-dashboard a,
+.admin-dashboard button,
+.admin-dashboard select {
+  cursor: pointer !important;
+}
+
+.admin-dashboard input,
+.admin-dashboard textarea {
+  cursor: text !important;
+}
+
 .admin-dashboard {
   min-height: 100vh;
   display: flex;
@@ -61,7 +78,7 @@ body {
   gap: 11px;
   text-decoration: none;
   font-size: 14px;
-  cursor: pointer;
+  cursor: pointer !important;
   text-align: left;
 }
 
@@ -76,7 +93,8 @@ body {
 }
 
 .admin-logout {
-  font-family: inherit;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer !important;
 }
 
 .admin-main {
@@ -207,6 +225,10 @@ body {
   word-break: break-word;
 }
 
+.contact-details a {
+  cursor: pointer !important;
+}
+
 .contact-details a:hover {
   text-decoration: underline;
 }
@@ -282,6 +304,7 @@ body {
   background: transparent;
   color: #111111;
   font-size: 14px;
+  cursor: text !important;
 }
 
 .password-input button {
@@ -290,7 +313,7 @@ body {
   border: none;
   background: transparent;
   color: #111111;
-  cursor: pointer;
+  cursor: pointer !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -303,7 +326,7 @@ body {
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .change-password-button:hover {
@@ -313,7 +336,7 @@ body {
 
 .change-password-button:disabled {
   opacity: 0.6;
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
 
 .field-message,

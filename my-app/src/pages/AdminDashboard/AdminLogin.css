@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+.admin-login-page,
+.admin-login-page * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .admin-login-page {
   min-height: 100vh;
   background: #ffffff;
@@ -10,6 +15,7 @@
   justify-content: center;
   padding: 30px 20px;
   color: #111111;
+  cursor: default !important;
 }
 
 .admin-login-box {
@@ -73,6 +79,7 @@
   padding: 0 14px;
   outline: none;
   font-size: 14px;
+  cursor: text !important;
 }
 
 .admin-login-field input:focus {
@@ -98,7 +105,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: pointer !important;
   color: #111111;
 }
 
@@ -112,7 +119,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .admin-login-button:hover {
@@ -122,7 +129,7 @@
 
 .admin-login-button:disabled {
   opacity: 0.6;
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
 
 .admin-login-error {
@@ -139,6 +146,7 @@
   font-size: 14px;
   background: #ffffff;
   color: #111111;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @media (max-width: 500px) {
