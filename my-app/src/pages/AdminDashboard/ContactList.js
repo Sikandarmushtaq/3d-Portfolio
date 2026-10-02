@@ -1,23 +1,20 @@
-import {
+import React, {
   useEffect,
-  useState
+  useState,
 } from "react";
 
-import {
-  useNavigate
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
 import "./AdminDashboard.css";
 
-
 const API_URL =
   process.env.REACT_APP_API_URL ||
   "http://localhost:3000";
 
-
-export default function ContactList() {
+const ContactList = () => {
+  const navigate = useNavigate();
 
   const [contacts, setContacts] =
     useState([]);
@@ -28,414 +25,254 @@ export default function ContactList() {
   const [error, setError] =
     useState("");
 
-  const navigate =
-    useNavigate();
-
-
   useEffect(() => {
-
-    let mounted = true;
-
-
     const fetchContacts = async () => {
-
       try {
-
-        const res =
+        const response =
           await axios.get(
             `${API_URL}/admin/contacts`,
             {
-              withCredentials: true
+              withCredentials: true,
             }
           );
 
-
-        if (mounted) {
-
-          setContacts(
-            res.data.contacts || []
+        if (
+          response.data.status ===
+          "success"
+        ) {
+          const sortedContacts = [
+            ...(response.data.contacts ||
+              []),
+          ].sort(
+            (a, b) =>
+              new Date(b.createdAt) -
+              new Date(a.createdAt)
           );
 
+          setContacts(
+            sortedContacts
+          );
         }
-
       } catch (err) {
-
-
         if (
-          err.response?.status === 401 ||
+          err.response?.status ===
+            401 ||
           err.response?.status === 403
         ) {
-
           navigate(
             "/admin/login",
             {
-              replace: true
+              replace: true,
             }
           );
 
           return;
-
         }
 
-
-        if (mounted) {
-
-          setError(
-            err.response?.data?.message ||
-            "Failed to load contacts."
-          );
-
-        }
-
+        setError(
+          err.response?.data?.message ||
+            "Failed to load contacts"
+        );
       } finally {
-
-        if (mounted) {
-
-          setLoading(false);
-
-        }
-
+        setLoading(false);
       }
-
     };
-
 
     fetchContacts();
-
-
-    return () => {
-
-      mounted = false;
-
-    };
-
   }, [navigate]);
 
+  const getDate = (date) => {
+    if (!date) {
+      return "-";
+    }
+
+    return new Date(
+      date
+    ).toLocaleDateString(
+      "en-PK",
+      {
+        timeZone: "Asia/Karachi",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }
+    );
+  };
+
+  const getTime = (date) => {
+    if (!date) {
+      return "-";
+    }
+
+    return new Date(
+      date
+    ).toLocaleTimeString(
+      "en-PK",
+      {
+        timeZone: "Asia/Karachi",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }
+    );
+  };
 
   if (loading) {
-
     return (
-
-      <div className="dashboard-loading">
-
-        <div className="sketch-spinner">
-        </div>
-
-        <span>
-          Loading contacts...
-        </span>
-
+      <div className="admin-state">
+        Loading contacts...
       </div>
-
     );
-
   }
-
 
   if (error) {
-
     return (
-
-      <div className="dashboard-error">
-
+      <div className="admin-state">
         {error}
-
       </div>
-
     );
-
   }
 
-
   return (
+    <section className="admin-page">
+      <div className="admin-page-header">
+        <div>
+          <span>
+            CONTACTS
+          </span>
 
-    <section className="contact-page">
-
-
-      <header className="contact-header">
-
-        <span className="page-label">
-
-          02 / CONTACT WORKSPACE
-
-        </span>
-
-
-        <h1>
-          Contact Submissions
-        </h1>
-
-
-        <p>
-
-          Review every portfolio contact
-          submission and its complete details.
-
-        </p>
-
-      </header>
-
-
-      <div className="contact-result-bar">
-
-        <span>
-          ALL SUBMISSIONS
-        </span>
-
-
-        <strong>
-
-          {contacts.length}
-          {" "}
-          CONTACTS
-
-        </strong>
-
-      </div>
-
-
-      {contacts.length === 0 ? (
-
-        <div className="contact-empty">
-
-          <div className="empty-symbol">
-            ◇
-          </div>
-
-
-          <h3>
-            No contacts yet.
-          </h3>
-
+          <h1>
+            Contact Submissions
+          </h1>
 
           <p>
-
-            New portfolio submissions
-            will appear here.
-
+            View all contact form
+            submissions.
           </p>
-
         </div>
 
+        <div className="admin-count">
+          {contacts.length}
+        </div>
+      </div>
+
+      {contacts.length === 0 ? (
+        <div className="admin-empty">
+          No contacts found.
+        </div>
       ) : (
-
-        <div className="sketch-table-container">
-
-          <table className="sketch-contact-table">
-
-
-            <thead>
-
-              <tr>
-
-                <th>#</th>
-
-                <th>
-                  Full Name
-                </th>
-
-                <th>
-                  Company
-                </th>
-
-                <th>
-                  Email
-                </th>
-
-                <th>
-                  Number
-                </th>
-
-                <th>
-                  Job Title
-                </th>
-
-                <th>
-                  Source
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody>
-
-              {contacts.map(
-                (contact, index) => (
-
-                  <tr
-                    key={
-                      contact._id ||
-                      index
-                    }
-                  >
-
-
-                    <td
-                      className="contact-index-cell"
-                      data-label="Record"
-                    >
-
-                      <span className="row-number">
-
-                        {String(
-                          index + 1
-                        ).padStart(
-                          2,
-                          "0"
-                        )}
-
-                      </span>
-
-                    </td>
-
-
-                    <td data-label="Full Name">
-
-                      <div className="contact-person">
-
-                        <div className="contact-initial">
-
-                          {contact.fullName
-                            ?.charAt(0)
-                            ?.toUpperCase() ||
-                            "?"
-                          }
-
-                        </div>
-
-
-                        <span className="person-name">
-
-                          {contact.fullName || "-"}
-
-                        </span>
-
-                      </div>
-
-                    </td>
-
-
-                    <td data-label="Company">
-
-                      <span className="contact-value">
-
-                        {contact.companyName || "-"}
-
-                      </span>
-
-                    </td>
-
-
-                    <td data-label="Email">
-
-                      {contact.email ? (
-
-                        <a
-                          href={`mailto:${contact.email}`}
-                          className="table-email"
-                        >
-
-                          {contact.email}
-
-                        </a>
-
-                      ) : (
-
-                        <span className="contact-value">
-                          -
-                        </span>
-
+        <div className="contact-list">
+          {contacts.map(
+            (contact, index) => (
+              <div
+                className="contact-card"
+                key={contact._id}
+              >
+                <div className="contact-card-top">
+                  <div>
+                    <span className="contact-number">
+                      {String(
+                        index + 1
+                      ).padStart(
+                        2,
+                        "0"
                       )}
+                    </span>
 
-                    </td>
+                    <h3>
+                      {contact.fullName ||
+                        "-"}
+                    </h3>
+                  </div>
 
-
-                    <td data-label="Number">
-
-                      {contact.number ? (
-
-                        <a
-                          href={`tel:${contact.number}`}
-                          className="table-phone"
-                        >
-
-                          {contact.number}
-
-                        </a>
-
-                      ) : (
-
-                        <span className="contact-value">
-                          -
-                        </span>
-
+                  <div className="contact-date">
+                    <span>
+                      {getDate(
+                        contact.createdAt
                       )}
+                    </span>
 
-                    </td>
+                    <small>
+                      {getTime(
+                        contact.createdAt
+                      )}
+                    </small>
+                  </div>
+                </div>
 
+                <div className="contact-details">
+                  <div>
+                    <span>
+                      Company
+                    </span>
 
-                    <td data-label="Job Title">
+                    <p>
+                      {contact.companyName ||
+                        "-"}
+                    </p>
+                  </div>
 
-                      <span className="contact-value">
+                  <div>
+                    <span>
+                      Email
+                    </span>
 
-                        {contact.jobTitle || "-"}
+                    {contact.email ? (
+                      <a
+                        href={`mailto:${contact.email}`}
+                      >
+                        {contact.email}
+                      </a>
+                    ) : (
+                      <p>-</p>
+                    )}
+                  </div>
 
-                      </span>
+                  <div>
+                    <span>
+                      Phone
+                    </span>
 
-                    </td>
+                    {contact.number ? (
+                      <a
+                        href={`tel:${contact.number}`}
+                      >
+                        {contact.number}
+                      </a>
+                    ) : (
+                      <p>-</p>
+                    )}
+                  </div>
 
+                  <div>
+                    <span>
+                      Job Title
+                    </span>
 
-                    <td data-label="Source">
+                    <p>
+                      {contact.jobTitle ||
+                        "-"}
+                    </p>
+                  </div>
 
-                      <span className="table-source">
+                  <div>
+                    <span>
+                      Source
+                    </span>
 
-                        {contact.source ||
-                          "Direct"
-                        }
-
-                      </span>
-
-                    </td>
-
-                  </tr>
-
-                )
-              )}
-
-            </tbody>
-
-          </table>
-
+                    <p>
+                      {contact.source ||
+                        "Direct"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )
+          )}
         </div>
-
       )}
-
-
-      {contacts.length > 0 && (
-
-        <div className="contact-footer">
-
-          <span>
-            END OF SUBMISSIONS
-          </span>
-
-
-          <span>
-
-            {contacts.length}
-            {" "}
-            RECORDS LOADED
-
-          </span>
-
-        </div>
-
-      )}
-
     </section>
-
   );
+};
 
-}
+export default ContactList;

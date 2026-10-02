@@ -1,115 +1,77 @@
-import {
-  useState
-} from "react";
+import React, { useState } from "react";
 
-import {
-  useNavigate
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
 import {
-  ArrowRight,
   Eye,
   EyeOff,
-  LockKeyhole
 } from "lucide-react";
 
 import "./AdminDashboard.css";
-
 
 const API_URL =
   process.env.REACT_APP_API_URL ||
   "http://localhost:3000";
 
-
-export default function ChangePassword() {
-
-  const navigate =
-    useNavigate();
-
+const ChangePassword = () => {
+  const navigate = useNavigate();
 
   const [form, setForm] =
     useState({
       oldPassword: "",
       newPassword: "",
-      confirmPassword: ""
+      confirmPassword: "",
     });
-
-
-  const [message, setMessage] =
-    useState("");
-
-
-  const [error, setError] =
-    useState("");
-
-
-  const [fieldError, setFieldError] =
-    useState("");
-
-
-  const [loading, setLoading] =
-    useState(false);
-
 
   const [showOld, setShowOld] =
     useState(false);
 
-
   const [showNew, setShowNew] =
     useState(false);
 
-
   const [
     showConfirm,
-    setShowConfirm
+    setShowConfirm,
   ] = useState(false);
 
+  const [loading, setLoading] =
+    useState(false);
 
+  const [error, setError] =
+    useState("");
 
+  const [fieldError, setFieldError] =
+    useState("");
+
+  const [message, setMessage] =
+    useState("");
 
   const handleChange = (e) => {
-
     setForm({
-
       ...form,
-
-      [e.target.name]:
-        e.target.value
-
+      [e.target.name]: e.target.value,
     });
 
-
     setError("");
     setFieldError("");
-
+    setMessage("");
   };
 
-
-
-
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
-
-    setMessage("");
+    setLoading(true);
     setError("");
     setFieldError("");
-
-    setLoading(true);
-
+    setMessage("");
 
     try {
-
-      const res =
+      const response =
         await axios.post(
-
           `${API_URL}/admin/change-password`,
-
           {
-
             oldPassword:
               form.oldPassword,
 
@@ -117,494 +79,278 @@ export default function ChangePassword() {
               form.newPassword,
 
             confirmPassword:
-              form.confirmPassword
-
+              form.confirmPassword,
           },
-
           {
-            withCredentials: true
+            withCredentials: true,
           }
-
         );
-
-
-     
 
       if (
-        res.data.status ===
+        response.data.status ===
         "success"
       ) {
-
         setMessage(
-          "Password changed successfully."
+          "Password changed successfully"
         );
 
-
         setForm({
-
           oldPassword: "",
-
           newPassword: "",
-
-          confirmPassword: ""
-
+          confirmPassword: "",
         });
 
-
         setTimeout(() => {
-
           navigate(
             "/admin/login",
             {
-              replace: true
+              replace: true,
             }
           );
-
         }, 1000);
-
       }
-
-
     } catch (err) {
-
-
-   
-
       if (
-        err.response?.status === 401 ||
+        err.response?.status ===
+          401 ||
         err.response?.status === 403
       ) {
-
         navigate(
           "/admin/login",
           {
-            replace: true
+            replace: true,
           }
         );
 
         return;
-
       }
 
-
-  
-
-      const backendMessage =
-        err.response?.data?.message ||
-        "Failed to change password.";
-
-
-      const backendField =
-        err.response?.data?.field ||
-        "";
-
-
       setError(
-        backendMessage
+        err.response?.data?.message ||
+          "Failed to change password"
       );
-
 
       setFieldError(
-        backendField
+        err.response?.data?.field ||
+          ""
       );
-
-
     } finally {
-
       setLoading(false);
-
     }
-
   };
 
-
   return (
+    <section className="admin-page">
+      <div className="admin-page-header">
+        <div>
+          <span>
+            SECURITY
+          </span>
 
-    <section className="password-sketch-page">
+          <h1>
+            Change Password
+          </h1>
 
-
-      <div className="password-form-panel">
-
-
-   
-
-        <div className="secure-label">
-
-          <LockKeyhole size={14} />
-
-          SECURE SETTINGS
-
+          <p>
+            Update your admin account
+            password.
+          </p>
         </div>
+      </div>
 
-
-      
-
-        <h2>
-          Change Password
-        </h2>
-
-
-        <p>
-
-          Verify your current password
-          and choose a new secure password.
-
-        </p>
-
-
+      <div className="change-password-box">
         <form
-          className="password-sketch-form"
+          className="change-password-form"
           onSubmit={handleSubmit}
         >
-
-
-         
-
-          <div className="sketch-field">
-
+          <div className="password-field">
             <label>
-              CURRENT PASSWORD
+              Current Password
             </label>
-
 
             <div
               className={
                 fieldError ===
                 "oldPassword"
-
-                  ? "sketch-input password-input-error"
-
-                  : "sketch-input"
+                  ? "password-input error"
+                  : "password-input"
               }
             >
-
-              <LockKeyhole size={16} />
-
-
               <input
-
                 type={
                   showOld
                     ? "text"
                     : "password"
                 }
-
                 name="oldPassword"
-
                 value={
                   form.oldPassword
                 }
-
                 onChange={
                   handleChange
                 }
-
-                placeholder="Enter current password"
-
-                autoComplete="current-password"
-
+                placeholder="Current password"
                 required
-
               />
 
-
               <button
-
                 type="button"
-
                 onClick={() =>
                   setShowOld(
                     !showOld
                   )
                 }
-
-                aria-label={
-                  showOld
-                    ? "Hide current password"
-                    : "Show current password"
-                }
-
               >
-
-                {showOld
-
-                  ? <EyeOff size={16} />
-
-                  : <Eye size={16} />
-
-                }
-
+                {showOld ? (
+                  <EyeOff size={17} />
+                ) : (
+                  <Eye size={17} />
+                )}
               </button>
-
             </div>
-
 
             {fieldError ===
               "oldPassword" && (
-
-              <span className="password-field-error">
-
+              <span className="field-message">
                 {error}
-
               </span>
-
             )}
-
           </div>
 
-
-
-          <div className="sketch-field">
-
+          <div className="password-field">
             <label>
-              NEW PASSWORD
+              New Password
             </label>
-
 
             <div
               className={
                 fieldError ===
                 "newPassword"
-
-                  ? "sketch-input password-input-error"
-
-                  : "sketch-input"
+                  ? "password-input error"
+                  : "password-input"
               }
             >
-
-              <LockKeyhole size={16} />
-
-
               <input
-
                 type={
                   showNew
                     ? "text"
                     : "password"
                 }
-
                 name="newPassword"
-
                 value={
                   form.newPassword
                 }
-
                 onChange={
                   handleChange
                 }
-
                 placeholder="Minimum 8 characters"
-
-                autoComplete="new-password"
-
                 required
-
               />
 
-
               <button
-
                 type="button"
-
                 onClick={() =>
                   setShowNew(
                     !showNew
                   )
                 }
-
-                aria-label={
-                  showNew
-                    ? "Hide new password"
-                    : "Show new password"
-                }
-
               >
-
-                {showNew
-
-                  ? <EyeOff size={16} />
-
-                  : <Eye size={16} />
-
-                }
-
+                {showNew ? (
+                  <EyeOff size={17} />
+                ) : (
+                  <Eye size={17} />
+                )}
               </button>
-
             </div>
-
 
             {fieldError ===
               "newPassword" && (
-
-              <span className="password-field-error">
-
+              <span className="field-message">
                 {error}
-
               </span>
-
             )}
-
           </div>
 
-
-       
-
-          <div className="sketch-field">
-
+          <div className="password-field">
             <label>
-              CONFIRM NEW PASSWORD
+              Confirm Password
             </label>
-
 
             <div
               className={
                 fieldError ===
                 "confirmPassword"
-
-                  ? "sketch-input password-input-error"
-
-                  : "sketch-input"
+                  ? "password-input error"
+                  : "password-input"
               }
             >
-
-              <LockKeyhole size={16} />
-
-
               <input
-
                 type={
                   showConfirm
                     ? "text"
                     : "password"
                 }
-
                 name="confirmPassword"
-
                 value={
                   form.confirmPassword
                 }
-
                 onChange={
                   handleChange
                 }
-
                 placeholder="Confirm new password"
-
-                autoComplete="new-password"
-
                 required
-
               />
 
-
               <button
-
                 type="button"
-
                 onClick={() =>
                   setShowConfirm(
                     !showConfirm
                   )
                 }
-
-                aria-label={
-                  showConfirm
-                    ? "Hide confirm password"
-                    : "Show confirm password"
-                }
-
               >
-
-                {showConfirm
-
-                  ? <EyeOff size={16} />
-
-                  : <Eye size={16} />
-
-                }
-
+                {showConfirm ? (
+                  <EyeOff size={17} />
+                ) : (
+                  <Eye size={17} />
+                )}
               </button>
-
             </div>
-
 
             {fieldError ===
               "confirmPassword" && (
-
-              <span className="password-field-error">
-
+              <span className="field-message">
                 {error}
-
               </span>
-
             )}
-
           </div>
-
-
-          
 
           {error &&
             !fieldError && (
-
-            <div className="dashboard-error">
-
-              {error}
-
-            </div>
-
-          )}
-
-
-        
-
-          {message && (
-
-            <div className="dashboard-success">
-
-              {message}
-
-              <br />
-
-              Redirecting to login...
-
-            </div>
-
-          )}
-
-
-        
-
-          <button
-
-            type="submit"
-
-            className="update-password-btn"
-
-            disabled={loading}
-
-          >
-
-            {loading
-              ? "Checking & Updating..."
-              : "Update Password"
-            }
-
-
-            {!loading && (
-
-              <ArrowRight size={17} />
-
+              <div className="form-error">
+                {error}
+              </div>
             )}
 
+          {message && (
+            <div className="form-success">
+              {message}
+            </div>
+          )}
+
+          <button
+            className="change-password-button"
+            type="submit"
+            disabled={loading}
+          >
+            {loading
+              ? "Updating..."
+              : "Update Password"}
           </button>
-
         </form>
-
       </div>
-
     </section>
-
   );
+};
 
-}
+export default ChangePassword;

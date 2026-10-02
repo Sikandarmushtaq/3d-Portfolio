@@ -1,296 +1,166 @@
-import {
-  Navigate,
-  Outlet
-} from "react-router-dom";
+import React, {
+  useEffect,
+  useState,
+} from "react";
 
 import {
-  useEffect,
-  useRef,
-  useState
-} from "react";
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 
 import axios from "axios";
 
 import "./AdminDashboard.css";
 
-
 const API_URL =
   process.env.REACT_APP_API_URL ||
   "http://localhost:3000";
 
-
-export default function ProtectedRoute() {
-
-  const [authStatus, setAuthStatus] =
+const ProtectedRoute = () => {
+  const [status, setStatus] =
     useState("checking");
 
-  const expiryTimer =
-    useRef(null);
-
-
   useEffect(() => {
-
     let mounted = true;
 
+    let expiryTimer;
 
-
-
-    const clearExpiryTimer = () => {
-
-      if (expiryTimer.current) {
-
-        clearTimeout(
-          expiryTimer.current
-        );
-
-        expiryTimer.current = null;
-
-      }
-
-    };
-
-
-
-
-    const endSession = async () => {
-
-      clearExpiryTimer();
-
-
+    const checkAuth = async () => {
       try {
-
-        await axios.post(
-          `${API_URL}/admin/logout`,
-          {},
-          {
-            withCredentials: true
-          }
-        );
-
-      } catch (err) {
-
-        console.log(
-          "Session cleanup:",
-          err.message
-        );
-
-      } finally {
-
-        if (mounted) {
-
-          setAuthStatus(
-            "unauthorized"
+        const response =
+          await axios.get(
+            `${API_URL}/admin/check-auth`,
+            {
+              withCredentials: true,
+            }
           );
 
-        }
-
-      }
-
-    };
-
-
-    const checkAuthentication =
-      async () => {
-
-        try {
-
-          const res =
-            await axios.get(
-              `${API_URL}/admin/check-auth`,
-              {
-                withCredentials: true
-              }
-            );
-
-
-        
-
-          if (
-            res.data.authenticated !== true
-          ) {
-
-            await endSession();
-
-            return;
-
-          }
-
-
-          const expiresAt =
-            Number(
-              res.data.expiresAt
-            );
-
-
-          const remainingTime =
-            expiresAt - Date.now();
-
-
-
-          if (
-            !expiresAt ||
-            remainingTime <= 0
-          ) {
-
-            await endSession();
-
-            return;
-
-          }
-
-
+        if (
+          response.data
+            .authenticated !== true
+        ) {
           if (mounted) {
-
-            setAuthStatus(
-              "authorized"
-            );
-
-          }
-
-
-          clearExpiryTimer();
-
-
-     
-
-          expiryTimer.current =
-            setTimeout(
-              () => {
-
-                endSession();
-
-              },
-              remainingTime
-            );
-
-
-        } catch (err) {
-
-       
-
-          clearExpiryTimer();
-
-
-          if (mounted) {
-
-            setAuthStatus(
+            setStatus(
               "unauthorized"
             );
-
           }
 
+          return;
         }
 
+        const expiresAt =
+          Number(
+            response.data.expiresAt
+          );
+
+        const remainingTime =
+          expiresAt - Date.now();
+
+        if (
+          !expiresAt ||
+          remainingTime <= 0
+        ) {
+          if (mounted) {
+            setStatus(
+              "unauthorized"
+            );
+          }
+
+          return;
+        }
+
+        if (mounted) {
+          setStatus(
+            "authorized"
+          );
+        }
+
+        clearTimeout(
+          expiryTimer
+        );
+
+        expiryTimer =
+          setTimeout(() => {
+            if (mounted) {
+              setStatus(
+                "unauthorized"
+              );
+            }
+          }, remainingTime);
+      } catch (err) {
+        if (mounted) {
+          setStatus(
+            "unauthorized"
+          );
+        }
+      }
+    };
+
+    const handleFocus = () => {
+      checkAuth();
+    };
+
+    const handleVisibility =
+      () => {
+        if (
+          document.visibilityState ===
+          "visible"
+        ) {
+          checkAuth();
+        }
       };
 
-
-
-
-    checkAuthentication();
-
-
-
-
-    const handleWindowFocus = () => {
-
-      checkAuthentication();
-
-    };
-
-
-    const handleVisibilityChange = () => {
-
-      if (
-        document.visibilityState ===
-        "visible"
-      ) {
-
-        checkAuthentication();
-
-      }
-
-    };
-
+    checkAuth();
 
     window.addEventListener(
       "focus",
-      handleWindowFocus
+      handleFocus
     );
-
 
     document.addEventListener(
       "visibilitychange",
-      handleVisibilityChange
+      handleVisibility
     );
 
-
-
     return () => {
-
       mounted = false;
 
-      clearExpiryTimer();
-
+      clearTimeout(
+        expiryTimer
+      );
 
       window.removeEventListener(
         "focus",
-        handleWindowFocus
+        handleFocus
       );
-
 
       document.removeEventListener(
         "visibilitychange",
-        handleVisibilityChange
+        handleVisibility
       );
-
     };
-
   }, []);
 
-
-
-  if (
-    authStatus === "checking"
-  ) {
-
+  if (status === "checking") {
     return (
-
-      <div className="dashboard-loading">
-
-        <div className="sketch-spinner">
-        </div>
-
-        <span>
-          Verifying session...
-        </span>
-
+      <div className="admin-state full-page">
+        Checking session...
       </div>
-
     );
-
   }
 
-
-
-
   if (
-    authStatus === "unauthorized"
+    status === "unauthorized"
   ) {
-
     return (
-
       <Navigate
         to="/admin/login"
         replace
       />
-
     );
-
   }
 
-
-
-
   return <Outlet />;
+};
 
-}
+export default ProtectedRoute;
