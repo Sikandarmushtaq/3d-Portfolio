@@ -38,6 +38,10 @@
 }
 
 
+/* =========================================
+   LOGO
+========================================= */
+
 .brand-logo-link {
   justify-self: start;
 
@@ -66,9 +70,14 @@
   display: block;
 
   width: 172px;
+
   height: auto;
 }
 
+
+/* =========================================
+   DESKTOP NAVIGATION
+========================================= */
 
 .nav {
   justify-self: center;
@@ -90,6 +99,9 @@
 }
 
 
+/* Invisible hover area between
+   nav link and dropdown */
+
 .nav-dropdown::after {
   content: "";
 
@@ -103,12 +115,17 @@
   position: absolute;
 
   top: 100%;
+
   left: -28px;
 
   background:
     transparent;
 }
 
+
+/* =========================================
+   NAV LINKS
+========================================= */
 
 .nav-link {
   position: relative;
@@ -166,7 +183,9 @@
   position: absolute;
 
   left: 0;
+
   right: 100%;
+
   bottom: 0;
 
   background:
@@ -174,23 +193,21 @@
 
   transition:
     right
-      0.3s ease,
+    0.3s ease,
     background
-      0.3s ease;
+    0.3s ease;
 }
 
 
 .nav-link:hover,
-.nav-dropdown:hover >
-.nav-link {
+.nav-dropdown:hover > .nav-link {
   color:
     #ffffff;
 }
 
 
 .nav-link:hover::after,
-.nav-dropdown:hover >
-.nav-link::after {
+.nav-dropdown:hover > .nav-link::after {
   right: 0;
 
   background:
@@ -206,8 +223,13 @@
 }
 
 
+/* =========================================
+   NAV CHEVRON
+========================================= */
+
 .nav-chevron {
   width: 11px;
+
   height: 11px;
 
   color:
@@ -220,14 +242,13 @@
 
   transition:
     transform
-      0.3s ease,
+    0.3s ease,
     color
-      0.3s ease;
+    0.3s ease;
 }
 
 
-.nav-dropdown:hover
-.nav-chevron {
+.nav-dropdown:hover .nav-chevron {
   color:
     #a78bfa;
 
@@ -237,6 +258,10 @@
     );
 }
 
+
+/* =========================================
+   LET'S CONNECT BUTTON
+========================================= */
 
 .book-demo-btn {
   min-width: 150px;
@@ -295,21 +320,20 @@
 
   transition:
     border-color
-      0.25s ease,
+    0.25s ease,
     background
-      0.25s ease,
-    transform
-      0.25s ease,
-    box-shadow
-      0.25s ease;
+    0.25s ease;
 }
 
+
+/* Both corner pieces */
 
 .book-demo-btn::before,
 .book-demo-btn::after {
   content: "";
 
   width: 10px;
+
   height: 10px;
 
   position: absolute;
@@ -318,13 +342,16 @@
     none;
 
   transition:
-    border-color
-    0.25s ease;
+    transform
+    0.3s ease;
 }
 
 
+/* Top-left corner */
+
 .book-demo-btn::before {
   top: -4px;
+
   left: -4px;
 
   border-top:
@@ -337,8 +364,11 @@
 }
 
 
+/* Bottom-right corner */
+
 .book-demo-btn::after {
   right: -4px;
+
   bottom: -4px;
 
   border-right:
@@ -351,41 +381,58 @@
 }
 
 
+/* No purple hover effect */
+
 .book-demo-btn:hover {
   border-color:
     rgba(
-      167,
-      139,
-      250,
-      0.7
+      255,
+      255,
+      255,
+      0.3
     );
 
   background:
     rgba(
-      139,
-      92,
-      246,
-      0.06
+      0,
+      0,
+      0,
+      0.16
     );
+}
 
+
+/* Top-left corner moves inside */
+
+.book-demo-btn:hover::before {
   transform:
-    translateY(
-      -1px
+    translate(
+      9px,
+      9px
     );
 }
 
 
-.book-demo-btn:hover::before,
+/* Bottom-right corner moves inside */
+
 .book-demo-btn:hover::after {
-  border-color:
-    #a78bfa;
+  transform:
+    translate(
+      -9px,
+      -9px
+    );
 }
 
+
+/* =========================================
+   DROPDOWN MENU
+========================================= */
 
 .dropdown-menu {
   position: fixed;
 
   top: 88px;
+
   left: 50vw;
 
   z-index: 9999999;
@@ -487,18 +534,16 @@
 
   transition:
     opacity
-      0.22s ease,
+    0.22s ease,
     visibility
-      0.22s ease,
+    0.22s ease,
     transform
-      0.3s ease;
+    0.3s ease;
 }
 
 
-.nav-dropdown:hover
-.dropdown-menu,
-.nav-dropdown:focus-within
-.dropdown-menu {
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
   opacity: 1;
 
   visibility:
@@ -512,6 +557,10 @@
     translateY(0);
 }
 
+
+/* =========================================
+   MEGA MENU
+========================================= */
 
 .mega-menu {
   width:
@@ -612,6 +661,10 @@
 }
 
 
+/* =========================================
+   MEGA MENU COLUMNS
+========================================= */
+
 .mega-col {
   min-width: 0;
 
@@ -679,11 +732,13 @@
   content: "";
 
   width: 30px;
+
   height: 1px;
 
   position: absolute;
 
   left: 0;
+
   bottom: 0;
 
   background:
@@ -705,6 +760,10 @@
   gap: 2px;
 }
 
+
+/* =========================================
+   MEGA MENU ITEMS
+========================================= */
 
 .mega-menu-item {
   min-height: 56px;
@@ -732,9 +791,9 @@
 
   transition:
     background
-      0.2s ease,
+    0.2s ease,
     transform
-      0.2s ease;
+    0.2s ease;
 }
 
 
@@ -756,6 +815,7 @@
 
 .mega-item-icon {
   width: 34px;
+
   height: 34px;
 
   display: flex;
@@ -779,14 +839,13 @@
 
   transition:
     color
-      0.22s ease,
+    0.22s ease,
     transform
-      0.22s ease;
+    0.22s ease;
 }
 
 
-.mega-menu-item:hover
-.mega-item-icon {
+.mega-menu-item:hover .mega-item-icon {
   color:
     #b8a5ff;
 
@@ -853,8 +912,7 @@
 }
 
 
-.mega-menu-item:hover
-.mega-item-description {
+.mega-menu-item:hover .mega-item-description {
   color:
     rgba(
       255,
@@ -865,8 +923,13 @@
 }
 
 
+/* =========================================
+   HAMBURGER
+========================================= */
+
 .hamburger-btn {
   width: 39px;
+
   height: 39px;
 
   display: none;
@@ -927,13 +990,19 @@
 }
 
 
+/* =========================================
+   MOBILE MENU
+========================================= */
+
 .mobile-menu-overlay {
   width: 100vw;
+
   height: 100svh;
 
   position: fixed;
 
   top: 0;
+
   left: 0;
 
   z-index: 9999999;
@@ -1031,13 +1100,19 @@
 }
 
 
+/* =========================================
+   MOBILE CLOSE BUTTON
+========================================= */
+
 .mobile-menu-close {
   width: 38px;
+
   height: 38px;
 
   position: absolute;
 
   top: 24px;
+
   right: 22px;
 
   z-index: 5;
@@ -1057,11 +1132,13 @@
 
 .mobile-menu-close span {
   width: 16px;
+
   height: 1px;
 
   position: absolute;
 
   top: 50%;
+
   left: 50%;
 
   background:
@@ -1098,6 +1175,10 @@
 }
 
 
+/* =========================================
+   MOBILE MENU BODY
+========================================= */
+
 .mobile-menu-body {
   min-height: 0;
 
@@ -1131,6 +1212,10 @@
     transparent;
 }
 
+
+/* =========================================
+   MOBILE ACCORDION
+========================================= */
 
 .mobile-accordion {
   position: relative;
@@ -1187,8 +1272,7 @@
 }
 
 
-.mobile-accordion.is-open
-.mobile-accordion-trigger {
+.mobile-accordion.is-open .mobile-accordion-trigger {
   color:
     #ffffff;
 }
@@ -1196,6 +1280,7 @@
 
 .mobile-chevron {
   width: 28px;
+
   height: 28px;
 
   display:
@@ -1217,15 +1302,15 @@
 
   transition:
     transform
-      0.28s ease,
+    0.28s ease,
     color
-      0.28s ease;
+    0.28s ease;
 }
 
 
-.mobile-chevron
-.nav-chevron {
+.mobile-chevron .nav-chevron {
   width: 13px;
+
   height: 13px;
 }
 
@@ -1240,6 +1325,10 @@
     );
 }
 
+
+/* =========================================
+   MOBILE ACCORDION PANEL
+========================================= */
 
 .mobile-accordion-panel {
   max-height: 0;
@@ -1260,13 +1349,13 @@
 
   transition:
     max-height
-      0.42s ease,
+    0.42s ease,
     opacity
-      0.22s ease,
+    0.22s ease,
     transform
-      0.22s ease,
+    0.22s ease,
     padding-bottom
-      0.22s ease;
+    0.22s ease;
 }
 
 
@@ -1291,8 +1380,7 @@
 }
 
 
-.mobile-accordion-group
-+ .mobile-accordion-group {
+.mobile-accordion-group + .mobile-accordion-group {
   margin-top: 8px;
 
   padding-top: 18px;
@@ -1307,6 +1395,10 @@
     );
 }
 
+
+/* =========================================
+   MOBILE GROUP TITLE
+========================================= */
 
 .mobile-group-title {
   display: block;
@@ -1343,6 +1435,10 @@
 }
 
 
+/* =========================================
+   MOBILE LINKS
+========================================= */
+
 .mobile-accordion-item {
   position: relative;
 
@@ -1365,9 +1461,9 @@
 
   transition:
     color
-      0.2s ease,
+    0.2s ease,
     padding-left
-      0.2s ease;
+    0.2s ease;
 }
 
 
@@ -1379,7 +1475,9 @@
   position: absolute;
 
   top: 7px;
+
   bottom: 7px;
+
   left: 0;
 
   background:
@@ -1406,6 +1504,10 @@
     #a78bfa;
 }
 
+
+/* =========================================
+   MOBILE LET'S CONNECT
+========================================= */
 
 .mobile-book-demo {
   min-height: 56px;
@@ -1463,6 +1565,7 @@
   content: "";
 
   width: 10px;
+
   height: 10px;
 
   position: absolute;
@@ -1471,6 +1574,7 @@
 
 .mobile-book-demo::before {
   top: -4px;
+
   left: -4px;
 
   border-top:
@@ -1485,6 +1589,7 @@
 
 .mobile-book-demo::after {
   right: -4px;
+
   bottom: -4px;
 
   border-right:
@@ -1496,6 +1601,10 @@
     #ffffff;
 }
 
+
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 1100px) {
   .navbar-sikandar {
@@ -1538,6 +1647,10 @@
   }
 }
 
+
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 760px) {
   .navbar-sikandar {
@@ -1586,6 +1699,10 @@
 }
 
 
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
 @media (max-width: 420px) {
   .navbar-sikandar {
     padding:
@@ -1600,12 +1717,14 @@
 
   .hamburger-btn {
     width: 35px;
+
     height: 35px;
   }
 
 
   .mobile-menu-close {
     top: 19px;
+
     right: 16px;
   }
 
