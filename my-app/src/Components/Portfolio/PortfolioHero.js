@@ -1,223 +1,98 @@
-import {
-  Suspense,
-  useLayoutEffect,
-  useRef
-} from "react";
-
-import {
-  Canvas
-} from "@react-three/fiber";
-
-import {
-  Environment
-} from "@react-three/drei";
-
-import gsap from "gsap";
+import { Suspense, useEffect, useRef } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import * as THREE from "three";
 
 import PortfolioRobot from "./PortfolioRobot.js";
-
 import "./PortfolioHero.css";
 
+function StudioEnvironment() {
+  const { gl, scene, invalidate } = useThree();
+
+  useEffect(() => {
+    const room = new RoomEnvironment();
+    const pmrem = new THREE.PMREMGenerator(gl);
+
+    const environment = pmrem.fromScene(room);
+
+    scene.environment = environment.texture;
+    scene.environmentIntensity = 0.25;
+
+    room.dispose();
+    pmrem.dispose();
+
+    invalidate();
+
+    return () => {
+      scene.environment = null;
+      environment.dispose();
+    };
+  }, [gl, scene, invalidate]);
+
+  return null;
+}
+
 export default function PortfolioHero() {
-  const sectionRef =
-    useRef(null);
+  const sectionRef = useRef(null);
+  const invalidateRef = useRef(null);
+  const visibleRef = useRef(true);
 
-  const stageRef =
-    useRef(null);
+  const pointerRef = useRef({
+    x: 0,
+    y: 0,
+    inside: false,
+  });
 
-  const leftTextRef =
-    useRef(null);
+  const handlePointerMove = (event) => {
+    const section = sectionRef.current;
 
-  const rightTextRef =
-    useRef(null);
+    if (!section) return;
 
-  const invalidateRef =
-    useRef(null);
-
-  const visibleRef =
-    useRef(true);
-
-  const pointerRef =
-    useRef({
-      x: 0,
-      y: 0,
-      inside: false
-    });
-
-  const handlePointerMove = (
-    event
-  ) => {
-    const section =
-      sectionRef.current;
-
-    if (!section) {
-      return;
-    }
-
-    const rect =
-      section.getBoundingClientRect();
+    const rect = section.getBoundingClientRect();
 
     const x =
-      (
-        (
-          event.clientX -
-          rect.left
-        ) /
-        rect.width
-      ) *
-        2 -
-      1;
+      ((event.clientX - rect.left) / rect.width) * 2 - 1;
 
     const y =
-      -(
-        (
-          (
-            event.clientY -
-            rect.top
-          ) /
-          rect.height
-        ) *
-          2 -
-        1
-      );
+      1 - ((event.clientY - rect.top) / rect.height) * 2;
 
-    pointerRef.current.x =
-      Math.max(
-        -1,
-        Math.min(
-          1,
-          x
-        )
-      );
-
-    pointerRef.current.y =
-      Math.max(
-        -1,
-        Math.min(
-          1,
-          y
-        )
-      );
-
-    pointerRef.current.inside =
-      true;
+    pointerRef.current.x = Math.max(-1, Math.min(1, x));
+    pointerRef.current.y = Math.max(-1, Math.min(1, y));
+    pointerRef.current.inside = true;
 
     invalidateRef.current?.();
   };
 
-  const handlePointerLeave =
-    () => {
-      pointerRef.current.x =
-        0;
+  const handlePointerLeave = () => {
+    pointerRef.current.x = 0;
+    pointerRef.current.y = 0;
+    pointerRef.current.inside = false;
 
-      pointerRef.current.y =
-        0;
+    invalidateRef.current?.();
+  };
 
-      pointerRef.current.inside =
-        false;
+  useEffect(() => {
+    const section = sectionRef.current;
 
-      invalidateRef.current?.();
-    };
+    if (!section) return;
 
-  useLayoutEffect(() => {
-    const section =
-      sectionRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visibleRef.current = entry.isIntersecting;
 
-    if (!section) {
-      return;
-    }
-
-    const observer =
-      new IntersectionObserver(
-        ([entry]) => {
-          visibleRef.current =
-            entry.isIntersecting;
-
-          if (
-            entry.isIntersecting
-          ) {
-            invalidateRef.current?.();
-          }
-        },
-        {
-          threshold: 0.04
+        if (entry.isIntersecting) {
+          invalidateRef.current?.();
         }
-      );
-
-    observer.observe(
-      section
+      },
+      {
+        threshold: 0.04,
+      }
     );
 
-    const reducedMotion =
-      window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-    let ctx;
-
-    if (!reducedMotion) {
-      ctx =
-        gsap.context(() => {
-          const timeline =
-            gsap.timeline({
-              defaults: {
-                ease:
-                  "power3.out"
-              }
-            });
-
-          timeline
-            .fromTo(
-              stageRef.current,
-              {
-                y: 10,
-                scale: 0.992
-              },
-              {
-                y: 0,
-                scale: 1,
-                duration: 0.52,
-                clearProps:
-                  "transform"
-              }
-            )
-
-            .fromTo(
-              leftTextRef.current,
-              {
-                opacity: 0,
-                y: 22
-              },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.7
-              },
-              "-=0.36"
-            )
-
-            .fromTo(
-              rightTextRef.current,
-              {
-                opacity: 0,
-                y: 16
-              },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.64
-              },
-              "-=0.54"
-            );
-        }, section);
-    }
+    observer.observe(section);
 
     return () => {
       observer.disconnect();
-
-      if (ctx) {
-        ctx.revert();
-      }
     };
   }, []);
 
@@ -225,147 +100,76 @@ export default function PortfolioHero() {
     <section
       className="portfolio-hero"
       ref={sectionRef}
-      onPointerMove={
-        handlePointerMove
-      }
-      onPointerLeave={
-        handlePointerLeave
-      }
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
     >
       <div className="portfolio-studio-glow" />
 
       <div className="portfolio-hero-inner">
-        <div
-          className="portfolio-hero-left"
-          ref={leftTextRef}
-        >
+        <div className="portfolio-hero-left">
           <h1>
-            <span>
-              Building
-            </span>
-
-            <span>
-              Meaningful
-            </span>
-
-            <span>
-              Digital
-            </span>
-
-            <span>
-              Experiences
-            </span>
+            <span>Building</span>
+            <span>Meaningful</span>
+            <span>Digital</span>
+            <span>Experiences</span>
           </h1>
         </div>
 
-        <div
-          className="portfolio-robot-stage"
-          ref={stageRef}
-        >
+        <div className="portfolio-robot-stage">
           <Canvas
             frameloop="demand"
-            dpr={[
-              1,
-              1.2
-            ]}
+            dpr={[1, 1.3]}
             camera={{
-              position: [
-                0,
-                0.05,
-                8.5
-              ],
+              position: [0, 0, 8.6],
               fov: 32,
               near: 0.1,
-              far: 35
+              far: 100,
             }}
             gl={{
               alpha: true,
               antialias: true,
-              powerPreference:
-                "high-performance"
+              powerPreference: "high-performance",
+            }}
+            onCreated={({ gl }) => {
+              gl.toneMappingExposure = 0.95;
             }}
           >
             <ambientLight
-              intensity={1.08}
-            />
-
-            <directionalLight
-              position={[
-                -4.5,
-                5,
-                6
-              ]}
-              intensity={2.35}
               color="#ffffff"
+              intensity={0.45}
             />
 
             <directionalLight
-              position={[
-                4,
-                2.5,
-                4
-              ]}
+              position={[-4, 5, 6]}
+              color="#ffffff"
               intensity={1.3}
-              color="#c7b7ff"
             />
 
-            <pointLight
-              position={[
-                -3,
-                0,
-                3
-              ]}
-              intensity={0.48}
+            <directionalLight
+              position={[4, 2.5, 3]}
+              color="#aec5e8"
+              intensity={0.75}
+            />
+
+            <directionalLight
+              position={[1, -1, 4]}
               color="#ffffff"
+              intensity={0.25}
             />
 
-            <pointLight
-              position={[
-                3,
-                0.8,
-                2.6
-              ]}
-              intensity={0.78}
-              color="#8a58ff"
-            />
-
-            <pointLight
-              position={[
-                1,
-                -1.5,
-                2
-              ]}
-              intensity={0.28}
-              color="#ff72bf"
-            />
-
-            <PortfolioRobot
-              pointerRef={
-                pointerRef
-              }
-              visibleRef={
-                visibleRef
-              }
-              invalidateRef={
-                invalidateRef
-              }
-            />
+            <StudioEnvironment />
 
             <Suspense fallback={null}>
-              <Environment
-                preset="studio"
-                environmentIntensity={
-                  0.48
-                }
+              <PortfolioRobot
+                pointerRef={pointerRef}
+                visibleRef={visibleRef}
+                invalidateRef={invalidateRef}
               />
             </Suspense>
           </Canvas>
         </div>
 
-        <div
-          className="portfolio-hero-right"
-          ref={rightTextRef}
-        >
+        <div className="portfolio-hero-right">
           <p>
             SOFTWARE ENGINEERING
             <br />
