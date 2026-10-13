@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+
+import { Link } from "react-router-dom";
 
 export default function ServicePackages({ title, plans }) {
   return (
@@ -19,7 +20,6 @@ export default function ServicePackages({ title, plans }) {
             <article
               className={`service-package-card service-package-card--${plan.tone}`}
               key={plan.name}
-              data-reveal-card
             >
               <div className="service-package-head">
                 <h3>{plan.name}</h3>
